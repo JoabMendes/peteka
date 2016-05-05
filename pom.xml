@@ -8,9 +8,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Peteka</name>
-	<description>Demo project for Spring Boot</description>
-
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -21,7 +18,21 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-	</properties>
+        <!-- Versoes dos plugins -->
+        <assertj.version>3.4.1</assertj.version>
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <lombok.version>1.16.8</lombok.version>
+        <lombok-maven-plugin.version>1.16.8.0</lombok-maven-plugin.version>
+        <!-- plugins de relatorios -->
+        <findbugs-maven-plugin.version>3.0.3</findbugs-maven-plugin.version>
+        <jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
+        <maven-pmd-plugin.version>3.6</maven-pmd-plugin.version>
+        <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
+        <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
+        <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
+        <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
+        <no-package-cycles-enforcer-rule.version>1.0.5</no-package-cycles-enforcer-rule.version>
+    </properties>
 
 	<dependencies>
 		<dependency>
@@ -50,6 +61,21 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
 	</dependencies>
 	
 	<build>
@@ -57,9 +83,303 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven-project-info-reports-plugin.version}</version>
+                <configuration>
+                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${maven-pmd-plugin.version}</version>
+                <configuration>
+                    <linkXref>true</linkXref>
+                    <targetJdk>${java.source}</targetJdk>
+                    <skipEmptyReport>false</skipEmptyReport>
+                    <includeTests>true</includeTests>
+                    <rulesets>
+                        <ruleset>src/main/docs/pmd-ruleset.xml</ruleset>
+                    </rulesets>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs-maven-plugin.version}</version>
+                <configuration>
+                    <failOnError>true</failOnError>
+                    <xmlOutput>true</xmlOutput>
+                    <effort>Max</effort>
+                    <includeTests>true</includeTests>
+                    <excludeFilterFile>src/main/docs/findbugs-exclude.xml</excludeFilterFile>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
+                <version>${jdepend-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>${maven-jxr-plugin.version}</version>
+                <configuration>
+                    <aggregate>false</aggregate>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </reporting>
+
+    <profiles>
+        <profile>
+            <id>attach-test-source-javadoc</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-test</id>
+                                <goals>
+                                    <goal>test-jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <configuration>
+                            <links>
+                                <link>http://docs.oracle.com/javase/8/docs/api/</link>
+                            </links>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>check-pmd-cpd-jdepend-findbugs</id>
+            <build>
+                <plugins>
+                    <!-- findbugs -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>findbugs-maven-plugin</artifactId>
+                        <version>${findbugs-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <excludeFilterFile>src/main/docs/findbugs-exclude.xml</excludeFilterFile>
+                            <failOnError>true</failOnError>
+                            <includeTests>true</includeTests>
+                        </configuration>
+                    </plugin>
+
+                    <!--
+                        pmd:
+                        cpd: ignorar apenas o que for incluido por projeto
+                    -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-pmd-plugin</artifactId>
+                        <version>${maven-pmd-plugin.version}</version>
+                        <configuration>
+                            <skip>false</skip>
+                            <printFailingErrors>true</printFailingErrors>
+                            <verbose>true</verbose>
+                            <includeTests>true</includeTests>
+                            <rulesets>
+                                <ruleset>src/main/docs/pmd-ruleset.xml</ruleset>
+                            </rulesets>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>cpd-check</id>
+                                <goals>
+                                    <goal>cpd-check</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>pmd-check</id>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!--
+                        jdepend no package cycles enforcer
+                    -->
+                    <plugin>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <version>${maven-enforcer-plugin.version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>de.andrena.tools.nopackagecycles</groupId>
+                                <artifactId>no-package-cycles-enforcer-rule</artifactId>
+                                <version>${no-package-cycles-enforcer-rule.version}</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>enforce-no-package-cycles</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <phase>test</phase>
+                                <configuration>
+                                    <rules>
+                                        <NoPackageCyclesRule implementation="de.andrena.tools.nopackagecycles.NoPackageCyclesRule" />
+                                    </rules>
+                                    <includeTests>true</includeTests>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>delombok</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok-maven-plugin</artifactId>
+                        <version>${lombok-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>delombok</goal>
+                                </goals>
+                                <configuration>
+                                    <addOutputDirectory>false</addOutputDirectory>
+                                    <sourceDirectory>src/main/java</sourceDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>sun.jdk</groupId>
+                                <artifactId>tools</artifactId>
+                                <version>${java.version}</version>
+                                <scope>system</scope>
+                                <systemPath>${java.home}/../lib/tools.jar</systemPath>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <name>Peteka</name>
+    <description>
+        Sistema de gerenciamento de tarefas para a disciplina de Sistemas Coorporativos 2016.1
+    </description>
+    <url>https://github.com/JoabMendes/peteka</url>
+    <inceptionYear>2016</inceptionYear>
+
+    <!-- Issue Managment -->
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/JoabMendes/peteka/issues</url>
+    </issueManagement>
+
+    <!-- SCM -->
+    <scm>
+        <connection>scm:git:https://github.com/JoabMendes/peteka.git</connection>
+        <developerConnection>scm:git:https://github.com/JoabMendes/peteka.git</developerConnection>
+        <url>scm:git:https://github.com/JoabMendes/peteka.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <!-- Organization -->
+    <organization>
+        <name>Peteka</name>
+        <url>https://github.com/JoabMendes</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>duartefq</id>
+            <name>Duarte Fernandes</name>
+            <email>duartefq@outlook.com</email>
+            <timezone>-3</timezone>
+        </developer>
+        <developer>
+            <id>JoabMendes</id>
+            <name>Joabe Mendes</name>
+            <email>joab.mendes.r2d2@gmail.com</email>
+            <timezone>-3</timezone>
+        </developer>
+        <developer>
+            <id>VictorLimeira</id>
+            <name>Mannuel Victor</name>
+            <email>victor.limeira@outlook.com</email>
+            <timezone>-3</timezone>
+        </developer>
+    </developers>
 	
 
 </project>
