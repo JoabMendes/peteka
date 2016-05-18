@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package br.edu.ifrn.dominio;
-import java.util.ArrayList;
+import java.util.Set;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -23,7 +23,7 @@ import lombok.ToString;
 public class Task {
     private Project project;
     private Status status;
-    private ArrayList<User> assignees;
+    private Set<User> assignees;
     private Long id;
     private String title;
     private String description;
