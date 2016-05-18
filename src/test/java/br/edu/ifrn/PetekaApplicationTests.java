@@ -1,5 +1,6 @@
 package br.edu.ifrn;
 
+import br.edu.ifrn.peteka.PetekaApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
