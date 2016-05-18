@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifrn.dominio;
+package br.edu.ifrn.peteka.dominio;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,8 +19,8 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @Builder
-public class User {
+public class Status {
     private Long id;
-    private String name;
-    private Role role;
+    private String label;
+
 }
