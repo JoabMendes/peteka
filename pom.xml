@@ -20,6 +20,7 @@
         <java.version>1.8</java.version>
         <!-- Versoes dos plugins -->
         <assertj.version>3.4.1</assertj.version>
+        <testng.version>6.9.10</testng.version>
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <lombok.version>1.16.8</lombok.version>
         <lombok-maven-plugin.version>1.16.8.0</lombok-maven-plugin.version>
@@ -70,7 +71,12 @@
             <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
