@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.NonNull;
 
 /**
  *
@@ -17,10 +18,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "id")
 @Builder
 public class Project {
     private Long id;
+    @NonNull
     private String title;
     private String description;
 

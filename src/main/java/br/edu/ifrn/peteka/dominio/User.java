@@ -17,10 +17,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude={"id", "name", "role"})
 @Builder
 public class User {
     private Long id;
+    private String nickname;
     private String name;
     private Role role;
 }

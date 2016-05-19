@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.Singular;
 
 /**
  *
@@ -18,11 +19,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"project", "status", "assignees", "id", "description"})
 @Builder
 public class Task {
     private Project project;
     private Status status;
+    @Singular
     private Set<User> assignees;
     private Long id;
     private String title;
