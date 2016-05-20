@@ -35,6 +35,7 @@
         <no-package-cycles-enforcer-rule.version>1.0.5</no-package-cycles-enforcer-rule.version>
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
+        <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
     </properties>
 
     <dependencies>
@@ -174,6 +175,11 @@
                 <configuration>
                     <aggregate>false</aggregate>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-changelog-plugin</artifactId>
+                <version>${maven-changelog-plugin.version}</version>
             </plugin>
 
         </plugins>
