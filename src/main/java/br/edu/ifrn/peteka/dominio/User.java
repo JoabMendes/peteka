@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 package br.edu.ifrn.peteka.dominio;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+
+import java.io.Serializable;
+
+import lombok.*;
+
+import javax.persistence.*;
 
 /**
  *
@@ -19,9 +20,25 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(exclude={"id", "name", "role"})
 @Builder
-public class User {
+@Entity
+@SequenceGenerator(sequenceName = "seq_user", name = "ID_SEQUENCE", allocationSize = 1)
+public class User implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
-    private String nickname;
-    private String name;
+
+    @NonNull
+    @ManyToOne
+    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_user_role"))
     private Role role;
+
+    @ManyToOne
+    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_user_task"))
+    private Task task;
+
+    @Column(nullable = false)
+    private String name;
+
+    private String nickname;
 }

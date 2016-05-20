@@ -4,11 +4,17 @@
  * and open the template in the editor.
  */
 package br.edu.ifrn.peteka.dominio;
+
+import java.io.Serializable;
+import java.util.Set;
+
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import javax.persistence.*;
 
 /**
  *
@@ -19,8 +25,20 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(exclude = "id")
 @Builder
-public class Status {
+@Entity
+@SequenceGenerator(sequenceName = "seq_status", name = "ID_SEQUENCE", allocationSize = 1)
+public class Status implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
+
+    @OneToMany(mappedBy = "status", fetch = FetchType.LAZY)
+    private Set<Task> tasks;
+
+    @Column(nullable = false)
     private String label;
 
 }
