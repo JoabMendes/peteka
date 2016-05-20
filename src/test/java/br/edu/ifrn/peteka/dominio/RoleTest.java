@@ -5,8 +5,11 @@
  */
 package br.edu.ifrn.peteka.dominio;
 
+import java.util.Set;
+import java.util.TreeSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.Test;
+
 
 /**
  *
@@ -15,17 +18,28 @@ import org.testng.annotations.Test;
 @Test
 public class RoleTest {
     
-    private final String TILE1 = "tile1";
-    private final String TILE2 = "title2";
+    private final String TITLE1 = "title1";
+    private final String TITLE2 = "title2";
     
     public void equalTitles(){
-        assertThat(Role.builder().title(TILE1).build())
-            .isEqualTo(Role.builder().title(TILE1).build());
+        assertThat(Role.builder().title(TITLE1).build())
+            .isEqualTo(Role.builder().title(TITLE1).build());
     }
     
     public void differentTitles(){
-        assertThat(Role.builder().title(TILE1).build())
-            .isNotEqualTo(Role.builder().title(TILE2).build());
+        assertThat(Role.builder().title(TITLE1).build())
+            .isNotEqualTo(Role.builder().title(TITLE2).build());
+    }
+    
+    public void compareToDifferentTitles(){
+        Set<Role> roles = new TreeSet<>();
+        
+        Role r1 = Role.builder().title(TITLE2).build();
+        Role r2 = Role.builder().title(TITLE1).build();
+        roles.add(r1);
+        roles.add(r2);
+        
+        assertThat(roles.iterator().next()).isEqualTo(r2);
     }
     
 }

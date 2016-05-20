@@ -19,8 +19,12 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(exclude = "id")
 @Builder
-public class Status {
+public class Status implements Comparable<Status>{
     private Long id;
     private String label;
-
+    
+    @Override
+    public int compareTo(Status o) {
+        return label.compareTo(o.label);
+    }
 }

@@ -19,7 +19,13 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(exclude = "id")
 @Builder
-public class Role {
+public class Role implements Comparable<Role>{
     private Long id;
     private String title;
+    
+    @Override
+    public int compareTo(Role o) {
+        return title.compareTo(o.title);
+    }
+    
 }
