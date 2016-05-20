@@ -4,30 +4,46 @@
  * and open the template in the editor.
  */
 package br.edu.ifrn.peteka.dominio;
-import java.util.Set;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.Singular;
 
-/**
- *
- * @author joab
- */
+import java.io.Serializable;
+import java.util.Set;
+
+import lombok.*;
+
+import javax.persistence.*;
+
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode(exclude = {"project", "status", "assignees", "id", "description"})
 @Builder
-public class Task implements Comparable<Task>{
-    private Project project;
-    private Status status;
-    @Singular
-    private Set<User> assignees;
+@Entity
+@SequenceGenerator(sequenceName = "seq_task", name = "ID_SEQUENCE", allocationSize = 1)
+public class Task implements Serializable, Comparable<Task> {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
+
+    @NonNull
+    @ManyToOne
+    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_task_project"))
+    private Project project;
+
+    @NonNull
+    @ManyToOne
+    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_task_status"))
+    private Status status;
+
+    @Singular
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
+    private Set<User> assignees;
+
+    @Column(nullable = false)
     private String title;
+
     private String description;
     
     

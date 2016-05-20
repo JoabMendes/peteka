@@ -4,23 +4,37 @@
  * and open the template in the editor.
  */
 package br.edu.ifrn.peteka.dominio;
+
+import java.io.Serializable;
+import java.util.Set;
+
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- *
- * @author joab
- */
+import javax.persistence.*;
+
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode(exclude = "id")
 @Builder
-public class Role implements Comparable<Role>{
+@Entity
+@SequenceGenerator(sequenceName = "seq_role", name = "ID_SEQUENCE", allocationSize = 1)
+public class Role implements Serializable, Comparable<Role> {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
+
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    private Set<User> users;
+
+    @Column(nullable = false)
     private String title;
     
     @Override
