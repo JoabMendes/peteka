@@ -20,10 +20,19 @@ import lombok.NonNull;
 @ToString
 @EqualsAndHashCode(exclude = "id")
 @Builder
-public class Project {
+public class Project implements Comparable<Project>{
     private Long id;
     @NonNull
     private String title;
     private String description;
+    
+    @Override
+    public int compareTo(Project o) {
+        int result = title.compareTo(o.title);
+        if(result == 0){
+            result = description.compareTo(o.description);
+        }
+        return result;
+    }
 
 }

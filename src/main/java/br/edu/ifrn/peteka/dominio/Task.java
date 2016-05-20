@@ -21,7 +21,7 @@ import lombok.Singular;
 @ToString
 @EqualsAndHashCode(exclude = {"project", "status", "assignees", "id", "description"})
 @Builder
-public class Task {
+public class Task implements Comparable<Task>{
     private Project project;
     private Status status;
     @Singular
@@ -29,4 +29,11 @@ public class Task {
     private Long id;
     private String title;
     private String description;
+    
+    
+    @Override
+    public int compareTo(Task o) {
+        return title.compareTo(o.title);
+    }
+    
 }

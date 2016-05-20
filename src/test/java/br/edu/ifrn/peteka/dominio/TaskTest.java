@@ -5,8 +5,13 @@
  */
 package br.edu.ifrn.peteka.dominio;
 
+import java.util.Set;
+import java.util.TreeSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 /**
@@ -16,28 +21,45 @@ import org.testng.annotations.Test;
 @Test
 public class TaskTest {
     
-    private final String TILE1 = "tile1";
-    private final String TILE2 = "title2";
+    private final String TITLE1 = "title1";
+    private final String TITLE2 = "title2";
+    private final String D1 = "D1";
+    private final String D2 = "D2";
     
     
     public void equalTitles(){
-        assertThat(Task.builder().title(TILE1).build())
-            .isEqualTo(Task.builder().title(TILE1).build());
+        assertThat(Task.builder().title(TITLE1).build())
+            .isEqualTo(Task.builder().title(TITLE1).build());
     }
     
     public void differentTitles(){
-        assertThat(Task.builder().title(TILE1).build())
-            .isNotEqualTo(Task.builder().title(TILE2).build());
+        assertThat(Task.builder().title(TITLE1).build())
+            .isNotEqualTo(Task.builder().title(TITLE2).build());
     }
     
+    //Just to test if the exclude is working
     public void equalTitlesDifferentDescription(){
-        assertThat(Task.builder().title(TILE1).description("D1").build())
-            .isEqualTo(Task.builder().title(TILE1).description("D2").build());
+        assertThat(Task.builder().title(TITLE1).description(D1).build())
+            .isEqualTo(Task.builder().title(TITLE1).description(D2).build());
     }
     
+    //Just to test if the exclude is working
     public void differentTitlesEqualDescription(){
-        assertThat(Task.builder().title(TILE1).description("D1").build())
-            .isNotEqualTo(Task.builder().title(TILE2).description("D1").build());
+        assertThat(Task.builder().title(TITLE1).description(D1).build())
+            .isNotEqualTo(Task.builder().title(TITLE2).description(D1).build());
     }
+    
+    public void compareToDifferentTitles(){
+        Set<Task> tasks = new TreeSet<>();
+        
+        Task t1 = Task.builder().title(TITLE2).build();
+        Task t2 = Task.builder().title(TITLE1).build();
+        tasks.add(t1);
+        tasks.add(t2);
+        
+        assertThat(tasks.iterator().next()).isEqualTo(t2);
+    }
+    
+    
     
 }

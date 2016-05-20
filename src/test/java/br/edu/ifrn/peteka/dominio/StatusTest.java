@@ -5,6 +5,8 @@
  */
 package br.edu.ifrn.peteka.dominio;
 
+import java.util.Set;
+import java.util.TreeSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.Test;
 
@@ -27,6 +29,19 @@ public class StatusTest {
         assertThat(Status.builder().label(LABEL1).build())
             .isNotEqualTo(Status.builder().label(LABEL2).build());
     }
+    
+    
+    public void compareToDifferentLabels(){
+        Set<Status> statuses = new TreeSet<>();
+        
+        Status s1 = Status.builder().label(LABEL2).build();
+        Status s2 = Status.builder().label(LABEL1).build();
+        statuses.add(s1);
+        statuses.add(s2);
+        
+        assertThat(statuses.iterator().next()).isEqualTo(s2);
+    }
+    
     
     
 }
