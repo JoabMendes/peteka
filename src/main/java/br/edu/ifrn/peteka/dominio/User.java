@@ -24,7 +24,6 @@ public class User implements Serializable, Comparable<User> {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
 
-    @NonNull
     @ManyToOne
     @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_user_role"))
     private Role role;
@@ -35,7 +34,8 @@ public class User implements Serializable, Comparable<User> {
 
     @Column(nullable = false)
     private String name;
-
+    
+    @Column(nullable = false)
     private String nickname;
 
     @Override

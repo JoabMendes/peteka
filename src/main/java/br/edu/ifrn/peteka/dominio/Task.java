@@ -27,12 +27,10 @@ public class Task implements Serializable, Comparable<Task> {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
 
-    @NonNull
     @ManyToOne
     @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_task_project"))
     private Project project;
 
-    @NonNull
     @ManyToOne
     @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_task_status"))
     private Status status;
