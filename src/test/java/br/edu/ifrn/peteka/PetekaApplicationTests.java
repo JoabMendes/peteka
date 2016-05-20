@@ -1,4 +1,4 @@
-package br.edu.ifrn;
+package br.edu.ifrn.peteka;
 
 import br.edu.ifrn.peteka.PetekaApplication;
 import org.junit.Test;
