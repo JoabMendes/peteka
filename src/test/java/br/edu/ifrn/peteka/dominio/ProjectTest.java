@@ -7,8 +7,11 @@ package br.edu.ifrn.peteka.dominio;
 
 //import java.util.HashSet;
 //import java.util.Set;
+import java.util.Set;
+import java.util.TreeSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.Test;
+
 
 /**
  *
@@ -21,6 +24,8 @@ public class ProjectTest {
     private final String TITLE2 = "title2";
     private final String DESCRIPTION1 = "description1";
     private final String DESCRIPTION2 = "description2";
+    private final String FIRST = "A";
+    private final String SECOND = "B";
   
     public void equalTitles(){
         assertThat(Project.builder().title(TITLE1).build())
@@ -50,6 +55,28 @@ public class ProjectTest {
     public void differentTitlesDifferentDescriptions(){
         assertThat(Project.builder().title(TITLE1).description(DESCRIPTION1).build())
             .isNotEqualTo(Project.builder().title(TITLE2).description(DESCRIPTION2).build());
+    }
+    
+    public void compareToEqualTitlesDifferentDescriptions(){
+        Set<Project> projects = new TreeSet<>();
+        
+        Project p1 = Project.builder().title(TITLE1).description(SECOND).build();
+        Project p2 = Project.builder().title(TITLE1).description(FIRST).build();
+        projects.add(p1);
+        projects.add(p2);
+        
+        assertThat(projects.iterator().next()).isEqualTo(p2);
+    }
+    
+    public void compareToDifferentTitlesDifferentDescriptions(){
+        Set<Project> projects = new TreeSet<>();
+        
+        Project p1 = Project.builder().title(TITLE2).description(FIRST).build();
+        Project p2 = Project.builder().title(TITLE1).description(SECOND).build();
+        projects.add(p1);
+        projects.add(p2);
+        
+        assertThat(projects.iterator().next()).isEqualTo(p2);
     }
 
 }

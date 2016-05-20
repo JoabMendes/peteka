@@ -11,10 +11,6 @@ import lombok.*;
 
 import javax.persistence.*;
 
-/**
- *
- * @author joab
- */
 @Getter
 @Setter
 @ToString
@@ -22,7 +18,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @SequenceGenerator(sequenceName = "seq_user", name = "ID_SEQUENCE", allocationSize = 1)
-public class User implements Serializable {
+public class User implements Serializable, Comparable<User> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
@@ -41,4 +37,9 @@ public class User implements Serializable {
     private String name;
 
     private String nickname;
+
+    @Override
+    public int compareTo(User o) {
+        return nickname.compareTo(o.nickname);
+    }
 }

@@ -16,10 +16,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-/**
- *
- * @author joab
- */
 @Getter
 @Setter
 @ToString
@@ -27,7 +23,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @SequenceGenerator(sequenceName = "seq_role", name = "ID_SEQUENCE", allocationSize = 1)
-public class Role implements Serializable{
+public class Role implements Serializable, Comparable<Role> {
 
     private static final long serialVersionUID = 1L;
 
@@ -40,4 +36,10 @@ public class Role implements Serializable{
 
     @Column(nullable = false)
     private String title;
+    
+    @Override
+    public int compareTo(Role o) {
+        return title.compareTo(o.title);
+    }
+    
 }
