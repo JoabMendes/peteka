@@ -42,9 +42,9 @@ public class Task implements Serializable, Comparable<Task> {
     @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
     private String description;
-    
-    
+
     @Override
     public int compareTo(Task o) {
         return title.compareTo(o.title);
