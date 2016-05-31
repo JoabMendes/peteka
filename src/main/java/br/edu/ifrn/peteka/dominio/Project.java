@@ -35,10 +35,10 @@ public class Project implements Serializable, Comparable<Project> {
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     private Set<Task> tasks;
 
-    @NonNull
     @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
     private String description;
     
     @Override
