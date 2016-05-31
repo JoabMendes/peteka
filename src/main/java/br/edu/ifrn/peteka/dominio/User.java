@@ -28,8 +28,7 @@ public class User implements Serializable, Comparable<User> {
     @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_user_role"))
     private Role role;
 
-    @ManyToOne
-    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_user_task"))
+    @Column(nullable = false)
     private Task task;
 
     @Column(nullable = false)
