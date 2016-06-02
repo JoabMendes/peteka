@@ -27,6 +27,6 @@ public abstract class AbstractService<T> implements Service<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return repository.iterator();
     }
 }

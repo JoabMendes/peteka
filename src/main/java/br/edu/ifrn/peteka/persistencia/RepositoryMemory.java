@@ -24,6 +24,6 @@ public abstract class RepositoryMemory<T> implements Repository<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return container.iterator();
     }
 }
