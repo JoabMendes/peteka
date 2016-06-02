@@ -7,5 +7,5 @@ import javax.inject.Named;
  * Created by duartemac on 2016-06-01.
  */
 @Named
-public class UserRepository extends RepositoryMemory<Long, User> {
+public class UserRepository extends RepositoryMemory<User> {
 }
