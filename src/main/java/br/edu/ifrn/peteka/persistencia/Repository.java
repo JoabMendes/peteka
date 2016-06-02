@@ -6,15 +6,11 @@ import java.util.Iterator;
 /**
  * Created by duartemac on 2016-06-01.
  */
-public interface Repository<ID extends Serializable, T> {
+public interface Repository<T> {
 
-    void create(ID id, T object);
+    void save(T object);
 
-    T retrieve(ID id);
-
-    void update(ID id, T object);
-
-    void delete(ID id);
+    void delete(T object);
 
     Iterator<T> iterator();
 }
