@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(exclude = {"project", "status", "assignees", "id", "description"})
+@EqualsAndHashCode(of = {"title"})
 @Builder
 @Entity
 @SequenceGenerator(sequenceName = "seq_task", name = "ID_SEQUENCE", allocationSize = 1)
