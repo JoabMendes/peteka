@@ -4,7 +4,6 @@ import br.edu.ifrn.peteka.persistencia.Repository;
 
 import java.io.Serializable;
 import java.util.Iterator;
-import javax.inject.Inject;
 
 /**
  * Created by duartemac on 2016-06-01.
@@ -14,7 +13,6 @@ public class AbstractService<ID extends Serializable, T, R extends Repository<ID
 
     private R repository;
 
-    @Inject
     public AbstractService(R repository) {
         this.repository = repository;
     }
