@@ -9,7 +9,7 @@ import javax.inject.Inject;
  * Created by duartemac on 2016-06-01.
  */
 @Named
-public class RoleService extends AbstractService<Long, Role, RoleRepository>{
+public class RoleService extends AbstractService<Long, Role>{
 
     @Inject
     public RoleService(RoleRepository repository) {

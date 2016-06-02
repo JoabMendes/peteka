@@ -8,12 +8,12 @@ import java.util.Iterator;
 /**
  * Created by duartemac on 2016-06-01.
  */
-public class AbstractService<ID extends Serializable, T, R extends Repository<ID, T>>
+public class AbstractService<ID extends Serializable, T>
         implements Service<ID, T> {
 
-    private R repository;
+    private Repository<ID, T> repository;
 
-    public AbstractService(R repository) {
+    public AbstractService(Repository repository) {
         this.repository = repository;
     }
 

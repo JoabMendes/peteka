@@ -9,7 +9,7 @@ import javax.inject.Inject;
  * Created by duartemac on 2016-06-01.
  */
 @Named
-public class ProjectService extends AbstractService<Long, Project, ProjectRepository> {
+public class ProjectService extends AbstractService<Long, Project> {
 
     @Inject
     public ProjectService(ProjectRepository repository) {
