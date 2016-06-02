@@ -9,7 +9,7 @@ import javax.inject.Inject;
  * Created by duartemac on 2016-06-01.
  */
 @Named
-public class StatusService extends AbstractService<Long, Status> {
+public class StatusService extends AbstractService<Status> {
 
     @Inject
     public StatusService(StatusRepository repository) {

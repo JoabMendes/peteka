@@ -9,7 +9,7 @@ import javax.inject.Inject;
  * Created by duartemac on 2016-06-01.
  */
 @Named
-public class TaskService extends AbstractService<Long, Task> {
+public class TaskService extends AbstractService<Task> {
 
     @Inject
     public TaskService(TaskRepository repository) {
