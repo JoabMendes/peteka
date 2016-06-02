@@ -1,6 +1,5 @@
 package br.edu.ifrn.peteka.persistencia;
 
-import java.io.Serializable;
 import java.util.Iterator;
 
 /**
