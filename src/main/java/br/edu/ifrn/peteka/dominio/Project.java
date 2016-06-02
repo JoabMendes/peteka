@@ -20,7 +20,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(exclude = "id")
+@EqualsAndHashCode(of = {"title", "description"})
 @Builder
 @Entity
 @SequenceGenerator(sequenceName = "seq_project", name = "ID_SEQUENCE", allocationSize = 1)
