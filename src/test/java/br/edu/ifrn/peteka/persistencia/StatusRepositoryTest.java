@@ -25,7 +25,7 @@ public class StatusRepositoryTest extends AbstractTestNGSpringContextTests {
     
     @Inject
     private StatusRepository statusRepository;
-    private final String STATUS_LABEL = "label";
+    private static final String STATUS_LABEL = "label";
     
     
     public void testRepositoryIsNotNull(){

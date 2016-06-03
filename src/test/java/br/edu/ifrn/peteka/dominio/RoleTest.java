@@ -18,8 +18,8 @@ import org.testng.annotations.Test;
 @Test
 public class RoleTest {
     
-    private final String TITLE1 = "title1";
-    private final String TITLE2 = "title2";
+    private static final String TITLE1 = "title1";
+    private static final String TITLE2 = "title2";
     
     public void equalTitles(){
         assertThat(Role.builder().title(TITLE1).build())

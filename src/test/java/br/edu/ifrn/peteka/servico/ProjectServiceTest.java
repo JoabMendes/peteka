@@ -26,8 +26,8 @@ public class ProjectServiceTest extends AbstractTestNGSpringContextTests {
     @Inject
     private ProjectService projectService;
 
-    private final String PROJECT_TITLE = "title";
-    private final String PROJECT_DESCRIPTION = "description";
+    private static final String PROJECT_TITLE = "title";
+    private static final String PROJECT_DESCRIPTION = "description";
     
     public void testServiceIsNotNull(){
         assertThat(projectService).isNotNull();

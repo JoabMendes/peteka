@@ -28,8 +28,8 @@ public class ProjectRepositoryTest extends AbstractTestNGSpringContextTests{
     @Inject
     private ProjectRepository projectRepository;
 
-    private final String PROJECT_TITLE = "title";
-    private final String PROJECT_DESCRIPTION = "description";
+    private static final String PROJECT_TITLE = "title";
+    private static final String PROJECT_DESCRIPTION = "description";
     
     public void testRepositoryIsNotNull(){
         assertThat(projectRepository).isNotNull();

@@ -17,10 +17,10 @@ import org.testng.annotations.Test;
 @Test
 public class UserTest {
     
-    private final String NICKNAME1 = "nickname1";
-    private final String NICKNAME2 = "nickname2";
-    private final String NAME1 = "nome1";
-    private final String NAME2 = "nome2";
+    private static final String NICKNAME1 = "nickname1";
+    private static final String NICKNAME2 = "nickname2";
+    private static final String NAME1 = "nome1";
+    private static final String NAME2 = "nome2";
     
     
     public void equalNicknames(){

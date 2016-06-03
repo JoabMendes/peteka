@@ -20,12 +20,12 @@ import org.testng.annotations.Test;
 @Test
 public class ProjectTest {
     
-    private final String TITLE1 = "title1";
-    private final String TITLE2 = "title2";
-    private final String DESCRIPTION1 = "description1";
-    private final String DESCRIPTION2 = "description2";
-    private final String FIRST = "A";
-    private final String SECOND = "B";
+    private static final String TITLE1 = "title1";
+    private static final String TITLE2 = "title2";
+    private static final String DESCRIPTION1 = "description1";
+    private static final String DESCRIPTION2 = "description2";
+    private static final String FIRST = "A";
+    private static final String SECOND = "B";
   
     public void equalTitles(){
         assertThat(Project.builder().title(TITLE1).build())

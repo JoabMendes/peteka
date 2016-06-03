@@ -21,10 +21,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Test
 public class TaskTest {
     
-    private final String TITLE1 = "title1";
-    private final String TITLE2 = "title2";
-    private final String D1 = "D1";
-    private final String D2 = "D2";
+    private static final String TITLE1 = "title1";
+    private static final String TITLE2 = "title2";
+    private static final String D1 = "D1";
+    private static final String D2 = "D2";
     
     
     public void equalTitles(){
