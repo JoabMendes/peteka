@@ -25,8 +25,8 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests  {
     
     @Inject
     private UserService userService;
-    private final String USER_NICKNAME = "nickname";
-    private final String USER_NAME = "nome";
+    private static final String USER_NICKNAME = "nickname";
+    private static final String USER_NAME = "nome";
     
     public void testServiceIsNotNull(){
         assertThat(userService).isNotNull();

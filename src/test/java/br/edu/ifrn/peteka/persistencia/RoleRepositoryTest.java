@@ -26,7 +26,7 @@ public class RoleRepositoryTest extends AbstractTestNGSpringContextTests{
     @Inject
     private RoleRepository roleRepository;
     
-    private final String ROLE_TITLE = "title";
+    private static final String ROLE_TITLE = "title";
     
     public void testRepositoryIsNotNull(){
         assertThat(roleRepository).isNotNull();

@@ -26,7 +26,7 @@ public class StatusServiceTest extends AbstractTestNGSpringContextTests {
     
     @Inject
     private StatusService statusService;
-    private final String STATUS_LABEL = "label";
+    private static final String STATUS_LABEL = "label";
     
     public void testServiceIsNotNull(){
         assertThat(statusService).isNotNull();

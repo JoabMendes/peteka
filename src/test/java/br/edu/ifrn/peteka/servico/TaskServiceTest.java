@@ -27,8 +27,8 @@ public class TaskServiceTest extends AbstractTestNGSpringContextTests  {
     @Inject
     private TaskService taskService;
 
-    private final String TASK_TITLE = "title";
-    private final String TASK_DESCRIPTION = "D1";
+    private static final String TASK_TITLE = "title";
+    private static final String TASK_DESCRIPTION = "D1";
     
     public void testServiceIsNotNull(){
         assertThat(taskService).isNotNull();

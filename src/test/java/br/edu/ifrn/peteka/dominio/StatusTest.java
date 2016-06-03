@@ -17,8 +17,8 @@ import org.testng.annotations.Test;
 @Test
 public class StatusTest {
     
-    private final String LABEL1 = "label1";
-    private final String LABEL2 = "label2";
+    private static final String LABEL1 = "label1";
+    private static final String LABEL2 = "label2";
     
     public void equalLabels(){
         assertThat(Status.builder().label(LABEL1).build())

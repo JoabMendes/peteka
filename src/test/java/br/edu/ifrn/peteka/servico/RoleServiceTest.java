@@ -26,7 +26,7 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
     @Inject
     private RoleService roleService;
     
-    private final String ROLE_TITLE = "title";
+    private static final String ROLE_TITLE = "title";
     
     public void testServiceIsNotNull(){
         assertThat(roleService).isNotNull();

@@ -25,8 +25,8 @@ public class UserRepositoryTest extends AbstractTestNGSpringContextTests {
     
     @Inject
     private UserRepository userRepository;
-    private final String USER_NICKNAME = "nickname";
-    private final String USER_NAME = "nome";
+    private static final String USER_NICKNAME = "nickname";
+    private static final String USER_NAME = "nome";
     
     public void testRepositoryIsNotNull(){
         assertThat(userRepository).isNotNull();

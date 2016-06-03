@@ -27,8 +27,8 @@ public class TaskRepositoryTest extends AbstractTestNGSpringContextTests {
     @Inject
     private TaskRepository taskRepository;
 
-    private final String TASK_TITLE = "title";
-    private final String TASK_DESCRIPTION = "D1";
+    private static final String TASK_TITLE = "title";
+    private static final String TASK_DESCRIPTION = "D1";
     
     public void testRepositoryIsNotNull(){
         assertThat(taskRepository).isNotNull();
