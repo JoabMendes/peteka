@@ -27,6 +27,8 @@
         <juplo-maven-plugin.version>2.0.0</juplo-maven-plugin.version>
         <javax.inject.version>1</javax.inject.version>
         <hsqldb.version>2.3.2</hsqldb.version>
+        <querydsl.version>4.1.2</querydsl.version>
+        <apt-maven-plugin.version>1.1.3</apt-maven-plugin.version>
         <!-- plugins de relatorios -->
         <findbugs-maven-plugin.version>3.0.3</findbugs-maven-plugin.version>
         <jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
@@ -107,6 +109,17 @@
             <version>${javax.inject.version}</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <version>${querydsl.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+            <version>${querydsl.version}</version>
+        </dependency>  
     </dependencies>
 
     <build>
@@ -125,6 +138,22 @@
                 <configuration>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
+            </plugin> 
+            <plugin>
+                <groupId>com.mysema.maven</groupId>
+                <artifactId>apt-maven-plugin</artifactId>
+                <version>${apt-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/generated-sources/java</outputDirectory>
+                            <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
