@@ -1,12 +1,9 @@
 package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.dominio.Role;
+import org.springframework.data.repository.CrudRepository;
+//import org.springframework.data.repository.query.QueryByExampleExecutor;
 
-import javax.inject.Named;
 
-/**
- * Created by duartemac on 2016-06-01.
- */
-@Named
-public class RoleRepository extends RepositoryMemory<Role> {
+public interface RoleRepository extends CrudRepository<Role, Long> {
 }

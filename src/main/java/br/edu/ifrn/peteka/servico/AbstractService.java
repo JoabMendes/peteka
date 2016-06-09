@@ -1,32 +1,39 @@
 package br.edu.ifrn.peteka.servico;
 
-import br.edu.ifrn.peteka.persistencia.Repository;
+import java.io.Serializable;
+import javax.inject.Inject;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.Iterator;
 
-/**
- * Created by duartemac on 2016-06-01.
- */
-public abstract class AbstractService<T> implements Service<T> {
 
-    private Repository<T> repository;
+public class AbstractService<T extends Object, ID extends Serializable> {
 
-    public AbstractService(Repository<T> repository) {
+    private CrudRepository<T, ID> repository;
+
+    @Inject
+    public void setRepositorio(CrudRepository<T, ID> repository) {
         this.repository = repository;
     }
 
-    @Override
     public void save(T object) {
+        //Verify Business Logic
         repository.save(object);
     }
-
-    @Override
+    
+    
     public void delete(T object) {
+        //Verify Business Logic
         repository.delete(object);
     }
+    
+    public Iterable<T> findAll() {
+        return repository.findAll();
+    }
 
-    @Override
-    public Iterator<T> iterator() {
-        return repository.iterator();
+
+    public void deleteAll() {
+        //Verify Business Logic
+        repository.deleteAll();
     }
 }
