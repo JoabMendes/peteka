@@ -29,9 +29,6 @@ public class User implements Serializable, Comparable<User> {
     private Role role;
 
     @Column(nullable = false)
-    private Task task;
-
-    @Column(nullable = false)
     private String name;
     
     @Column(nullable = false)
