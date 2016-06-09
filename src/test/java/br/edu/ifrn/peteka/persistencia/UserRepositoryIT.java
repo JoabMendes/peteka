@@ -29,6 +29,7 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
     private UserRepository userRepository;
     
     private final String USER_NICKNAME = "nickname";
+    private final String USER_NICKNAME2 = "nickname2";
     private final String USER_NAME = "nome";
     
     
@@ -71,6 +72,21 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
         
         //Test if deleted
         assertThat(userRepository.findOne(user.getId())).isNull();
+    }
+    
+    public void testFindByNickname(){
+        User user1 = User.builder()
+                .nickname(this.USER_NICKNAME)
+                .name(this.USER_NAME).build();
+        this.userRepository.save(user1);
+        User user2 = User.builder()
+                .nickname(this.USER_NICKNAME2)
+                .name(this.USER_NAME).build();
+        this.userRepository.save(user2);
+        
+        assertThat(userRepository.findByNickname(this.USER_NICKNAME)).isEqualTo(user1);
+        assertThat(userRepository.findByNickname(this.USER_NICKNAME2)).isEqualTo(user2);
+        
     }
     
 }

@@ -29,6 +29,7 @@ public class StatusRepositoryIT extends AbstractTestNGSpringContextTests  {
     private StatusRepository statusRepository;
     
     private final String STATUS_LABEL = "label";
+    private final String STATUS_LABEL2 = "label2";
     
     @BeforeMethod
     void deleteAll(){
@@ -67,5 +68,17 @@ public class StatusRepositoryIT extends AbstractTestNGSpringContextTests  {
         //Test if deleted
         assertThat(statusRepository.findOne(status.getId())).isNull();
     }
+     
+     
+     public void testFindByLabel(){
+         Status status1 = Status.builder().label(this.STATUS_LABEL).build();
+         Status status2 = Status.builder().label(this.STATUS_LABEL2).build();
+         
+         statusRepository.save(status1);
+         statusRepository.save(status2);
+         
+         assertThat(statusRepository.findByLabel(STATUS_LABEL)).isEqualTo(status1);
+         assertThat(statusRepository.findByLabel(STATUS_LABEL2)).isEqualTo(status2);
+     }
     
 }
