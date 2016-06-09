@@ -36,7 +36,7 @@ public class Task implements Serializable, Comparable<Task> {
     private Status status;
 
     @Singular
-    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     private Set<User> assignees;
 
     @Column(nullable = false)
