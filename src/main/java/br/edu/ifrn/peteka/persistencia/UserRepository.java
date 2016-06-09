@@ -4,4 +4,8 @@ import br.edu.ifrn.peteka.dominio.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Long> {
+    
+    //Query Method
+    User findByNickname(String nickname); 
+    
 }
