@@ -6,6 +6,7 @@
 package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.PetekaApplication;
+import br.edu.ifrn.peteka.dominio.Status;
 import br.edu.ifrn.peteka.dominio.Task;
 import javax.inject.Inject;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -67,6 +68,24 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
         
         //Test if deleted
         assertThat(taskRepository.findOne(task.getId())).isNull();
+    }
+    
+    
+    public void testDeleteByStatus(){
+    
+        Status status = Status.builder().label("label").build();
+        
+        Task task = Task.builder()
+                .title(this.TASK_TITLE)
+                .description(this.TASK_DESCRIPTION)
+                .status(status).build();
+        this.taskRepository.save(task);
+        assertThat(this.taskRepository.findAll()).isNotEmpty();
+        
+        this.taskRepository.deleteByStatus(status);
+        
+        assertThat(this.taskRepository.findAll()).isNotEmpty();
+        
     }
     
 }

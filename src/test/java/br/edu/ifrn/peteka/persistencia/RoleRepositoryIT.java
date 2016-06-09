@@ -28,6 +28,7 @@ public class RoleRepositoryIT extends AbstractTestNGSpringContextTests {
     private RoleRepository roleRepository;
     
     private final String ROLE_TITLE = "title";
+    private final String ROLE_TITLE2 = "title1";
     
     @BeforeMethod
     void deleteAll(){
@@ -62,6 +63,20 @@ public class RoleRepositoryIT extends AbstractTestNGSpringContextTests {
         
         // Verifies if saved
         assertThat(roleRepository.findAll().iterator().next()).isEqualTo(role);
+        
+    }
+    
+    
+    public void testFindByTitle(){
+        // Creates the test environment
+        Role role1 = Role.builder().title(this.ROLE_TITLE).build();
+        this.roleRepository.save(role1);
+        // Creates the test environment
+        Role role2 = Role.builder().title(this.ROLE_TITLE2).build();
+        this.roleRepository.save(role2);
+        
+        assertThat(roleRepository.findByTitle(this.ROLE_TITLE)).isEqualTo(role1);
+        assertThat(roleRepository.findByTitle(this.ROLE_TITLE2)).isEqualTo(role2);
         
     }
     
