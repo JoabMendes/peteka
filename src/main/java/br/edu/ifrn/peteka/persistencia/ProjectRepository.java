@@ -1,11 +1,10 @@
 package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.dominio.Project;
-import javax.inject.Named;
+import org.springframework.data.repository.CrudRepository;
+//import org.springframework.data.repository.query.QueryByExampleExecutor;
 
-/**
- * Created by duartemac on 2016-06-01.
- */
-@Named
-public class ProjectRepository extends RepositoryMemory<Project> {
+
+public interface ProjectRepository extends CrudRepository<Project, Long> {
+    
 }
