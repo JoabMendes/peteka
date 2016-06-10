@@ -5,8 +5,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.QueryByExampleExecutor;
 
 /**
- * Usando Query By Example
+ * Using Query By Example
  */
-public interface UserRepository extends CrudRepository<User, Long>, QueryByExampleExecutor<User> {
-
+public interface UserRepository extends CrudRepository<User, Long>, 
+        QueryByExampleExecutor<User>, UserRepositoryCustom {
+    
+    //Query Method
+    User findByNickname(String nickname); 
+    
 }

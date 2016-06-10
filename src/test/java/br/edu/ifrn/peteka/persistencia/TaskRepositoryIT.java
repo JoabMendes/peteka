@@ -6,16 +6,17 @@
 package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.PetekaApplication;
+import br.edu.ifrn.peteka.dominio.Project;
 import br.edu.ifrn.peteka.dominio.Status;
 import br.edu.ifrn.peteka.dominio.Task;
 import javax.inject.Inject;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.data.domain.Example;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  *
@@ -109,4 +110,39 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
         assertThat(this.taskRepository.findAll(Example.of(taskExample)).iterator().next())
             .isEqualTo(task);
     }
+    
+    public void testGetAllTasksForProject() {
+        Project project = Project.builder()
+                .title("Project title")
+                .description("Description")
+                .build();
+        Task task = Task.builder()
+                .title(this.TASK_TITLE)
+                .description(this.TASK_DESCRIPTION)
+                .project(project)
+                .build();
+        
+        assertThat(taskRepository.getAllTasksForProject(project)
+                .contains(task));
+    }
+    
+    public void testGetAllTasksForProjectOfStatus() {
+        // Creates the test environment
+        Project project = Project.builder()
+                .title("Project title")
+                .description("Description")
+                .build();
+        Status status = Status.builder()
+                .label("label")
+                .build();
+        Task task = Task.builder()
+                .title(this.TASK_TITLE)
+                .description(this.TASK_DESCRIPTION)
+                .project(project)
+                .build();
+        
+        assertThat(taskRepository.getAllTasksForProjectOfStatus(project, status)
+                .contains(task));
+    }
+    
 }
