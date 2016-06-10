@@ -6,6 +6,7 @@
 package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.PetekaApplication;
+import br.edu.ifrn.peteka.dominio.Role;
 import br.edu.ifrn.peteka.dominio.User;
 import javax.inject.Inject;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -87,6 +88,20 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
         assertThat(userRepository.findByNickname(this.USER_NICKNAME)).isEqualTo(user1);
         assertThat(userRepository.findByNickname(this.USER_NICKNAME2)).isEqualTo(user2);
         
+    }
+    
+    public void testGetAllUsersOfRole() {
+        // Creates the test environment
+        Role role = Role.builder()
+                .title("Role")
+                .build();
+        User user = User.builder()
+                .nickname(this.USER_NICKNAME)
+                .name(this.USER_NAME)
+                .role(role)
+                .build();
+        
+        assertThat(userRepository.getAllUsersOfRole(role).contains(user));
     }
     
 }

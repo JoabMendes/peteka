@@ -7,6 +7,7 @@ package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Project;
+import br.edu.ifrn.peteka.dominio.User;
 import javax.inject.Inject;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -67,4 +68,17 @@ public class ProjectRepositoryIT extends AbstractTestNGSpringContextTests {
         assertThat(projectRepository.findAll().iterator().next()).isEqualTo(project);
     }
     
-}
+    public void testGetAllProjectsOfUser(){
+        // Creates the test environment
+        User user = User.builder()
+                .nickname("Nickname")
+                .name("Name").build();
+        
+        Project project = Project.builder()
+                .title(this.PROJECT_TITLE)
+                .description(this.PROJECT_DESCRIPTION).build();
+        
+        assertThat(projectRepository.getAllProjectsOfUser(user)
+                .contains(project));
+    }
+ }

@@ -73,6 +73,7 @@ public class ProjectTest {
         
         Project p1 = Project.builder().title(TITLE2).description(FIRST).build();
         Project p2 = Project.builder().title(TITLE1).description(SECOND).build();
+        
         projects.add(p1);
         projects.add(p2);
         
