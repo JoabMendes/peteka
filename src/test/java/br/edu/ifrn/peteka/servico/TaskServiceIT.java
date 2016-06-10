@@ -6,13 +6,15 @@
 package br.edu.ifrn.peteka.servico;
 
 import br.edu.ifrn.peteka.PetekaApplication;
+import br.edu.ifrn.peteka.dominio.Project;
+import br.edu.ifrn.peteka.dominio.Status;
 import br.edu.ifrn.peteka.dominio.Task;
 import javax.inject.Inject;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.BeforeMethod;
 
 /**
@@ -71,5 +73,22 @@ public class TaskServiceIT extends AbstractTestNGSpringContextTests  {
         assertThat(this.taskService.findAll().iterator().hasNext()).isFalse();
     }
     
-    
+    public void testGetAllTasksForProjectOfStatus() {
+        // Creates the test environment
+        Project project = Project.builder()
+                .title("Project title")
+                .description("Description")
+                .build();
+        Status status = Status.builder()
+                .label("label")
+                .build();
+        Task task = Task.builder()
+                .title(this.TASK_TITLE)
+                .description(this.TASK_DESCRIPTION)
+                .project(project)
+                .build();
+        
+        assertThat(taskService.getAllTasksForProjectOfStatus(project, status)
+                .contains(task));
+    }
 }

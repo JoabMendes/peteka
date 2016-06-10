@@ -7,12 +7,13 @@ package br.edu.ifrn.peteka.servico;
 
 import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Project;
+import br.edu.ifrn.peteka.dominio.User;
 import javax.inject.Inject;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.BeforeMethod;
 /**
  *
@@ -68,6 +69,20 @@ public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
         
         //Test if deleted
         assertThat(this.projectService.findAll().iterator().hasNext()).isFalse();
+    }
+    
+    public void testGetAllProjectsOfUser(){
+        // Creates the test environment
+        User user = User.builder()
+                .nickname("Nickname")
+                .name("Name").build();
+        
+        Project project = Project.builder()
+                .title(this.PROJECT_TITLE)
+                .description(this.PROJECT_DESCRIPTION).build();
+        
+        assertThat(projectService.getAllProjectsOfUser(user)
+                .contains(project));
     }
     
 }
