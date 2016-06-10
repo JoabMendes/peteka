@@ -525,6 +525,12 @@
             <timezone>-3</timezone>
         </developer>
     </developers>
-
-
+    
+    <repositories>
+        <repository>
+            <id>bintray</id>
+            <name>bintray</name>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
 </project>
