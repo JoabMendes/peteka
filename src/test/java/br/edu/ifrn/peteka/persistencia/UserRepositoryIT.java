@@ -16,6 +16,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 /**
@@ -24,15 +25,14 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringApplicationConfiguration(classes = PetekaApplication.class)
 @WebAppConfiguration
-@Test(groups = "user")
+@Test(groups = "user", dependsOnGroups = "role")
 public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     @Inject
     private UserRepository userRepository;
     
-    private final String USER_NICKNAME = "nickname";
-    private final String USER_NICKNAME2 = "nickname2";
-    private final String USER_NAME = "nome";
+    @Inject
+    private DominioFactory dominioFactory;
     
     
     @BeforeMethod
@@ -47,13 +47,8 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
     }
     
     public void testSaveOne(){
-        // Creates the test environment
-        User user = User.builder()
-                .nickname(this.USER_NICKNAME)
-                .name(this.USER_NAME).build();
-        
-        // Saves
-        this.userRepository.save(user);
+        // Creates the test environment and save user
+        User user = dominioFactory.user();
         
         // Verifies if saved
         assertThat(userRepository.findAll().iterator().next()).isEqualTo(user);
@@ -62,12 +57,8 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     
     public void testDeleteOne(){
-        // Creates the test environment
-        // Creates the test environment
-        User user = User.builder()
-                .nickname(this.USER_NICKNAME)
-                .name(this.USER_NAME).build();
-        this.userRepository.save(user);
+        // Creates the test environment and save user
+        User user = dominioFactory.user();
         
         // Deletes
         this.userRepository.delete(user);
@@ -79,14 +70,10 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
     // Using query by example, test do not apply
     /*
     public void testFindByNickname(){
-        User user1 = User.builder()
-                .nickname(this.USER_NICKNAME)
-                .name(this.USER_NAME).build();
-        this.userRepository.save(user1);
-        User user2 = User.builder()
-                .nickname(this.USER_NICKNAME2)
-                .name(this.USER_NAME).build();
-        this.userRepository.save(user2);
+        // Creates the test environment and save user
+        User user1 = modelFactory.user();
+        // Creates the test environment and save user
+        User user2 = modelFactory.user();
         
         assertThat(userRepository.findByNickname(this.USER_NICKNAME)).isEqualTo(user1);
         assertThat(userRepository.findByNickname(this.USER_NICKNAME2)).isEqualTo(user2);
@@ -96,30 +83,21 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
     
 
     public void findAllByExample () {
-        // cria o ambiente de teste
-        User user = User.builder()
-                .nickname(this.USER_NICKNAME)
-                .name(this.USER_NAME).build();
-        this.userRepository.save(user);
+        // Creates the test environment and save user
+        User user = dominioFactory.user();
         
-        User userExample = User.builder()
-                .nickname(this.USER_NICKNAME)
-                .name(this.USER_NAME).build();
+        // Creates the test environment and save user
+        User userExample = dominioFactory.user();
         
         assertThat(this.userRepository.findAll(Example.of(userExample)).iterator().next())
             .isEqualTo(user);
     }
 
     public void testGetAllUsersOfRole() {
-        // Creates the test environment
-        Role role = Role.builder()
-                .title("Role")
-                .build();
-        User user = User.builder()
-                .nickname(this.USER_NICKNAME)
-                .name(this.USER_NAME)
-                .role(role)
-                .build();
+        // Creates the test environment and save role
+        Role role = dominioFactory.role();
+        // Creates the test environment and save user
+        User user = dominioFactory.user(role);
         
         assertThat(userRepository.getAllUsersOfRole(role).contains(user));
     }

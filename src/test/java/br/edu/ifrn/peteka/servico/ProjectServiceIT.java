@@ -7,7 +7,9 @@ package br.edu.ifrn.peteka.servico;
 
 import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Project;
+import br.edu.ifrn.peteka.dominio.Task;
 import br.edu.ifrn.peteka.dominio.User;
+import br.edu.ifrn.peteka.persistencia.DominioFactory;
 import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -21,14 +23,14 @@ import org.testng.annotations.BeforeMethod;
  */
 @SpringApplicationConfiguration(classes = PetekaApplication.class)
 @WebAppConfiguration
-@Test
+@Test(groups = "project", dependsOnGroups = "user")
 public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
     
     @Inject
     private ProjectService projectService;
 
-    private final String PROJECT_TITLE = "title";
-    private final String PROJECT_DESCRIPTION = "description";
+    @Inject
+    private DominioFactory dominioFactory;
     
     @BeforeMethod
     void deleteAll()
@@ -43,26 +45,18 @@ public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
     }
     
     public void testSaveOne(){
-        // Creates the test environment
-        Project project = Project.builder()
-                .title(this.PROJECT_TITLE)
-                .description(this.PROJECT_DESCRIPTION).build();
-        
-        // Saves
-        this.projectService.save(project);
+        // Creates the test environment and save it
+        Project project = dominioFactory.project();
         
         // Verifies if saved
-        assertThat(this.projectService.findAll().iterator().next()).isEqualTo(project);
-        
+        assertThat(this.projectService.findAll().iterator().next())
+                .isEqualTo(project);   
     }
     
     
     public void testDeleteOne(){
-        // Creates the test environment
-        Project project = Project.builder()
-                .title(this.PROJECT_TITLE)
-                .description(this.PROJECT_DESCRIPTION).build();
-        this.projectService.save(project);
+        // Creates the test environment and save it
+        Project project = dominioFactory.project();
         
         // Deletes
         this.projectService.delete(project);
@@ -73,13 +67,11 @@ public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
     
     public void testGetAllProjectsOfUser(){
         // Creates the test environment
-        User user = User.builder()
-                .nickname("Nickname")
-                .name("Name").build();
+        User user = dominioFactory.user();
         
-        Project project = Project.builder()
-                .title(this.PROJECT_TITLE)
-                .description(this.PROJECT_DESCRIPTION).build();
+        Project project = dominioFactory.project();
+        
+        Task task = dominioFactory.task(project, user);
         
         assertThat(projectService.getAllProjectsOfUser(user)
                 .contains(project));

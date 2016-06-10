@@ -24,14 +24,14 @@ import org.testng.annotations.BeforeMethod;
  */
 @SpringApplicationConfiguration(classes = PetekaApplication.class)
 @WebAppConfiguration
-@Test(groups = "task")
+@Test(groups = "task", dependsOnGroups = {"status", "project"})
 public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     @Inject
     private TaskRepository taskRepository;
     
-    private final String TASK_TITLE = "title";
-    private final String TASK_DESCRIPTION = "D1";
+    @Inject
+    private DominioFactory dominioFactory;
     
     @BeforeMethod
     void deleteAll(){
@@ -44,13 +44,8 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
     }
     
     public void testSaveOne(){
-       // Creates the test environment
-        Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION).build();
-        
-        // Saves
-        this.taskRepository.save(task);
+       // Creates the test environment and save task
+        Task task = dominioFactory.task();
         
         // Verifies if saved
         assertThat(taskRepository.findAll().iterator().next()).isEqualTo(task);
@@ -59,11 +54,8 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     
     public void testDeleteOne(){
-        // Creates the test environment
-        Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION).build();
-        this.taskRepository.save(task);
+        // Creates the test environment and save task
+        Task task = dominioFactory.task();
         
         // Deletes
         this.taskRepository.delete(task);
@@ -75,13 +67,12 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
     // query by example, test do not apply
     /*public void testDeleteByStatus(){
     
-        Status status = Status.builder().label("label").build();
+        // Creates the test environment and save status
+        Status status = dominioFactory.status();
         
-        Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION)
-                .status(status).build();
-        this.taskRepository.save(task);
+        // Creates the test environment and save task
+        Task task = dominioFactory.task();
+
         assertThat(this.taskRepository.findAll()).isNotEmpty();
         
         this.taskRepository.deleteByStatus(status);
@@ -90,37 +81,24 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
         
     }*/
     public void findAllByExample () {
-        // cria o ambiente de teste
-        Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION)
-                .status(
-                        Status.builder().label("label").build()
-                ).build();
+        // Creates the test environment and save status
+        Status st = dominioFactory.status();
         
-        this.taskRepository.save(task);
+        // Creates the test environment and save task
+        Task task = dominioFactory.task(st);
         
-        Task taskExample = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION)
-                .status(
-                        Status.builder().label("label").build()
-                ).build();
+        // Creates the test environment and save task
+        Task taskExample = dominioFactory.task();
         
-        assertThat(this.taskRepository.findAll(Example.of(taskExample)).iterator().next())
-            .isEqualTo(task);
+        assertThat(this.taskRepository
+                .findAll(Example.of(taskExample)).iterator().next())
+                .isEqualTo(task);
     }
     
     public void testGetAllTasksForProject() {
-        Project project = Project.builder()
-                .title("Project title")
-                .description("Description")
-                .build();
-        Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION)
-                .project(project)
-                .build();
+        Project project = dominioFactory.project();
+        // Creates the test environment and save task
+        Task task = dominioFactory.task(project);
         
         assertThat(taskRepository.getAllTasksForProject(project)
                 .contains(task));
@@ -128,18 +106,9 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     public void testGetAllTasksForProjectOfStatus() {
         // Creates the test environment
-        Project project = Project.builder()
-                .title("Project title")
-                .description("Description")
-                .build();
-        Status status = Status.builder()
-                .label("label")
-                .build();
-        Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION)
-                .project(project)
-                .build();
+        Project project = dominioFactory.project();
+        Status status = dominioFactory.status();
+        Task task = dominioFactory.task(project, status);
         
         assertThat(taskRepository.getAllTasksForProjectOfStatus(project, status)
                 .contains(task));

@@ -9,6 +9,7 @@ import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Project;
 import br.edu.ifrn.peteka.dominio.Status;
 import br.edu.ifrn.peteka.dominio.Task;
+import br.edu.ifrn.peteka.persistencia.DominioFactory;
 import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -23,15 +24,14 @@ import org.testng.annotations.BeforeMethod;
  */
 @SpringApplicationConfiguration(classes = PetekaApplication.class)
 @WebAppConfiguration
-@Test
+@Test(groups = "task", dependsOnGroups = {"status", "project"})
 public class TaskServiceIT extends AbstractTestNGSpringContextTests  {
     
     @Inject
     private TaskService taskService;
 
-    private final String TASK_TITLE = "title";
-    private final String TASK_DESCRIPTION = "D1";
-    
+    @Inject
+    private DominioFactory dominioFactory;
     
     @BeforeMethod
     void deleteAll()
@@ -45,13 +45,8 @@ public class TaskServiceIT extends AbstractTestNGSpringContextTests  {
     }
     
     public void testSaveOne(){
-        // Creates the test environment
-        Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION).build();
-        
-        // Saves
-        this.taskService.save(task);
+        // Creates the test environment and save task
+        Task task = dominioFactory.task();
         
         // Verifies if saved
         assertThat(this.taskService.findAll().iterator().next()).isEqualTo(task);
@@ -60,11 +55,8 @@ public class TaskServiceIT extends AbstractTestNGSpringContextTests  {
     
     
     public void testDeleteOne(){
-        // Creates the test environment
-        Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION).build();
-        this.taskService.save(task);
+        // Creates the test environment and save task
+        Task task = dominioFactory.task();
         
         // Deletes
         this.taskService.delete(task);
@@ -73,20 +65,20 @@ public class TaskServiceIT extends AbstractTestNGSpringContextTests  {
         assertThat(this.taskService.findAll().iterator().hasNext()).isFalse();
     }
     
+    public void testGetAllTasksForProject() {
+        Project project = dominioFactory.project();
+        // Creates the test environment and save task
+        Task task = dominioFactory.task(project);
+        
+        assertThat(taskService.getAllTasksForProject(project)
+                .contains(task));
+    }
+    
     public void testGetAllTasksForProjectOfStatus() {
         // Creates the test environment
-        Project project = Project.builder()
-                .title("Project title")
-                .description("Description")
-                .build();
-        Status status = Status.builder()
-                .label("label")
-                .build();
-        Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION)
-                .project(project)
-                .build();
+        Project project = dominioFactory.project();
+        Status status = dominioFactory.status();
+        Task task = dominioFactory.task(project, status);
         
         assertThat(taskService.getAllTasksForProjectOfStatus(project, status)
                 .contains(task));

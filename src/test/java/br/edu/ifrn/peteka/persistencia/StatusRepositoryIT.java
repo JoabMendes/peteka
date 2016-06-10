@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.PetekaApplication;
@@ -14,6 +9,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import static org.assertj.core.api.Assertions.assertThat;
+import org.springframework.web.method.annotation.ModelFactory;
 
 /**
  *
@@ -21,15 +17,14 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringApplicationConfiguration(classes = PetekaApplication.class)
 @WebAppConfiguration
-@Test(groups = "role")
+@Test(groups = "status")
 public class StatusRepositoryIT extends AbstractTestNGSpringContextTests  {
 
-    
     @Inject
     private StatusRepository statusRepository;
     
-    private final String STATUS_LABEL = "label";
-    private final String STATUS_LABEL2 = "label2";
+    @Inject
+    private DominioFactory dominioFactory;
     
     @BeforeMethod
     void deleteAll(){
@@ -43,11 +38,8 @@ public class StatusRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     
     public void testSaveOne(){
-        // Creates the test environment
-        Status status = Status.builder().label(this.STATUS_LABEL).build();
-        
-        // Saves
-        this.statusRepository.save(status);
+        // Creates the test environment and save status
+        Status status = dominioFactory.status();
         
         // Verifies if saved
         assertThat(statusRepository.findAll().iterator().next()).isEqualTo(status);
@@ -56,11 +48,8 @@ public class StatusRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     
      public void testDeleteOne(){
-        // Creates the test environment
-        Status status = Status.builder().label(this.STATUS_LABEL).build();
-        
-        // Saves
-        this.statusRepository.save(status);
+        // Creates the test environment and save status
+        Status status = dominioFactory.status();
         
         // Deletes
         this.statusRepository.delete(status);
@@ -71,14 +60,21 @@ public class StatusRepositoryIT extends AbstractTestNGSpringContextTests  {
      
      
      public void testFindByLabel(){
-         Status status1 = Status.builder().label(this.STATUS_LABEL).build();
-         Status status2 = Status.builder().label(this.STATUS_LABEL2).build();
+         // Creates the test environment and save status
+        Status status1 = dominioFactory.status();
+        // Creates the test environment and save status
+        Status status2 = dominioFactory.status2();
          
          statusRepository.save(status1);
          statusRepository.save(status2);
          
-         assertThat(statusRepository.findByLabel(STATUS_LABEL)).isEqualTo(status1);
-         assertThat(statusRepository.findByLabel(STATUS_LABEL2)).isEqualTo(status2);
+         assertThat(statusRepository
+                 .findByLabel(dominioFactory.getSTATUS_LABEL()))
+                 .isEqualTo(status1);
+
+         assertThat(statusRepository.findByLabel(dominioFactory
+                 .getSTATUS_LABEL2()))
+                 .isEqualTo(status2);
      }
     
 }

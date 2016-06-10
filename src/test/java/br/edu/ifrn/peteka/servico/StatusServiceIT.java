@@ -7,6 +7,7 @@ package br.edu.ifrn.peteka.servico;
 
 import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Status;
+import br.edu.ifrn.peteka.persistencia.DominioFactory;
 import javax.inject.Inject;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -21,12 +22,14 @@ import org.testng.annotations.BeforeMethod;
  */
 @SpringApplicationConfiguration(classes = PetekaApplication.class)
 @WebAppConfiguration
-@Test
+@Test(groups = "status")
 public class StatusServiceIT extends AbstractTestNGSpringContextTests {
     
     @Inject
     private StatusService statusService;
-    private final String STATUS_LABEL = "label";
+    
+    @Inject
+    private DominioFactory dominioFactory;
     
     @BeforeMethod
     void deleteAll()
@@ -41,11 +44,8 @@ public class StatusServiceIT extends AbstractTestNGSpringContextTests {
     }
     
     public void testSaveOne(){
-        // Creates the test environment
-        Status status = Status.builder().label(this.STATUS_LABEL).build();
-        
-        // Saves
-        this.statusService.save(status);
+        // Creates the test environment and save it
+        Status status = dominioFactory.status();
         
         // Verifies if saved
         assertThat(this.statusService.findAll().iterator().next()).isEqualTo(status);
@@ -54,11 +54,8 @@ public class StatusServiceIT extends AbstractTestNGSpringContextTests {
     
     
     public void testDeleteOne(){
-        // Creates the test environment
-        Status status = Status.builder().label(this.STATUS_LABEL).build();
-        
-        // Saves
-        this.statusService.save(status);
+        // Creates the test environment and save it
+        Status status = dominioFactory.status();
         
         // Deletes
         this.statusService.delete(status);

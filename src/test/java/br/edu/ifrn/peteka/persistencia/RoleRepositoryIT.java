@@ -14,6 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  *
@@ -27,8 +28,8 @@ public class RoleRepositoryIT extends AbstractTestNGSpringContextTests {
     @Inject
     private RoleRepository roleRepository;
     
-    private final String ROLE_TITLE = "title";
-    private final String ROLE_TITLE2 = "title1";
+    @Inject
+    private DominioFactory dominioFactory;
     
     @BeforeMethod
     void deleteAll(){
@@ -41,11 +42,8 @@ public class RoleRepositoryIT extends AbstractTestNGSpringContextTests {
     }
     
     public void testDeleteOne(){
-        // Creates the test environment
-        Role role = Role.builder().title(this.ROLE_TITLE).build();
-        
-        // Saves
-        this.roleRepository.save(role);
+        // Creates the test environment and save role
+        Role role = dominioFactory.role();
         
         // Deletes
         this.roleRepository.delete(role);
@@ -55,11 +53,8 @@ public class RoleRepositoryIT extends AbstractTestNGSpringContextTests {
     }
     
     public void testSaveOne(){
-        // Creates the test environment
-        Role role = Role.builder().title(this.ROLE_TITLE).build();
-        
-        // Saves
-        this.roleRepository.save(role);
+        // Creates the test environment and save role
+        Role role = dominioFactory.role();
         
         // Verifies if saved
         assertThat(roleRepository.findAll().iterator().next()).isEqualTo(role);
@@ -68,15 +63,15 @@ public class RoleRepositoryIT extends AbstractTestNGSpringContextTests {
     
     
     public void testFindByTitle(){
-        // Creates the test environment
-        Role role1 = Role.builder().title(this.ROLE_TITLE).build();
-        this.roleRepository.save(role1);
-        // Creates the test environment
-        Role role2 = Role.builder().title(this.ROLE_TITLE2).build();
-        this.roleRepository.save(role2);
+        // Creates the test environment and save role
+        Role role1 = dominioFactory.role();
+        // Creates the test environment and save role
+        Role role2 = dominioFactory.role2();
         
-        assertThat(roleRepository.findByTitle(this.ROLE_TITLE)).isEqualTo(role1);
-        assertThat(roleRepository.findByTitle(this.ROLE_TITLE2)).isEqualTo(role2);
+        assertThat(roleRepository.findByTitle(dominioFactory.getROLE_TITLE()))
+                .isEqualTo(role1);
+        assertThat(roleRepository.findByTitle(dominioFactory.getROLE_TITLE2()))
+                .isEqualTo(role2);
         
     }
     

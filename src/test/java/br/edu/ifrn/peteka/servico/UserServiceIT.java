@@ -8,6 +8,7 @@ package br.edu.ifrn.peteka.servico;
 import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Role;
 import br.edu.ifrn.peteka.dominio.User;
+import br.edu.ifrn.peteka.persistencia.DominioFactory;
 import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -22,13 +23,13 @@ import org.testng.annotations.BeforeMethod;
  */
 @SpringApplicationConfiguration(classes = PetekaApplication.class)
 @WebAppConfiguration
-@Test
+@Test(groups = "user", dependsOnGroups = "role")
 public class UserServiceIT extends AbstractTestNGSpringContextTests  {
     
     @Inject
     private UserService userService;
-    private final String USER_NICKNAME = "nickname";
-    private final String USER_NAME = "nome";
+    @Inject
+    private DominioFactory dominioFactory;
     
     @BeforeMethod
     void deleteAll()
@@ -43,13 +44,8 @@ public class UserServiceIT extends AbstractTestNGSpringContextTests  {
     }
     
     public void testSaveOne(){
-        // Creates the test environment
-        User user = User.builder()
-                .nickname(this.USER_NICKNAME)
-                .name(this.USER_NAME).build();
-        
-        // Saves
-        this.userService.save(user);
+        // Creates the test environment and save user
+        User user = dominioFactory.user();
         
         // Verifies if saved
         assertThat(this.userService.findAll().iterator().next()).isEqualTo(user);
@@ -58,12 +54,8 @@ public class UserServiceIT extends AbstractTestNGSpringContextTests  {
     
     
     public void testDeleteOne(){
-        // Creates the test environment
-        // Creates the test environment
-        User user = User.builder()
-                .nickname(this.USER_NICKNAME)
-                .name(this.USER_NAME).build();
-        this.userService.save(user);
+        // Creates the test environment and save user
+        User user = dominioFactory.user();
         
         // Deletes
         this.userService.delete(user);
@@ -73,15 +65,10 @@ public class UserServiceIT extends AbstractTestNGSpringContextTests  {
     }
     
     public void testGetAllUsersOfRole() {
-        // Creates the test environment
-        Role role = Role.builder()
-                .title("Role")
-                .build();
-        User user = User.builder()
-                .nickname(this.USER_NICKNAME)
-                .name(this.USER_NAME)
-                .role(role)
-                .build();
+        // Creates the test environment and save role
+        Role role = dominioFactory.role();
+        // Creates the test environment and save user
+        User user = dominioFactory.user(role);
         
         assertThat(userService.getAllUsersOfRole(role).contains(user));
     }

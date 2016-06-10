@@ -7,6 +7,7 @@ package br.edu.ifrn.peteka.servico;
 
 import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Role;
+import br.edu.ifrn.peteka.persistencia.DominioFactory;
 import javax.inject.Inject;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -21,13 +22,14 @@ import org.testng.annotations.BeforeMethod;
  */
 @SpringApplicationConfiguration(classes = PetekaApplication.class)
 @WebAppConfiguration
-@Test
+@Test(groups = "role")
 public class RoleServiceIT extends AbstractTestNGSpringContextTests {
     
     @Inject
     private RoleService roleService;
     
-    private final String ROLE_TITLE = "title";
+    @Inject
+    private DominioFactory dominioFactory;
     
     
     @BeforeMethod
@@ -42,11 +44,8 @@ public class RoleServiceIT extends AbstractTestNGSpringContextTests {
     }
     
     public void testSaveOne(){
-        // Creates the test environment
-        Role role = Role.builder().title(this.ROLE_TITLE).build();
-        
-        // Saves
-        this.roleService.save(role);
+        // Creates the test environment and save role
+        Role role = dominioFactory.role();
         
         // Verifies if saved
         assertThat(this.roleService.findAll().iterator().next()).isEqualTo(role);
@@ -55,11 +54,8 @@ public class RoleServiceIT extends AbstractTestNGSpringContextTests {
     
     
     public void testDeleteOne(){
-        // Creates the test environment
-        Role role = Role.builder().title(this.ROLE_TITLE).build();
-        
-        // Saves
-        this.roleService.save(role);
+        // Creates the test environment and save role
+        Role role = dominioFactory.role();
         
         // Deletes
         this.roleService.delete(role);
