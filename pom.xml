@@ -20,7 +20,7 @@
         <java.version>1.8</java.version>
         <!-- Versoes dos plugins -->
         <assertj.version>3.4.1</assertj.version>
-        <testng.version>6.9.10</testng.version>
+        <testng.version>6.9.11</testng.version>
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <lombok.version>1.16.8</lombok.version>
         <lombok-maven-plugin.version>1.16.8.0</lombok-maven-plugin.version>
@@ -182,6 +182,7 @@
                     <rulesets>
                         <ruleset>src/main/docs/pmd-ruleset.xml</ruleset>
                     </rulesets>
+                    <excludeFromFailureFile>src/main/docs/pmd-exclude.properties</excludeFromFailureFile>
                 </configuration>
             </plugin>
 
@@ -321,6 +322,7 @@
                             <rulesets>
                                 <ruleset>src/main/docs/pmd-ruleset.xml</ruleset>
                             </rulesets>
+                            <excludeFromFailureFile>src/main/docs/pmd-exclude.properties</excludeFromFailureFile>
                         </configuration>
                         <executions>
                             <execution>
