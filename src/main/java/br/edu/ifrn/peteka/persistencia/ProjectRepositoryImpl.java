@@ -12,6 +12,7 @@ import br.edu.ifrn.peteka.dominio.User;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.Set;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 /**
@@ -22,6 +23,7 @@ public class ProjectRepositoryImpl implements ProjectRepositoryCustom {
 
     private final EntityManager entityManager;
 
+    @Inject
     public ProjectRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
