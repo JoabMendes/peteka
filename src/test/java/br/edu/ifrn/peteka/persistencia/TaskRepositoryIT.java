@@ -12,6 +12,7 @@ import br.edu.ifrn.peteka.dominio.Task;
 import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.domain.Example;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
@@ -71,8 +72,8 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
         assertThat(taskRepository.findOne(task.getId())).isNull();
     }
     
-    
-    public void testDeleteByStatus(){
+    // query by example, test do not apply
+    /*public void testDeleteByStatus(){
     
         Status status = Status.builder().label("label").build();
         
@@ -87,6 +88,27 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
         
         assertThat(this.taskRepository.findAll()).isNotEmpty();
         
+    }*/
+    public void findAllByExample () {
+        // cria o ambiente de teste
+        Task task = Task.builder()
+                .title(this.TASK_TITLE)
+                .description(this.TASK_DESCRIPTION)
+                .status(
+                        Status.builder().label("label").build()
+                ).build();
+        
+        this.taskRepository.save(task);
+        
+        Task taskExample = Task.builder()
+                .title(this.TASK_TITLE)
+                .description(this.TASK_DESCRIPTION)
+                .status(
+                        Status.builder().label("label").build()
+                ).build();
+        
+        assertThat(this.taskRepository.findAll(Example.of(taskExample)).iterator().next())
+            .isEqualTo(task);
     }
     
     public void testGetAllTasksForProject() {

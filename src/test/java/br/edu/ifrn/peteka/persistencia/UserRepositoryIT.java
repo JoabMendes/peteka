@@ -10,6 +10,7 @@ import br.edu.ifrn.peteka.dominio.Role;
 import br.edu.ifrn.peteka.dominio.User;
 import javax.inject.Inject;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.domain.Example;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
@@ -75,6 +76,8 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
         assertThat(userRepository.findOne(user.getId())).isNull();
     }
     
+    // Using query by example, test do not apply
+    /*
     public void testFindByNickname(){
         User user1 = User.builder()
                 .nickname(this.USER_NICKNAME)
@@ -89,7 +92,24 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
         assertThat(userRepository.findByNickname(this.USER_NICKNAME2)).isEqualTo(user2);
         
     }
+    */
     
+
+    public void findAllByExample () {
+        // cria o ambiente de teste
+        User user = User.builder()
+                .nickname(this.USER_NICKNAME)
+                .name(this.USER_NAME).build();
+        this.userRepository.save(user);
+        
+        User userExample = User.builder()
+                .nickname(this.USER_NICKNAME)
+                .name(this.USER_NAME).build();
+        
+        assertThat(this.userRepository.findAll(Example.of(userExample)).iterator().next())
+            .isEqualTo(user);
+    }
+
     public void testGetAllUsersOfRole() {
         // Creates the test environment
         Role role = Role.builder()
@@ -103,5 +123,4 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
         
         assertThat(userRepository.getAllUsersOfRole(role).contains(user));
     }
-    
 }

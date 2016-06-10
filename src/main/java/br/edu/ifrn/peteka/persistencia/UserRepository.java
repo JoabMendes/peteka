@@ -2,9 +2,13 @@ package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.dominio.User;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.QueryByExampleExecutor;
 
+/**
+ * Using Query By Example
+ */
 public interface UserRepository extends CrudRepository<User, Long>, 
-        UserRepositoryCustom {
+        QueryByExampleExecutor<User>, UserRepositoryCustom {
     
     //Query Method
     User findByNickname(String nickname); 
