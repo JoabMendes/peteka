@@ -15,6 +15,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
@@ -23,6 +26,8 @@ import javax.persistence.*;
 @Builder
 @Entity
 @SequenceGenerator(sequenceName = "seq_status", name = "ID_SEQUENCE", allocationSize = 1)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Status implements Serializable, Comparable<Status> {
 
     private static final long serialVersionUID = 1L;

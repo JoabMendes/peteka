@@ -24,7 +24,7 @@ import org.testng.annotations.BeforeMethod;
  */
 @SpringApplicationConfiguration(classes = PetekaApplication.class)
 @WebAppConfiguration
-@Test(groups = "task", dependsOnGroups = {"status", "project"})
+@Test(groups = "task", dependsOnGroups = {"project", "status"})
 public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     @Inject

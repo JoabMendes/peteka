@@ -10,6 +10,8 @@ import br.edu.ifrn.peteka.dominio.Role;
 import br.edu.ifrn.peteka.dominio.User;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -28,11 +30,11 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     }
     
     @Override
-    public Set<User> getAllUsersOfRole(Role r) {
+    public List<User> getAllUsersOfRole(Role r) {
         QUser qUser = QUser.user;
         JPQLQueryFactory factory = new JPAQueryFactory(entityManager);
 
-        Set<User> users = (Set<User>) factory
+        List<User> users = (List<User>) factory
                 .from(qUser)
                 .where(qUser.role.eq(r))
                 .fetch();

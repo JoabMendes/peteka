@@ -3,7 +3,7 @@ package br.edu.ifrn.peteka.servico;
 import br.edu.ifrn.peteka.dominio.Role;
 import br.edu.ifrn.peteka.dominio.User;
 import br.edu.ifrn.peteka.persistencia.UserRepository;
-import java.util.Set;
+import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -18,7 +18,7 @@ public class UserService extends AbstractService<User, Long> {
         this.userRepository = userRepository;
     }
     
-    public Set<User> getAllUsersOfRole(Role r) {
+    public List<User> getAllUsersOfRole(Role r) {
         return this.userRepository.getAllUsersOfRole(r);
     }
 }

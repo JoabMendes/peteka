@@ -7,11 +7,10 @@ package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.dominio.Project;
 import br.edu.ifrn.peteka.dominio.QProject;
-import br.edu.ifrn.peteka.dominio.QUser;
 import br.edu.ifrn.peteka.dominio.User;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import java.util.Set;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
@@ -29,11 +28,11 @@ public class ProjectRepositoryImpl implements ProjectRepositoryCustom {
     }
     
     @Override
-    public Set<Project> getAllProjectsOfUser(User u) {
+    public List<Project> getAllProjectsOfUser(User u) {
         QProject qProject = QProject.project;
         JPQLQueryFactory factory = new JPAQueryFactory(entityManager);
 
-        Set<Project> projects = (Set<Project>) factory
+        List<Project> projects = (List<Project>) factory
                 .from(qProject)
                 .where(qProject.tasks.any().assignees.contains(u))
                 .fetch();

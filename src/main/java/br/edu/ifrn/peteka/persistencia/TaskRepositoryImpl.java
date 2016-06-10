@@ -6,7 +6,7 @@ import br.edu.ifrn.peteka.dominio.Status;
 import br.edu.ifrn.peteka.dominio.Task;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import java.util.Set;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
@@ -24,11 +24,11 @@ public class TaskRepositoryImpl implements TaskRepositoryCustom {
     }
     
     @Override
-    public Set<Task> getAllTasksForProject(Project p) {
+    public List<Task> getAllTasksForProject(Project p) {
         QTask qTask = QTask.task;
         JPQLQueryFactory factory = new JPAQueryFactory(entityManager);
 
-        Set<Task> tasks = (Set<Task>) factory
+        List<Task> tasks = (List<Task>) factory
                 .from(qTask)
                 .where(qTask.project.eq(p))
                 .fetch();
@@ -36,11 +36,11 @@ public class TaskRepositoryImpl implements TaskRepositoryCustom {
     }
 
     @Override
-    public Set<Task> getAllTasksForProjectOfStatus(Project p, Status s) {
+    public List<Task> getAllTasksForProjectOfStatus(Project p, Status s) {
         QTask qTask = QTask.task;
         JPQLQueryFactory factory = new JPAQueryFactory(entityManager);
 
-        Set<Task> tasks = (Set<Task>) factory
+        List<Task> tasks = (List<Task>) factory
                 .from(qTask)
                 .where(qTask.project.eq(p).and(qTask.status.eq(s)))
                 .fetch();

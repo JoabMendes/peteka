@@ -27,13 +27,15 @@ public class StatusServiceIT extends AbstractTestNGSpringContextTests {
     
     @Inject
     private StatusService statusService;
-    
+    @Inject
+    private TaskService taskService;
     @Inject
     private DominioFactory dominioFactory;
     
     @BeforeMethod
     void deleteAll()
     {
+        taskService.deleteAll();
         statusService.deleteAll();
         assertThat(statusService.findAll()).isEmpty();
     }

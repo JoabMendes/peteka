@@ -27,12 +27,14 @@ public class RoleRepositoryIT extends AbstractTestNGSpringContextTests {
     
     @Inject
     private RoleRepository roleRepository;
-    
+    @Inject
+    private UserRepository userRepository;
     @Inject
     private DominioFactory dominioFactory;
     
     @BeforeMethod
     void deleteAll(){
+        userRepository.deleteAll();
         roleRepository.deleteAll();
         assertThat(roleRepository.findAll()).isEmpty();
     }

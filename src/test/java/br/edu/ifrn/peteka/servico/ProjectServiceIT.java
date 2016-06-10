@@ -23,18 +23,20 @@ import org.testng.annotations.BeforeMethod;
  */
 @SpringApplicationConfiguration(classes = PetekaApplication.class)
 @WebAppConfiguration
-@Test(groups = "project", dependsOnGroups = "user")
+@Test(groups = "project")
 public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
     
     @Inject
     private ProjectService projectService;
-
+    @Inject
+    private TaskService taskService;
     @Inject
     private DominioFactory dominioFactory;
     
     @BeforeMethod
     void deleteAll()
     {
+        taskService.deleteAll();
         projectService.deleteAll();
         assertThat(projectService.findAll()).isEmpty();
     }

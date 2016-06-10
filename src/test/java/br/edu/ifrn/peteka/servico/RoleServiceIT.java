@@ -27,7 +27,8 @@ public class RoleServiceIT extends AbstractTestNGSpringContextTests {
     
     @Inject
     private RoleService roleService;
-    
+    @Inject
+    private UserService userService;
     @Inject
     private DominioFactory dominioFactory;
     
@@ -35,6 +36,7 @@ public class RoleServiceIT extends AbstractTestNGSpringContextTests {
     @BeforeMethod
     void deleteAll()
     {
+        userService.deleteAll();
         roleService.deleteAll();
         assertThat(roleService.findAll()).isEmpty();
     }

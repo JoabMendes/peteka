@@ -22,12 +22,14 @@ public class StatusRepositoryIT extends AbstractTestNGSpringContextTests  {
 
     @Inject
     private StatusRepository statusRepository;
-    
+    @Inject
+    private TaskRepository taskRepository;
     @Inject
     private DominioFactory dominioFactory;
     
     @BeforeMethod
     void deleteAll(){
+        taskRepository.deleteAll();
         statusRepository.deleteAll();
         assertThat(statusRepository.findAll()).isEmpty();
     }
