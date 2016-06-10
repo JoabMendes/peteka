@@ -6,7 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 //import org.springframework.data.repository.query.QueryByExampleExecutor;
 
 
-public interface TaskRepository extends CrudRepository<Task, Long> {
+public interface TaskRepository extends CrudRepository<Task, Long>, 
+        TaskRepositoryCustom {
     
     //Query Method
     void deleteByStatus(Status status);
