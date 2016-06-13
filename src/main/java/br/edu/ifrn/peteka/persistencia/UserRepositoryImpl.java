@@ -10,9 +10,7 @@ import br.edu.ifrn.peteka.dominio.Role;
 import br.edu.ifrn.peteka.dominio.User;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
