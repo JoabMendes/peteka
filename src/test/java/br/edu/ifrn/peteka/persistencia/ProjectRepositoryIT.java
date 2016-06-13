@@ -67,7 +67,7 @@ public class ProjectRepositoryIT extends AbstractTestNGSpringContextTests {
         
         Project project = dominioFactory.project();
         
-        Task task = dominioFactory.task(project, user);
+        dominioFactory.task(project, user);
         
         assertThat(projectRepository.getAllProjectsOfUser(user)
                 .contains(project));
