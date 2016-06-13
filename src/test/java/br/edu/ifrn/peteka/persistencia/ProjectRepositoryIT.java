@@ -7,7 +7,6 @@ package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Project;
-import br.edu.ifrn.peteka.dominio.Task;
 import br.edu.ifrn.peteka.dominio.User;
 import javax.inject.Inject;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -67,7 +66,7 @@ public class ProjectRepositoryIT extends AbstractTestNGSpringContextTests {
         
         Project project = dominioFactory.project();
         
-        Task task = dominioFactory.task(project, user);
+        dominioFactory.task(project, user);
         
         assertThat(projectRepository.getAllProjectsOfUser(user)
                 .contains(project));

@@ -5,13 +5,10 @@
  */
 package br.edu.ifrn.peteka.dominio;
 
-//import java.util.HashSet;
-//import java.util.Set;
 import java.util.Set;
 import java.util.TreeSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.Test;
-
 
 /**
  *

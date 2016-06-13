@@ -9,7 +9,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.springframework.web.method.annotation.ModelFactory;
 
 /**
  *

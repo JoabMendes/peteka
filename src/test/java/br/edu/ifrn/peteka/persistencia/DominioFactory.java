@@ -15,25 +15,25 @@ import javax.inject.Named;
 @Named
 public class DominioFactory {
     // Project data
-    private final String PROJECT_TITLE = "title";
-    private final String PROJECT_DESCRIPTION = "description";
+    public final static String PROJECT_TITLE = "title";
+    public final static String PROJECT_DESCRIPTION = "description";
 
     // Role data
-    private final String ROLE_TITLE = "title";
-    private final String ROLE_TITLE2 = "title1";
+    public final static String ROLE_TITLE = "title";
+    public final static String ROLE_TITLE2 = "title1";
 
     // Status data
-    private final String STATUS_LABEL = "label";
-    private final String STATUS_LABEL2 = "label2";
+    public final static String STATUS_LABEL = "label";
+    public final static String STATUS_LABEL2 = "label2";
     
     // Task data
-    private final String TASK_TITLE = "title";
-    private final String TASK_DESCRIPTION = "D1";
+    public final static String TASK_TITLE = "title";
+    public final static String TASK_DESCRIPTION = "D1";
     
     // User data
-    private final String USER_NICKNAME = "nickname";
-    private final String USER_NICKNAME2 = "nickname2";
-    private final String USER_NAME = "nome";
+    public final static String USER_NICKNAME = "nickname";
+    public final static String USER_NICKNAME2 = "nickname2";
+    public final static String USER_NAME = "nome";
 
     // Repositories
     @Inject
@@ -71,8 +71,8 @@ public class DominioFactory {
     
     public Project project() {
         Project project = Project.builder()
-                .title(this.PROJECT_TITLE)
-                .description(this.PROJECT_DESCRIPTION)
+                .title(PROJECT_TITLE)
+                .description(PROJECT_DESCRIPTION)
                 .build();
         
         this.projectRepository.save(project);
@@ -83,8 +83,8 @@ public class DominioFactory {
     public User user() {
         Role r = this.role();
         User user = User.builder()
-                .nickname(this.USER_NICKNAME)
-                .name(this.USER_NAME)
+                .nickname(USER_NICKNAME)
+                .name(USER_NAME)
                 .role(r)
                 .build();
         
@@ -94,8 +94,8 @@ public class DominioFactory {
     }
     public User user(Role r) {
         User user = User.builder()
-                .nickname(this.USER_NICKNAME)
-                .name(this.USER_NAME)
+                .nickname(USER_NICKNAME)
+                .name(USER_NAME)
                 .role(r)
                 .build();
         
@@ -106,7 +106,7 @@ public class DominioFactory {
     
     public Role role() {
         Role role = Role.builder()
-                .title(this.ROLE_TITLE)
+                .title(ROLE_TITLE)
                 .build();
         
         this.roleRepository.save(role);
@@ -116,7 +116,7 @@ public class DominioFactory {
     
     public Role role2() {
         Role role = Role.builder()
-                .title(this.ROLE_TITLE2)
+                .title(ROLE_TITLE2)
                 .build();
         
         this.roleRepository.save(role);
@@ -126,7 +126,7 @@ public class DominioFactory {
     
     public Status status() {
         Status status = Status.builder()
-                .label(this.STATUS_LABEL)
+                .label(STATUS_LABEL)
                 .build();
 
         this.statusRepository.save(status);
@@ -136,7 +136,7 @@ public class DominioFactory {
     
     public Status status2() {
         Status status = Status.builder()
-                .label(this.STATUS_LABEL2)
+                .label(STATUS_LABEL2)
                 .build();
 
         this.statusRepository.save(status);
@@ -148,8 +148,8 @@ public class DominioFactory {
         Status st = this.status();
         Project p = this.project();
         Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION)
+                .title(TASK_TITLE)
+                .description(TASK_DESCRIPTION)
                 .status(st)
                 .project(p)
                 .build();
@@ -162,8 +162,8 @@ public class DominioFactory {
     public Task task(Status st) {
         Project p = this.project();
         Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION)
+                .title(TASK_TITLE)
+                .description(TASK_DESCRIPTION)
                 .status(st)
                 .project(p)
                 .build();
@@ -176,8 +176,8 @@ public class DominioFactory {
     public Task task(Project p) {
         Status st = this.status();
         Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION)
+                .title(TASK_TITLE)
+                .description(TASK_DESCRIPTION)
                 .project(p)
                 .status(st)
                 .build();
@@ -189,8 +189,8 @@ public class DominioFactory {
     
     public Task task(Project p, Status st) {
         Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION)
+                .title(TASK_TITLE)
+                .description(TASK_DESCRIPTION)
                 .project(p)
                 .status(st)
                 .build();
@@ -203,8 +203,8 @@ public class DominioFactory {
     public Task task(Project p, User u) {
         Status st = this.status();
         Task task = Task.builder()
-                .title(this.TASK_TITLE)
-                .description(this.TASK_DESCRIPTION)
+                .title(TASK_TITLE)
+                .description(TASK_DESCRIPTION)
                 .project(p)
                 .status(st)
                 .assignee(u)
