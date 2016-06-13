@@ -4,4 +4,4 @@ jdk:
   - oraclejdk8
 
 script:
-  - mvn -Pcheck-pmd-cpd-jdepend-findbugs,attach-integration-test verify
+  - mvn -Pattach-integration-test verify
