@@ -5,6 +5,3 @@ jdk:
 
 script:
   - mvn -Pcheck-pmd-cpd-jdepend-findbugs,attach-integration-test verify
-
-after_success:
-  - mvn -Dlogging.level.root=WARN -Pattach-integration-test

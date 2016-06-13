@@ -1,10 +1,2 @@
 server:
   port: 7070
-spring:
-  jpa:
-    show-sql: true
-    show_sql: true
-    database: HSQL
-    url: jdbc:hsqldb:mem:testdb
-    hibernate:
-      ddl-auto: create
