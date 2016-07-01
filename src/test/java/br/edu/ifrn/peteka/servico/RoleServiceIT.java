@@ -7,7 +7,7 @@ package br.edu.ifrn.peteka.servico;
 
 import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Role;
-import br.edu.ifrn.peteka.persistencia.DominioFactory;
+import br.edu.ifrn.peteka.persistencia.RoleFactory;
 import javax.inject.Inject;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -30,7 +30,7 @@ public class RoleServiceIT extends AbstractTestNGSpringContextTests {
     @Inject
     private UserService userService;
     @Inject
-    private DominioFactory dominioFactory;
+    private RoleFactory roleFactory;
     
     
     @BeforeMethod
@@ -47,7 +47,7 @@ public class RoleServiceIT extends AbstractTestNGSpringContextTests {
     
     public void testSaveOne(){
         // Creates the test environment and save role
-        Role role = dominioFactory.role();
+        Role role = roleFactory.admin();
         
         // Verifies if saved
         assertThat(this.roleService.findAll().iterator().next()).isEqualTo(role);
@@ -57,7 +57,7 @@ public class RoleServiceIT extends AbstractTestNGSpringContextTests {
     
     public void testDeleteOne(){
         // Creates the test environment and save role
-        Role role = dominioFactory.role();
+        Role role = roleFactory.admin();
         
         // Deletes
         this.roleService.delete(role);

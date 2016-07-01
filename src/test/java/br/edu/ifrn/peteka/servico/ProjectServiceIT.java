@@ -9,7 +9,9 @@ import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Project;
 import br.edu.ifrn.peteka.dominio.Task;
 import br.edu.ifrn.peteka.dominio.User;
-import br.edu.ifrn.peteka.persistencia.DominioFactory;
+import br.edu.ifrn.peteka.persistencia.ProjectFactory;
+import br.edu.ifrn.peteka.persistencia.TaskFactory;
+import br.edu.ifrn.peteka.persistencia.UserFactory;
 import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -31,7 +33,11 @@ public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
     @Inject
     private TaskService taskService;
     @Inject
-    private DominioFactory dominioFactory;
+    private ProjectFactory projectFactory;
+    @Inject
+    private UserFactory userFactory;
+    @Inject
+    private TaskFactory taskFactory;
     
     @BeforeMethod
     void deleteAll()
@@ -48,7 +54,7 @@ public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
     
     public void testSaveOne(){
         // Creates the test environment and save it
-        Project project = dominioFactory.project();
+        Project project = projectFactory.project();
         
         // Verifies if saved
         assertThat(this.projectService.findAll().iterator().next())
@@ -58,7 +64,7 @@ public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
     
     public void testDeleteOne(){
         // Creates the test environment and save it
-        Project project = dominioFactory.project();
+        Project project = projectFactory.project();
         
         // Deletes
         this.projectService.delete(project);
@@ -69,11 +75,11 @@ public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
     
     public void testGetAllProjectsOfUser(){
         // Creates the test environment
-        User user = dominioFactory.user();
+        User user = userFactory.fred();
         
-        Project project = dominioFactory.project();
+        Project project = projectFactory.project();
         
-        dominioFactory.task(project, user);
+        taskFactory.task(project, user);
         
         assertThat(projectService.getAllProjectsOfUser(user)
                 .contains(project));
