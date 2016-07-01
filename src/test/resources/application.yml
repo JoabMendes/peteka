@@ -1,0 +1,20 @@
+## Test DB. Descomentar para testar integração com Banco.
+#
+#spring:
+#  datasource:
+## Detalhe para a porta: mudar para o default 5432 se precisar
+#    url: jdbc:postgresql://localhost:15432/peteka
+#    username: peteka
+#    password: peteka
+## Number of ms to wait before throwing an exception if no connection is available.
+#    max-wait: 1000
+## Maximum number of active connections that can be allocated from this pool at the same time.
+#    max-active: 4
+## Validate the connection before borrowing it from the pool.
+#    test-on-borrow: true
+#  jpa:
+##    show-sql: true
+#    hibernate:
+## Criar tabelas caso nao existam
+#      ddl-auto: create-drop
+#      naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
