@@ -34,6 +34,7 @@
         <findbugs-maven-plugin.version>3.0.3</findbugs-maven-plugin.version>
         <jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
         <maven-pmd-plugin.version>3.6</maven-pmd-plugin.version>
+        <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
         <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
         <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
@@ -42,7 +43,8 @@
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
         <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
-        <maven-jar-plugin.version>3.0.0</maven-jar-plugin.version>
+        <maven-jar-plugin.version>3.0.1</maven-jar-plugin.version>
+        <maven-source-plugin.version>3.0.0</maven-source-plugin.version>
     </properties>
 
     <dependencies>
@@ -252,11 +254,18 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
+                        <version>${maven-source-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
                                 <goals>
                                     <goal>jar</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>attach-test-sources</id>
+                                <goals>
+                                    <goal>test-jar</goal>
                                 </goals>
                             </execution>
                         </executions>
@@ -265,6 +274,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven-javadoc-plugin.version}</version>
                         <configuration>
                             <links>
                                 <link>http://docs.oracle.com/javase/8/docs/api/</link>
@@ -275,6 +285,12 @@
                                 <id>attach-javadocs</id>
                                 <goals>
                                     <goal>jar</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>attach-test-javadocs</id>
+                                <goals>
+                                    <goal>test-jar</goal>
                                 </goals>
                             </execution>
                         </executions>
@@ -344,6 +360,7 @@
                         jdepend no package cycles enforcer
                     -->
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-enforcer-plugin</artifactId>
                         <version>${maven-enforcer-plugin.version}</version>
                         <dependencies>
