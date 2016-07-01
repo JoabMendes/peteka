@@ -7,5 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ProjectRepository extends CrudRepository<Project, Long>, 
         ProjectRepositoryCustom {
+    Project findByTitle(String title);
     
+    Project findByDescription(String description);
 }
