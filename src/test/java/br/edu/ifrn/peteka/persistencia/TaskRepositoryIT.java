@@ -31,7 +31,13 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
     private TaskRepository taskRepository;
     
     @Inject
-    private DominioFactory dominioFactory;
+    private TaskFactory taskFactory;
+    
+    @Inject
+    private StatusFactory statusFactory;
+    
+    @Inject
+    private ProjectFactory projectFactory;
     
     @BeforeMethod
     void deleteAll(){
@@ -45,7 +51,7 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     public void testSaveOne(){
        // Creates the test environment and save task
-        Task task = dominioFactory.task();
+        Task task = taskFactory.task();
         
         // Verifies if saved
         assertThat(taskRepository.findAll().iterator().next()).isEqualTo(task);
@@ -55,7 +61,7 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     public void testDeleteOne(){
         // Creates the test environment and save task
-        Task task = dominioFactory.task();
+        Task task = taskFactory.task();
         
         // Deletes
         this.taskRepository.delete(task);
@@ -82,13 +88,13 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
     }*/
     public void findAllByExample () {
         // Creates the test environment and save status
-        Status st = dominioFactory.status();
+        Status st = statusFactory.open();
         
         // Creates the test environment and save task
-        Task task = dominioFactory.task(st);
+        Task task = taskFactory.task(st);
         
         // Creates the test environment and save task
-        Task taskExample = dominioFactory.task();
+        Task taskExample = taskFactory.task();
         
         assertThat(this.taskRepository
                 .findAll(Example.of(taskExample)).iterator().next())
@@ -96,9 +102,9 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
     }
     
     public void testGetAllTasksForProject() {
-        Project project = dominioFactory.project();
+        Project project = projectFactory.project();
         // Creates the test environment and save task
-        Task task = dominioFactory.task(project);
+        Task task = taskFactory.task(project);
         
         assertThat(taskRepository.getAllTasksForProject(project)
                 .contains(task));
@@ -106,9 +112,9 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     public void testGetAllTasksForProjectOfStatus() {
         // Creates the test environment
-        Project project = dominioFactory.project();
-        Status status = dominioFactory.status();
-        Task task = dominioFactory.task(project, status);
+        Project project = projectFactory.project();
+        Status status = statusFactory.open();
+        Task task = taskFactory.task(project, status);
         
         assertThat(taskRepository.getAllTasksForProjectOfStatus(project, status)
                 .contains(task));

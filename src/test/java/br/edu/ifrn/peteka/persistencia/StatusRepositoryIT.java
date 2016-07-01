@@ -24,7 +24,7 @@ public class StatusRepositoryIT extends AbstractTestNGSpringContextTests  {
     @Inject
     private TaskRepository taskRepository;
     @Inject
-    private DominioFactory dominioFactory;
+    private StatusFactory statusFactory;
     
     @BeforeMethod
     void deleteAll(){
@@ -40,7 +40,7 @@ public class StatusRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     public void testSaveOne(){
         // Creates the test environment and save status
-        Status status = dominioFactory.status();
+        Status status = statusFactory.inProgress();
         
         // Verifies if saved
         assertThat(statusRepository.findAll().iterator().next()).isEqualTo(status);
@@ -50,7 +50,7 @@ public class StatusRepositoryIT extends AbstractTestNGSpringContextTests  {
     
      public void testDeleteOne(){
         // Creates the test environment and save status
-        Status status = dominioFactory.status();
+        Status status = statusFactory.inProgress();
         
         // Deletes
         this.statusRepository.delete(status);
@@ -62,20 +62,20 @@ public class StatusRepositoryIT extends AbstractTestNGSpringContextTests  {
      
      public void testFindByLabel(){
          // Creates the test environment and save status
-        Status status1 = dominioFactory.status();
+        Status statusInProgress = statusFactory.inProgress();
         // Creates the test environment and save status
-        Status status2 = dominioFactory.status2();
+        Status statusOpen = statusFactory.open();
          
-         statusRepository.save(status1);
-         statusRepository.save(status2);
+         statusRepository.save(statusInProgress);
+         statusRepository.save(statusOpen);
          
          assertThat(statusRepository
-                 .findByLabel(dominioFactory.getSTATUS_LABEL()))
-                 .isEqualTo(status1);
+                 .findByLabel(statusFactory.getSTATUS_IN_PROGRESS()))
+                 .isEqualTo(statusInProgress);
 
-         assertThat(statusRepository.findByLabel(dominioFactory
-                 .getSTATUS_LABEL2()))
-                 .isEqualTo(status2);
+         assertThat(statusRepository.findByLabel(statusFactory
+                 .getSTATUS_OPEN()))
+                 .isEqualTo(statusOpen);
      }
     
 }

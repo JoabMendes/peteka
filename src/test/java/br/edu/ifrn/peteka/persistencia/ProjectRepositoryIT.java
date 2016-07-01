@@ -29,7 +29,13 @@ public class ProjectRepositoryIT extends AbstractTestNGSpringContextTests {
     private ProjectRepository projectRepository;
     
     @Inject
-    private DominioFactory dominioFactory;
+    private ProjectFactory projectFactory;
+    
+    @Inject
+    private UserFactory userFactory;
+    
+    @Inject
+    private TaskFactory taskFactory;
     
     @BeforeMethod
     void deleteAll(){
@@ -43,7 +49,7 @@ public class ProjectRepositoryIT extends AbstractTestNGSpringContextTests {
     
     public void deleteOne () {
         // Creates the test environment
-        Project project = dominioFactory.project();
+        Project project = projectFactory.project();
         
         //Verify function
         this.projectRepository.delete(project);
@@ -54,7 +60,7 @@ public class ProjectRepositoryIT extends AbstractTestNGSpringContextTests {
     
     public void salvarUm () {
         // Creates test environment and save it
-        Project project = dominioFactory.project();
+        Project project = projectFactory.project();
         
        // Verifies if saved
         assertThat(projectRepository.findAll().iterator().next()).isEqualTo(project);
@@ -62,11 +68,11 @@ public class ProjectRepositoryIT extends AbstractTestNGSpringContextTests {
     
     public void testGetAllProjectsOfUser(){
         // Creates the test environment
-        User user = dominioFactory.user();
+        User user = userFactory.fred();
         
-        Project project = dominioFactory.project();
+        Project project = projectFactory.project();
         
-        dominioFactory.task(project, user);
+        taskFactory.task(project, user);
         
         assertThat(projectRepository.getAllProjectsOfUser(user)
                 .contains(project));

@@ -31,7 +31,10 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
     private UserRepository userRepository;
     
     @Inject
-    private DominioFactory dominioFactory;
+    private UserFactory userFactory;
+    
+    @Inject
+    private RoleFactory roleFactory;
     
     
     @BeforeMethod
@@ -47,7 +50,7 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     public void testSaveOne(){
         // Creates the test environment and save user
-        User user = dominioFactory.user();
+        User user = userFactory.fred();
         
         // Verifies if saved
         assertThat(userRepository.findAll().iterator().next()).isEqualTo(user);
@@ -57,7 +60,7 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     public void testDeleteOne(){
         // Creates the test environment and save user
-        User user = dominioFactory.user();
+        User user = userFactory.fred();
         
         // Deletes
         this.userRepository.delete(user);
@@ -83,10 +86,10 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
 
     public void findAllByExample () {
         // Creates the test environment and save user
-        User user = dominioFactory.user();
+        User user = userFactory.mike();
         
         // Creates the test environment and save user
-        User userExample = dominioFactory.user();
+        User userExample = userFactory.mike();
         
         assertThat(this.userRepository.findAll(Example.of(userExample)).iterator().next())
             .isEqualTo(user);
@@ -94,9 +97,9 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
 
     public void testGetAllUsersOfRole() {
         // Creates the test environment and save role
-        Role role = dominioFactory.role();
+        Role role = roleFactory.admin();
         // Creates the test environment and save user
-        User user = dominioFactory.user(role);
+        User user = userFactory.user(role);
         
         assertThat(userRepository.getAllUsersOfRole(role).contains(user));
     }

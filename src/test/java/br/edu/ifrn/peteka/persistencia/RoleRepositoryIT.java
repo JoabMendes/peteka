@@ -29,7 +29,7 @@ public class RoleRepositoryIT extends AbstractTestNGSpringContextTests {
     @Inject
     private UserRepository userRepository;
     @Inject
-    private DominioFactory dominioFactory;
+    private RoleFactory roleFactory;
     
     @BeforeMethod
     void deleteAll(){
@@ -44,7 +44,7 @@ public class RoleRepositoryIT extends AbstractTestNGSpringContextTests {
     
     public void testDeleteOne(){
         // Creates the test environment and save role
-        Role role = dominioFactory.role();
+        Role role = roleFactory.admin();
         
         // Deletes
         this.roleRepository.delete(role);
@@ -55,7 +55,7 @@ public class RoleRepositoryIT extends AbstractTestNGSpringContextTests {
     
     public void testSaveOne(){
         // Creates the test environment and save role
-        Role role = dominioFactory.role();
+        Role role = roleFactory.admin();
         
         // Verifies if saved
         assertThat(roleRepository.findAll().iterator().next()).isEqualTo(role);
@@ -65,14 +65,14 @@ public class RoleRepositoryIT extends AbstractTestNGSpringContextTests {
     
     public void testFindByTitle(){
         // Creates the test environment and save role
-        Role role1 = dominioFactory.role();
+        Role admin = roleFactory.admin();
         // Creates the test environment and save role
-        Role role2 = dominioFactory.role2();
+        Role manager = roleFactory.manager();
         
-        assertThat(roleRepository.findByTitle(dominioFactory.getROLE_TITLE()))
-                .isEqualTo(role1);
-        assertThat(roleRepository.findByTitle(dominioFactory.getROLE_TITLE2()))
-                .isEqualTo(role2);
+        assertThat(roleRepository.findByTitle(roleFactory.getROLE_ADMIN()))
+                .isEqualTo(admin);
+        assertThat(roleRepository.findByTitle(roleFactory.getROLE_MANAGER()))
+                .isEqualTo(manager);
         
     }
     
