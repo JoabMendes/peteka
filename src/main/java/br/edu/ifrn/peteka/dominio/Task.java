@@ -39,7 +39,7 @@ public class Task implements Serializable, Comparable<Task> {
 
     @Singular
     @OneToMany(fetch = FetchType.LAZY)
-    private Set<User> assignees;
+    private Set<Users> assignees;
 
     @Column(nullable = false)
     private String title;

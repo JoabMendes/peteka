@@ -37,7 +37,7 @@ public class Role implements Serializable, Comparable<Role> {
     private Long id;
 
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    private Set<User> users;
+    private Set<Users> users;
 
     @Column(nullable = false)
     private String title;

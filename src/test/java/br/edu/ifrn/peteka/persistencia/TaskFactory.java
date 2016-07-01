@@ -8,7 +8,7 @@ package br.edu.ifrn.peteka.persistencia;
 import br.edu.ifrn.peteka.dominio.Project;
 import br.edu.ifrn.peteka.dominio.Status;
 import br.edu.ifrn.peteka.dominio.Task;
-import br.edu.ifrn.peteka.dominio.User;
+import br.edu.ifrn.peteka.dominio.Users;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -32,9 +32,9 @@ public class TaskFactory {
     private ProjectFactory projectFactory;
     
     @Inject
-    private UserFactory userFactory;
+    private UsersFactory usersFactory;
     
-    private Task task(String title, String description, Status st, Project p, User u) {
+    private Task task(String title, String description, Status st, Project p, Users u) {
         
         Task task = this.taskRepository.findByTitleAndDescription(title, description);
         if (task == null) {
@@ -55,28 +55,28 @@ public class TaskFactory {
     public Task task() {
         Status st = this.statusFactory.open();
         Project p = this.projectFactory.project();
-        User u = this.userFactory.mike();
+        Users u = this.usersFactory.mike();
         return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);
     }
     
     public Task task(Status st) {
         Project p = this.projectFactory.project();
-        User u = this.userFactory.mike();
+        Users u = this.usersFactory.mike();
         return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);
     }
     
     public Task task(Project p) {
         Status st = this.statusFactory.open();
-        User u = this.userFactory.mike();
+        Users u = this.usersFactory.mike();
         return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);
     }
     
     public Task task(Project p, Status st) {
-        User u = this.userFactory.mike();
+        Users u = this.usersFactory.mike();
         return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);
     }
     
-    public Task task(Project p, User u) {
+    public Task task(Project p, Users u) {
         Status st = this.statusFactory.open();
         return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);
     }

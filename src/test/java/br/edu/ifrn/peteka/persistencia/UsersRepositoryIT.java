@@ -7,7 +7,7 @@ package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Role;
-import br.edu.ifrn.peteka.dominio.User;
+import br.edu.ifrn.peteka.dominio.Users;
 import javax.inject.Inject;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.data.domain.Example;
@@ -15,6 +15,9 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -25,13 +28,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringApplicationConfiguration(classes = PetekaApplication.class)
 @WebAppConfiguration
 @Test(groups = "user", dependsOnGroups = "role")
-public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
+public class UsersRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     @Inject
-    private UserRepository userRepository;
+    private UsersRepository userRepository;
     
     @Inject
-    private UserFactory userFactory;
+    private UsersFactory userFactory;
     
     @Inject
     private RoleFactory roleFactory;
@@ -50,7 +53,7 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     public void testSaveOne(){
         // Creates the test environment and save user
-        User user = userFactory.fred();
+        Users user = userFactory.fred();
         
         // Verifies if saved
         assertThat(userRepository.findAll().iterator().next()).isEqualTo(user);
@@ -60,7 +63,7 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
     
     public void testDeleteOne(){
         // Creates the test environment and save user
-        User user = userFactory.fred();
+        Users user = userFactory.fred();
         
         // Deletes
         this.userRepository.delete(user);
@@ -73,9 +76,9 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
     /*
     public void testFindByNickname(){
         // Creates the test environment and save user
-        User user1 = modelFactory.user();
+        Users user1 = modelFactory.user();
         // Creates the test environment and save user
-        User user2 = modelFactory.user();
+        Users user2 = modelFactory.user();
         
         assertThat(userRepository.findByNickname(this.USER_NICKNAME)).isEqualTo(user1);
         assertThat(userRepository.findByNickname(this.USER_NICKNAME2)).isEqualTo(user2);
@@ -86,10 +89,10 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
 
     public void findAllByExample () {
         // Creates the test environment and save user
-        User user = userFactory.mike();
+        Users user = userFactory.mike();
         
         // Creates the test environment and save user
-        User userExample = userFactory.mike();
+        Users userExample = userFactory.mike();
         
         assertThat(this.userRepository.findAll(Example.of(userExample)).iterator().next())
             .isEqualTo(user);
@@ -99,7 +102,7 @@ public class UserRepositoryIT extends AbstractTestNGSpringContextTests  {
         // Creates the test environment and save role
         Role role = roleFactory.admin();
         // Creates the test environment and save user
-        User user = userFactory.user(role);
+        Users user = userFactory.user(role);
         
         assertThat(userRepository.getAllUsersOfRole(role).contains(user));
     }

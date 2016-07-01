@@ -27,7 +27,7 @@ public class RoleRepositoryIT extends AbstractTestNGSpringContextTests {
     @Inject
     private RoleRepository roleRepository;
     @Inject
-    private UserRepository userRepository;
+    private UsersRepository userRepository;
     @Inject
     private RoleFactory roleFactory;
     

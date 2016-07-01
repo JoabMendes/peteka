@@ -1,7 +1,7 @@
 package br.edu.ifrn.peteka.servico;
 
 import br.edu.ifrn.peteka.dominio.Project;
-import br.edu.ifrn.peteka.dominio.User;
+import br.edu.ifrn.peteka.dominio.Users;
 import br.edu.ifrn.peteka.persistencia.ProjectRepository;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +19,7 @@ public class ProjectService extends AbstractService<Project, Long> {
         this.projectRepository = projectRepository;
     }
     
-    public List<Project> getAllProjectsOfUser(User u) {
+    public List<Project> getAllProjectsOfUser(Users u) {
         return this.projectRepository.getAllProjectsOfUser(u);
     } 
 }

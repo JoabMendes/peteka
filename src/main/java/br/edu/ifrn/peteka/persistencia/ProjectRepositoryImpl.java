@@ -7,7 +7,7 @@ package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.dominio.Project;
 import br.edu.ifrn.peteka.dominio.QProject;
-import br.edu.ifrn.peteka.dominio.User;
+import br.edu.ifrn.peteka.dominio.Users;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
@@ -28,7 +28,7 @@ public class ProjectRepositoryImpl implements ProjectRepositoryCustom {
     }
     
     @Override
-    public List<Project> getAllProjectsOfUser(User u) {
+    public List<Project> getAllProjectsOfUser(Users u) {
         QProject qProject = QProject.project;
         JPQLQueryFactory factory = new JPAQueryFactory(entityManager);
 

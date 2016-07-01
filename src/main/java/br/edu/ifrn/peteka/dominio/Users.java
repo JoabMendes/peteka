@@ -20,7 +20,7 @@ import javax.persistence.*;
 @SequenceGenerator(sequenceName = "seq_user", name = "ID_SEQUENCE", allocationSize = 1)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class User implements Serializable, Comparable<User> {
+public class Users implements Serializable, Comparable<Users> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
@@ -37,7 +37,7 @@ public class User implements Serializable, Comparable<User> {
     private String nickname;
 
     @Override
-    public int compareTo(User o) {
+    public int compareTo(Users o) {
         return nickname.compareTo(o.nickname);
     }
 }

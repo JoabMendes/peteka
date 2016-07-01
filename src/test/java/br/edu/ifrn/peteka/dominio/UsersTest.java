@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
  * @author joab
  */
 @Test
-public class UserTest {
+public class UsersTest {
     
     private static final String NICKNAME1 = "nickname1";
     private static final String NICKNAME2 = "nickname2";
@@ -24,32 +24,32 @@ public class UserTest {
     
     
     public void equalNicknames(){
-        assertThat(User.builder().nickname(NICKNAME1).build())
-            .isEqualTo(User.builder().nickname(NICKNAME1).build());
+        assertThat(Users.builder().nickname(NICKNAME1).build())
+            .isEqualTo(Users.builder().nickname(NICKNAME1).build());
     }
     
     public void differentNicknames(){
-        assertThat(User.builder().nickname(NICKNAME1).build())
-            .isNotEqualTo(User.builder().nickname(NICKNAME2).build());
+        assertThat(Users.builder().nickname(NICKNAME1).build())
+            .isNotEqualTo(Users.builder().nickname(NICKNAME2).build());
     }
     
     //Just to test if the exclude is working
     public void differentNicknamesSameNames(){
-        assertThat(User.builder().nickname(NICKNAME1).name(NAME1).build())
-            .isNotEqualTo(User.builder().nickname(NICKNAME2).name(NAME1).build());
+        assertThat(Users.builder().nickname(NICKNAME1).name(NAME1).build())
+            .isNotEqualTo(Users.builder().nickname(NICKNAME2).name(NAME1).build());
     }
     
     //Just to test if the exclude is working
     public void sameNicknamesdifferentNames(){
-        assertThat(User.builder().nickname(NICKNAME1).name(NAME1).build())
-            .isEqualTo(User.builder().nickname(NICKNAME1).name(NAME2).build());
+        assertThat(Users.builder().nickname(NICKNAME1).name(NAME1).build())
+            .isEqualTo(Users.builder().nickname(NICKNAME1).name(NAME2).build());
     }
     
     public void compareToDifferentNicknames(){
-        Set<User> users = new TreeSet<>();
+        Set<Users> users = new TreeSet<>();
         
-        User u1 = User.builder().nickname(NICKNAME2).build();
-        User u2 = User.builder().nickname(NICKNAME1).build();
+        Users u1 = Users.builder().nickname(NICKNAME2).build();
+        Users u2 = Users.builder().nickname(NICKNAME1).build();
         users.add(u1);
         users.add(u2);
         

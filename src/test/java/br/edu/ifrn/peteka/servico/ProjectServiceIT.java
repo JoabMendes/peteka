@@ -8,10 +8,10 @@ package br.edu.ifrn.peteka.servico;
 import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Project;
 import br.edu.ifrn.peteka.dominio.Task;
-import br.edu.ifrn.peteka.dominio.User;
+import br.edu.ifrn.peteka.dominio.Users;
 import br.edu.ifrn.peteka.persistencia.ProjectFactory;
 import br.edu.ifrn.peteka.persistencia.TaskFactory;
-import br.edu.ifrn.peteka.persistencia.UserFactory;
+import br.edu.ifrn.peteka.persistencia.UsersFactory;
 import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -19,6 +19,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
+import static org.assertj.core.api.Assertions.assertThat;
 /**
  *
  * @author joab
@@ -35,7 +36,7 @@ public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
     @Inject
     private ProjectFactory projectFactory;
     @Inject
-    private UserFactory userFactory;
+    private UsersFactory usersFactory;
     @Inject
     private TaskFactory taskFactory;
     
@@ -75,7 +76,7 @@ public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
     
     public void testGetAllProjectsOfUser(){
         // Creates the test environment
-        User user = userFactory.fred();
+        Users user = usersFactory.fred();
         
         Project project = projectFactory.project();
         
