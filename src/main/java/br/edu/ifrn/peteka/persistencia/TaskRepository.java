@@ -14,4 +14,6 @@ public interface TaskRepository extends CrudRepository<Task, Long>,
     //Query Method
     void deleteByStatus(Status status);
     
+    Task findByTitleAndDescription(String title, String description);
+    
 }

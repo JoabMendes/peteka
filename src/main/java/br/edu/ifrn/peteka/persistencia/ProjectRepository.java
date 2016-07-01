@@ -10,4 +10,6 @@ public interface ProjectRepository extends CrudRepository<Project, Long>,
     Project findByTitle(String title);
     
     Project findByDescription(String description);
+
+    public Project findByTitleAndDescription(String title, String description);
 }
