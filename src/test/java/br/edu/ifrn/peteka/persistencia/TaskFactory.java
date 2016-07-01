@@ -31,6 +31,9 @@ public class TaskFactory {
     @Inject
     private ProjectFactory projectFactory;
     
+    @Inject
+    private UserFactory userFactory;
+    
     private Task task(String title, String description, Status st, Project p, User u) {
         
         Task task = this.taskRepository.findByTitleAndDescription(title, description);
@@ -52,21 +55,25 @@ public class TaskFactory {
     public Task task() {
         Status st = this.statusFactory.open();
         Project p = this.projectFactory.project();
-        return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, null);
+        User u = this.userFactory.mike();
+        return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);
     }
     
     public Task task(Status st) {
         Project p = this.projectFactory.project();
-        return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, null);
+        User u = this.userFactory.mike();
+        return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);
     }
     
     public Task task(Project p) {
         Status st = this.statusFactory.open();
-        return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, null);
+        User u = this.userFactory.mike();
+        return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);
     }
     
     public Task task(Project p, Status st) {
-        return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, null);
+        User u = this.userFactory.mike();
+        return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);
     }
     
     public Task task(Project p, User u) {
