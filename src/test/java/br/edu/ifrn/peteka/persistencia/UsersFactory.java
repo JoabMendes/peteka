@@ -57,4 +57,10 @@ public class UsersFactory {
         Role manager = roleFactory.manager();
         return user(USER_MIKE, USER_MIKE_NAME, manager);
     }
+    
+    public Users no_nick (String nickname) {
+        Role manager = roleFactory.manager();
+        return user(nickname, USER_MIKE_NAME, manager);
+    }
+    
 }
