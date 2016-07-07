@@ -40,4 +40,12 @@ public class Users implements Serializable, Comparable<Users> {
     public int compareTo(Users o) {
         return nickname.compareTo(o.nickname);
     }
+    
+    public void verifyNickName(){
+        String pattern = "^[a-zA-Z0-9]*$";
+        if(!this.nickname.matches(pattern)){
+            throw new IllegalArgumentException("O nickname deve ser composto apenas por letras e números.");
+        }
+    }
+    
 }
