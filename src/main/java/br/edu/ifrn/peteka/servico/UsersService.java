@@ -21,4 +21,11 @@ public class UsersService extends AbstractService<Users, Long> {
     public List<Users> getAllUsersOfRole(Role r) {
         return this.usersRepository.getAllUsersOfRole(r);
     }
+    
+    @Override
+    public void save(Users obj){
+        obj.verifyNickName(); //Nickname must be alphanumeric
+        super.save(obj);
+    }
+    
 }
