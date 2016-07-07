@@ -56,6 +56,13 @@ public class UsersServiceIT extends AbstractTestNGSpringContextTests  {
         
     }
     
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testSaveOneWithBadNickname() throws IllegalArgumentException{
+        String BAD_NICKNAME = "I'M_DUMB!!!"; //Not alphanumeric
+        Users user = usersFactory.no_nick(BAD_NICKNAME);
+        this.userService.save(user);
+    }
+    
     
     public void testDeleteOne(){
         // Creates the test environment and save user
