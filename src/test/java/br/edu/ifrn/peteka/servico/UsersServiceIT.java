@@ -17,6 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  *
@@ -59,6 +60,7 @@ public class UsersServiceIT extends AbstractTestNGSpringContextTests  {
     public void testSaveOneWithBadNickname() throws IllegalArgumentException{
         String BAD_NICKNAME = "I'M_DUMB!!!"; //Not alphanumeric
         Users user = usersFactory.no_nick(BAD_NICKNAME);
+        this.userService.save(user);
     }
     
     
