@@ -10,6 +10,8 @@ import br.edu.ifrn.peteka.dominio.Role;
 import br.edu.ifrn.peteka.dominio.Users;
 import br.edu.ifrn.peteka.persistencia.RoleFactory;
 import br.edu.ifrn.peteka.persistencia.UsersFactory;
+import java.util.HashSet;
+import java.util.Set;
 import javax.inject.Inject;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -52,6 +54,17 @@ public class UsersServiceIT extends AbstractTestNGSpringContextTests  {
         
         // Verifies if saved
         assertThat(this.userService.findAll().iterator().next()).isEqualTo(user);
+        
+    }
+    
+    public void testSaveAll() {
+        Set<Users> usersList = new HashSet<> ();
+        
+        usersList.add(usersFactory.fred());
+        usersList.add(usersFactory.mike());
+        
+        Set<Users> savedUsers = this.userService.saveAll(usersList);
+        assertThat(usersList.equals(savedUsers));
         
     }
     
