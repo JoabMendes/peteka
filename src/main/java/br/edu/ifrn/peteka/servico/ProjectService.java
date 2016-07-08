@@ -4,7 +4,6 @@ import br.edu.ifrn.peteka.dominio.Project;
 import br.edu.ifrn.peteka.dominio.Users;
 import br.edu.ifrn.peteka.persistencia.ProjectRepository;
 import java.util.List;
-import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Named;
 

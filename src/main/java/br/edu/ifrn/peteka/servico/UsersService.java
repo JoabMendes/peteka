@@ -23,9 +23,10 @@ public class UsersService extends AbstractService<Users, Long> {
     }
     
     @Override
-    public void save(Users obj){
-        obj.verifyNickName(); //Nickname must be alphanumeric
-        super.save(obj);
+    public Users save(Users user){
+        user.verifyNickName(); //Nickname must be alphanumeric
+        super.save(user);
+        return user;
     }
     
 }

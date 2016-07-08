@@ -7,13 +7,11 @@ package br.edu.ifrn.peteka.servico;
 
 import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Project;
-import br.edu.ifrn.peteka.dominio.Task;
 import br.edu.ifrn.peteka.dominio.Users;
 import br.edu.ifrn.peteka.persistencia.ProjectFactory;
 import br.edu.ifrn.peteka.persistencia.TaskFactory;
 import br.edu.ifrn.peteka.persistencia.UsersFactory;
 import javax.inject.Inject;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
