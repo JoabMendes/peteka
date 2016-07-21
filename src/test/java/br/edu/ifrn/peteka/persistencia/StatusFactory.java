@@ -15,10 +15,11 @@ import javax.inject.Named;
  */
 @Named
 public class StatusFactory {
+
     // Status data
     public final static String STATUS_OPEN = "OPEN";
     public final static String STATUS_IN_PROGRESS = "IN PROGRESS";
-    
+
     @Inject
     private StatusRepository statusRepository;
 
@@ -29,28 +30,26 @@ public class StatusFactory {
     public String getSTATUS_IN_PROGRESS() {
         return STATUS_IN_PROGRESS;
     }
-    
-    
-    
+
     private Status status(String label) {
         Status status = this.statusRepository.findByLabel(label);
-        
+
         if (status == null) {
             status = Status.builder()
-                .label(label)
-                .build();
-            
+                    .label(label)
+                    .build();
+
             this.statusRepository.save(status);
         }
-        
+
         return status;
     }
-    
-    public Status open () {
+
+    public Status open() {
         return status(STATUS_OPEN);
     }
-    
-    public Status inProgress () {
+
+    public Status inProgress() {
         return status(STATUS_IN_PROGRESS);
     }
 }

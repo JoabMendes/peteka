@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringApplicationConfiguration(classes = PetekaApplication.class)
 @WebAppConfiguration
 @Test(groups = "status")
-public class StatusRepositoryIT extends AbstractTestNGSpringContextTests  {
+public class StatusRepositoryIT extends AbstractTestNGSpringContextTests {
 
     @Inject
     private StatusRepository statusRepository;
@@ -25,57 +25,54 @@ public class StatusRepositoryIT extends AbstractTestNGSpringContextTests  {
     private TaskRepository taskRepository;
     @Inject
     private StatusFactory statusFactory;
-    
+
     @BeforeMethod
-    void deleteAll(){
+    void deleteAll() {
         taskRepository.deleteAll();
         statusRepository.deleteAll();
         assertThat(statusRepository.findAll()).isEmpty();
     }
-    
-    public void repositoryNotNull () {
+
+    public void repositoryNotNull() {
         assertThat(statusRepository).isNotNull();
     }
-    
-    
-    public void testSaveOne(){
+
+    public void testSaveOne() {
         // Creates the test environment and save status
         Status status = statusFactory.inProgress();
-        
+
         // Verifies if saved
         assertThat(statusRepository.findAll().iterator().next()).isEqualTo(status);
-        
+
     }
-    
-    
-     public void testDeleteOne(){
+
+    public void testDeleteOne() {
         // Creates the test environment and save status
         Status status = statusFactory.inProgress();
-        
+
         // Deletes
         this.statusRepository.delete(status);
-        
+
         //Test if deleted
         assertThat(statusRepository.findOne(status.getId())).isNull();
     }
-     
-     
-     public void testFindByLabel(){
-         // Creates the test environment and save status
+
+    public void testFindByLabel() {
+        // Creates the test environment and save status
         Status statusInProgress = statusFactory.inProgress();
         // Creates the test environment and save status
         Status statusOpen = statusFactory.open();
-         
-         statusRepository.save(statusInProgress);
-         statusRepository.save(statusOpen);
-         
-         assertThat(statusRepository
-                 .findByLabel(statusFactory.getSTATUS_IN_PROGRESS()))
-                 .isEqualTo(statusInProgress);
 
-         assertThat(statusRepository.findByLabel(statusFactory
-                 .getSTATUS_OPEN()))
-                 .isEqualTo(statusOpen);
-     }
-    
+        statusRepository.save(statusInProgress);
+        statusRepository.save(statusOpen);
+
+        assertThat(statusRepository
+                .findByLabel(statusFactory.getSTATUS_IN_PROGRESS()))
+                .isEqualTo(statusInProgress);
+
+        assertThat(statusRepository.findByLabel(statusFactory
+                .getSTATUS_OPEN()))
+                .isEqualTo(statusOpen);
+    }
+
 }

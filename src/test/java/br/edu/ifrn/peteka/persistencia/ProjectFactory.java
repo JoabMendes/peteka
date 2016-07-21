@@ -15,29 +15,30 @@ import javax.inject.Named;
  */
 @Named
 public class ProjectFactory {
+
     // Project data
     public final static String PROJECT_TITLE = "title";
     public final static String PROJECT_DESCRIPTION = "description";
-    
+
     @Inject
     private ProjectRepository projectRepository;
-    
+
     private Project project(String title, String description) {
         Project project = projectRepository
                 .findByTitleAndDescription(title, description);
-        
+
         if (project == null) {
             project = Project.builder()
-                .title(title)
-                .description(description)
-                .build();
-            
+                    .title(title)
+                    .description(description)
+                    .build();
+
             this.projectRepository.save(project);
         }
-        
+
         return project;
     }
-    
+
     public Project project() {
         return this.project(PROJECT_TITLE, PROJECT_DESCRIPTION);
     }

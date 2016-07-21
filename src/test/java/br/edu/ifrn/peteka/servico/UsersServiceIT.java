@@ -27,72 +27,69 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringApplicationConfiguration(classes = PetekaApplication.class)
 @WebAppConfiguration
 @Test(groups = "user", dependsOnGroups = "role")
-public class UsersServiceIT extends AbstractTestNGSpringContextTests  {
-    
+public class UsersServiceIT extends AbstractTestNGSpringContextTests {
+
     @Inject
     private UsersService userService;
     @Inject
     private UsersFactory usersFactory;
     @Inject
     private RoleFactory roleFactory;
-    
+
     @BeforeMethod
-    void deleteAll()
-    {
+    void deleteAll() {
         userService.deleteAll();
         assertThat(userService.findAll()).isEmpty();
     }
-    
-    
-    public void testServiceIsNotNull(){
+
+    public void testServiceIsNotNull() {
         assertThat(userService).isNotNull();
     }
-    
-    public void testSaveOne(){
+
+    public void testSaveOne() {
         // Creates the test environment and save user
         Users user = usersFactory.fred();
-        
+
         // Verifies if saved
         assertThat(this.userService.findAll().iterator().next()).isEqualTo(user);
-        
+
     }
-    
+
     public void testSaveAll() {
-        Set<Users> usersList = new HashSet<> ();
-        
+        Set<Users> usersList = new HashSet<>();
+
         usersList.add(usersFactory.fred());
         usersList.add(usersFactory.mike());
-        
+
         Set<Users> savedUsers = this.userService.saveAll(usersList);
         assertThat(usersList.equals(savedUsers));
-        
+
     }
-    
+
     @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testSaveOneWithBadNickname() throws IllegalArgumentException{
+    public void testSaveOneWithBadNickname() throws IllegalArgumentException {
         String BAD_NICKNAME = "I'M_DUMB!!!"; //Not alphanumeric
         Users user = usersFactory.no_nick(BAD_NICKNAME);
         this.userService.save(user);
     }
-    
-    
-    public void testDeleteOne(){
+
+    public void testDeleteOne() {
         // Creates the test environment and save user
         Users user = usersFactory.mike();
-        
+
         // Deletes
         this.userService.delete(user);
-        
+
         //Test if deleted
         assertThat(this.userService.findAll().iterator().hasNext()).isFalse();
     }
-    
+
     public void testGetAllUsersOfRole() {
         // Creates the test environment and save role
         Role role = roleFactory.admin();
         // Creates the test environment and save user
         Users user = usersFactory.user(role);
-        
+
         assertThat(userService.getAllUsersOfRole(role).contains(user));
     }
 }

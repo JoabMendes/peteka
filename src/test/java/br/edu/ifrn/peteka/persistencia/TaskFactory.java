@@ -18,24 +18,25 @@ import javax.inject.Named;
  */
 @Named
 public class TaskFactory {
+
     // Status data
     public final static String TASK_TITLE = "title";
     public final static String TASK_DESCRIPTION = "D1";
-    
+
     @Inject
     private TaskRepository taskRepository;
-    
+
     @Inject
     private StatusFactory statusFactory;
-    
+
     @Inject
     private ProjectFactory projectFactory;
-    
+
     @Inject
     private UsersFactory usersFactory;
-    
+
     private Task task(String title, String description, Status st, Project p, Users u) {
-        
+
         Task task = this.taskRepository.findByTitleAndDescription(title, description);
         if (task == null) {
             task = Task.builder()
@@ -51,31 +52,31 @@ public class TaskFactory {
 
         return task;
     }
-    
+
     public Task task() {
         Status st = this.statusFactory.open();
         Project p = this.projectFactory.project();
         Users u = this.usersFactory.mike();
         return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);
     }
-    
+
     public Task task(Status st) {
         Project p = this.projectFactory.project();
         Users u = this.usersFactory.mike();
         return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);
     }
-    
+
     public Task task(Project p) {
         Status st = this.statusFactory.open();
         Users u = this.usersFactory.mike();
         return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);
     }
-    
+
     public Task task(Project p, Status st) {
         Users u = this.usersFactory.mike();
         return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);
     }
-    
+
     public Task task(Project p, Users u) {
         Status st = this.statusFactory.open();
         return this.task(TASK_TITLE, TASK_DESCRIPTION, st, p, u);

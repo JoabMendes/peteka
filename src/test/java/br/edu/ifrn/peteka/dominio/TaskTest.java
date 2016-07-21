@@ -10,53 +10,49 @@ import java.util.TreeSet;
 import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 /**
  *
  * @author joab
  */
 @Test
 public class TaskTest {
-    
+
     private static final String TITLE1 = "title1";
     private static final String TITLE2 = "title2";
     private static final String D1 = "D1";
     private static final String D2 = "D2";
-    
-    
-    public void equalTitles(){
+
+    public void equalTitles() {
         assertThat(Task.builder().title(TITLE1).build())
-            .isEqualTo(Task.builder().title(TITLE1).build());
+                .isEqualTo(Task.builder().title(TITLE1).build());
     }
-    
-    public void differentTitles(){
+
+    public void differentTitles() {
         assertThat(Task.builder().title(TITLE1).build())
-            .isNotEqualTo(Task.builder().title(TITLE2).build());
+                .isNotEqualTo(Task.builder().title(TITLE2).build());
     }
-    
+
     //Just to test if the exclude is working
-    public void equalTitlesDifferentDescription(){
+    public void equalTitlesDifferentDescription() {
         assertThat(Task.builder().title(TITLE1).description(D1).build())
-            .isEqualTo(Task.builder().title(TITLE1).description(D2).build());
+                .isEqualTo(Task.builder().title(TITLE1).description(D2).build());
     }
-    
+
     //Just to test if the exclude is working
-    public void differentTitlesEqualDescription(){
+    public void differentTitlesEqualDescription() {
         assertThat(Task.builder().title(TITLE1).description(D1).build())
-            .isNotEqualTo(Task.builder().title(TITLE2).description(D1).build());
+                .isNotEqualTo(Task.builder().title(TITLE2).description(D1).build());
     }
-    
-    public void compareToDifferentTitles(){
+
+    public void compareToDifferentTitles() {
         Set<Task> tasks = new TreeSet<>();
-        
+
         Task t1 = Task.builder().title(TITLE2).build();
         Task t2 = Task.builder().title(TITLE1).build();
         tasks.add(t1);
         tasks.add(t2);
-        
+
         assertThat(tasks.iterator().next()).isEqualTo(t2);
     }
-    
-    
-    
+
 }

@@ -24,48 +24,43 @@ import org.testng.annotations.BeforeMethod;
 @WebAppConfiguration
 @Test(groups = "status")
 public class StatusServiceIT extends AbstractTestNGSpringContextTests {
-    
+
     @Inject
     private StatusService statusService;
     @Inject
     private TaskService taskService;
     @Inject
     private StatusFactory statusFactory;
-    
+
     @BeforeMethod
-    void deleteAll()
-    {
+    void deleteAll() {
         taskService.deleteAll();
         statusService.deleteAll();
         assertThat(statusService.findAll()).isEmpty();
     }
-    
-    
-    public void testServiceIsNotNull(){
+
+    public void testServiceIsNotNull() {
         assertThat(statusService).isNotNull();
     }
-    
-    public void testSaveOne(){
+
+    public void testSaveOne() {
         // Creates the test environment and save it
         Status status = statusFactory.open();
-        
+
         // Verifies if saved
         assertThat(this.statusService.findAll().iterator().next()).isEqualTo(status);
-        
+
     }
-    
-    
-    public void testDeleteOne(){
+
+    public void testDeleteOne() {
         // Creates the test environment and save it
         Status status = statusFactory.open();
-        
+
         // Deletes
         this.statusService.delete(status);
-        
+
         //Test if deleted
         assertThat(this.statusService.findAll().iterator().hasNext()).isFalse();
     }
-    
+
 }
-
-
