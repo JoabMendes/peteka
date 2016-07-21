@@ -18,6 +18,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  *
  * @author joab
@@ -26,7 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @WebAppConfiguration
 @Test(groups = "project")
 public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
-    
+
     @Inject
     private ProjectService projectService;
     @Inject
@@ -37,51 +38,48 @@ public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
     private UsersFactory usersFactory;
     @Inject
     private TaskFactory taskFactory;
-    
+
     @BeforeMethod
-    void deleteAll()
-    {
+    void deleteAll() {
         taskService.deleteAll();
         projectService.deleteAll();
         assertThat(projectService.findAll()).isEmpty();
     }
-    
-    
-    public void testServiceIsNotNull(){
+
+    public void testServiceIsNotNull() {
         assertThat(projectService).isNotNull();
     }
-    
-    public void testSaveOne(){
+
+    public void testSaveOne() {
         // Creates the test environment and save it
         Project project = projectFactory.project();
-        
+
         // Verifies if saved
         assertThat(this.projectService.findAll().iterator().next())
-                .isEqualTo(project);   
+                .isEqualTo(project);
     }
-    
-    
-    public void testDeleteOne(){
+
+    public void testDeleteOne() {
         // Creates the test environment and save it
         Project project = projectFactory.project();
-        
+
         // Deletes
         this.projectService.delete(project);
-        
+
         //Test if deleted
         assertThat(this.projectService.findAll().iterator().hasNext()).isFalse();
     }
-    
-    public void testGetAllProjectsOfUser(){
+
+    public void testGetAllProjectsOfUser() {
         // Creates the test environment
         Users user = usersFactory.fred();
-        
+
         Project project = projectFactory.project();
-        
+
         taskFactory.task(project, user);
-        
+
         assertThat(projectService.getAllProjectsOfUser(user)
                 .contains(project));
     }
-    
+
 }

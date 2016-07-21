@@ -16,51 +16,52 @@ import javax.inject.Named;
  */
 @Named
 public class UsersFactory {
+
     // Users data
     public final static String USER_FRED = "FRED";
     public final static String USER_MIKE = "MIKE";
     public final static String USER_FRED_NAME = "FREDERICK";
     public final static String USER_MIKE_NAME = "MICHAEL";
-    
+
     @Inject
     private UsersRepository userRepository;
-    
+
     @Inject
     private RoleFactory roleFactory;
-    
+
     private Users user(String nickname, String name, Role r) {
         Users user = this.userRepository.findByNickname(nickname);
-        
+
         if (user == null) {
             user = Users.builder()
-                .nickname(nickname)
-                .name(name)
-                .role(r)
-                .build();
+                    .nickname(nickname)
+                    .name(name)
+                    .role(r)
+                    .build();
 
             this.userRepository.save(user);
         }
-        
+
         return user;
     }
-    
-    public Users user (Role r) {
+
+    public Users user(Role r) {
         return user(USER_MIKE, USER_MIKE_NAME, r);
     }
-    
-    public Users fred () {
+
+    public Users fred() {
         Role admin = roleFactory.admin();
         return user(USER_MIKE, USER_MIKE_NAME, admin);
     }
-    
-    public Users mike () {
+
+    public Users mike() {
         Role manager = roleFactory.manager();
         return user(USER_MIKE, USER_MIKE_NAME, manager);
     }
-    
-    public Users no_nick (String nickname) {
+
+    public Users no_nick(String nickname) {
         Role manager = roleFactory.manager();
         return user(nickname, USER_MIKE_NAME, manager);
     }
-    
+
 }

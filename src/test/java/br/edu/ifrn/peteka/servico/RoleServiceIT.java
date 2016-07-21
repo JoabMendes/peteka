@@ -24,46 +24,43 @@ import org.testng.annotations.BeforeMethod;
 @WebAppConfiguration
 @Test(groups = "role")
 public class RoleServiceIT extends AbstractTestNGSpringContextTests {
-    
+
     @Inject
     private RoleService roleService;
     @Inject
     private UsersService usersService;
     @Inject
     private RoleFactory roleFactory;
-    
-    
+
     @BeforeMethod
-    void deleteAll()
-    {
+    void deleteAll() {
         usersService.deleteAll();
         roleService.deleteAll();
         assertThat(roleService.findAll()).isEmpty();
     }
-    
-    public void testServiceIsNotNull(){
+
+    public void testServiceIsNotNull() {
         assertThat(roleService).isNotNull();
     }
-    
-    public void testSaveOne(){
+
+    public void testSaveOne() {
         // Creates the test environment and save role
         Role role = roleFactory.admin();
-        
+
         // Verifies if saved
         assertThat(this.roleService.findAll().iterator().next()).isEqualTo(role);
-        
+
     }
-    
-    
-    public void testDeleteOne(){
+
+    public void testDeleteOne() {
         // Creates the test environment and save role
         Role role = roleFactory.admin();
-        
+
         // Deletes
         this.roleService.delete(role);
-        
+
         //Test if deleted
         assertThat(this.roleService.findAll().iterator().hasNext()).isFalse();
     }
-    
+
 }

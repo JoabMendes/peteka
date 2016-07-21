@@ -23,58 +23,56 @@ import static org.assertj.core.api.Assertions.assertThat;
 @WebAppConfiguration
 @Test(groups = "role")
 public class RoleRepositoryIT extends AbstractTestNGSpringContextTests {
-    
+
     @Inject
     private RoleRepository roleRepository;
     @Inject
     private UsersRepository userRepository;
     @Inject
     private RoleFactory roleFactory;
-    
+
     @BeforeMethod
-    void deleteAll(){
+    void deleteAll() {
         userRepository.deleteAll();
         roleRepository.deleteAll();
         assertThat(roleRepository.findAll()).isEmpty();
     }
-    
-    public void repositoryNotNull () {
+
+    public void repositoryNotNull() {
         assertThat(roleRepository).isNotNull();
     }
-    
-    public void testDeleteOne(){
+
+    public void testDeleteOne() {
         // Creates the test environment and save role
         Role role = roleFactory.admin();
-        
+
         // Deletes
         this.roleRepository.delete(role);
-        
+
         //Test if deleted
-         assertThat(roleRepository.findOne(role.getId())).isNull();
+        assertThat(roleRepository.findOne(role.getId())).isNull();
     }
-    
-    public void testSaveOne(){
+
+    public void testSaveOne() {
         // Creates the test environment and save role
         Role role = roleFactory.admin();
-        
+
         // Verifies if saved
         assertThat(roleRepository.findAll().iterator().next()).isEqualTo(role);
-        
+
     }
-    
-    
-    public void testFindByTitle(){
+
+    public void testFindByTitle() {
         // Creates the test environment and save role
         Role admin = roleFactory.admin();
         // Creates the test environment and save role
         Role manager = roleFactory.manager();
-        
+
         assertThat(roleRepository.findByTitle(roleFactory.getROLE_ADMIN()))
                 .isEqualTo(admin);
         assertThat(roleRepository.findByTitle(roleFactory.getROLE_MANAGER()))
                 .isEqualTo(manager);
-        
+
     }
-    
-    
+
 }
