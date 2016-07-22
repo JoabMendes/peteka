@@ -1,7 +1,7 @@
 #![peteka](https://dl.dropboxusercontent.com/u/85402777/peteca.png) Peteka
 [![Build Status](https://travis-ci.org/JoabMendes/peteka.svg?branch=master)](https://travis-ci.org/JoabMendes/peteka)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
-![Heroku](https://heroku-badge.herokuapp.com/?app=peteka)
+[![Heroku](https://heroku-badge.herokuapp.com/?app=peteka)](http://peteka.herokuapp.com)
 
 Sistema de gerenciamento de tarefas para a disciplina de Sistemas Coorporativos 2016.1
 
@@ -11,6 +11,11 @@ Sistema de gerenciamento de tarefas para a disciplina de Sistemas Coorporativos 
 
 ##Integrantes
 
-- Duarte Fernandes
-- Joabe Mendes
-- Mannuel Victor
+[![Duarte Fernandes](https://avatars1.githubusercontent.com/u/2079790?v=3&s=30)](https://github.com/duartefq)
+**[Duarte Fernandes](https://github.com/duartefq)**
+
+[![Joabe Mendes](https://avatars2.githubusercontent.com/u/829669?v=3&s=30)](https://github.com/JoabMendes)
+**[Joabe Mendes](https://github.com/JoabMendes)**
+
+[![Mannuel Victor](https://avatars3.githubusercontent.com/u/8471812?v=3&s=30)](https://github.com/VictorLimeira)
+**[Mannuel victor](https://github.com/VictorLimeira)**
