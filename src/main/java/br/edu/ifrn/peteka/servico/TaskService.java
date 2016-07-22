@@ -23,22 +23,30 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+/**
+ *
+ * @author duartemac
+ */
 @Named
 public class TaskService extends AbstractService<Task, Long> {
 
-    private TaskRepository taskRepository;
+	private TaskRepository taskRepository;
 
-    @Inject
-    public TaskService(TaskRepository taskRepository) {
-        super();
-        this.taskRepository = taskRepository;
-    }
+	/**
+	 *
+	 * @param taskRepository
+	 */
+	@Inject
+	public TaskService(TaskRepository taskRepository) {
+		super();
+		this.taskRepository = taskRepository;
+	}
 
-    public List<Task> getAllTasksForProject(Project p) {
-        return this.taskRepository.getAllTasksForProject(p);
-    }
+	public List<Task> getAllTasksForProject(Project p) {
+		return this.taskRepository.getAllTasksForProject(p);
+	}
 
-    public List<Task> getAllTasksForProjectOfStatus(Project p, Status s) {
-        return this.taskRepository.getAllTasksForProjectOfStatus(p, s);
-    }
+	public List<Task> getAllTasksForProjectOfStatus(Project p, Status s) {
+		return this.taskRepository.getAllTasksForProjectOfStatus(p, s);
+	}
 }

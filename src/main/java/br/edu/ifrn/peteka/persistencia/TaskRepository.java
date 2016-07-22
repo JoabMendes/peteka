@@ -24,11 +24,11 @@ import org.springframework.data.repository.query.QueryByExampleExecutor;
  * Using Query By Example
  */
 public interface TaskRepository extends CrudRepository<Task, Long>,
-        QueryByExampleExecutor<Task>, TaskRepositoryCustom {
+		QueryByExampleExecutor<Task>, TaskRepositoryCustom {
 
-    //Query Method
-    void deleteByStatus(Status status);
+	//Query Method
+	void deleteByStatus(Status status);
 
-    Task findByTitleAndDescription(String title, String description);
+	Task findByTitleAndDescription(String title, String description);
 
 }

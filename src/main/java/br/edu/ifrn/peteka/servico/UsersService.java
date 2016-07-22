@@ -25,41 +25,49 @@ import java.util.HashSet;
 import java.util.Set;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ *
+ * @author duartemac
+ */
 @Named
 public class UsersService extends AbstractService<Users, Long> {
 
-    private UsersRepository usersRepository;
+	private UsersRepository usersRepository;
 
-    @Inject
-    public UsersService(UsersRepository userRepository) {
-        super();
-        this.usersRepository = userRepository;
-    }
+	/**
+	 *
+	 * @param userRepository
+	 */
+	@Inject
+	public UsersService(UsersRepository userRepository) {
+		super();
+		this.usersRepository = userRepository;
+	}
 
-    public List<Users> getAllUsersOfRole(Role r) {
-        return this.usersRepository.getAllUsersOfRole(r);
-    }
+	public List<Users> getAllUsersOfRole(Role r) {
+		return this.usersRepository.getAllUsersOfRole(r);
+	}
 
-    @Override
-    @Transactional
-    public Users save(Users user) {
-        user.verifyNickName(); //Nickname must be alphanumeric
-        super.save(user);
-        return user;
-    }
+	@Override
+	@Transactional
+	public Users save(Users user) {
+		user.verifyNickName(); //Nickname must be alphanumeric
+		super.save(user);
+		return user;
+	}
 
-    @Transactional
-    public Set<Users> saveAll(Set<Users> users) {
-        Set<Users> savedUsers = new HashSet<>();
+	@Transactional
+	public Set<Users> saveAll(Set<Users> users) {
+		Set<Users> savedUsers = new HashSet<>();
 
-        users.stream().map((user) -> {
-            user.verifyNickName();
-            return user;
-        }).forEach((user) -> {
-            savedUsers.add(this.usersRepository.save(user));
-        });
+		users.stream().map((user) -> {
+			user.verifyNickName();
+			return user;
+		}).forEach((user) -> {
+			savedUsers.add(this.usersRepository.save(user));
+		});
 
-        return savedUsers;
-    }
+		return savedUsers;
+	}
 
 }

@@ -24,7 +24,7 @@ import org.springframework.data.repository.query.QueryByExampleExecutor;
  */
 public interface UsersRepository extends CrudRepository<Users, Long>, QueryByExampleExecutor<Users>, UsersRepositoryCustom {
 
-    //Query Method
-    Users findByNickname(String nickname);
+	//Query Method
+	Users findByNickname(String nickname);
 
 }

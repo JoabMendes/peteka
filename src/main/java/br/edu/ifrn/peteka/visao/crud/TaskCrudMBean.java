@@ -27,9 +27,9 @@ import javax.inject.Named;
 @Named
 public class TaskCrudMBean extends CrudMBean<Task, Long> {
 
-    @Override
-    protected Task createBean() {
-        return Task.builder().build();
-    }
-    
+	@Override
+	protected Task createBean() {
+		return Task.builder().build();
+	}
+
 }

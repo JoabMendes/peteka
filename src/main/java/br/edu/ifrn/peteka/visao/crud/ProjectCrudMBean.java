@@ -27,9 +27,9 @@ import javax.inject.Named;
 @Named
 public class ProjectCrudMBean extends CrudMBean<Project, Long> {
 
-    @Override
-    protected Project createBean() {
-        return Project.builder().build();
-    }
-    
+	@Override
+	protected Project createBean() {
+		return Project.builder().build();
+	}
+
 }

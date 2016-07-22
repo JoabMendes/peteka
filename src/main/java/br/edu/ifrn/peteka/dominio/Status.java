@@ -29,6 +29,10 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+/**
+ * Status entity
+ * @author duartemac
+ */
 @Getter
 @Setter
 @ToString
@@ -40,20 +44,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Status implements Serializable, Comparable<Status> {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
+	private Long id;
 
-    @OneToMany(mappedBy = "status", fetch = FetchType.LAZY)
-    private Set<Task> tasks;
+	@OneToMany(mappedBy = "status", fetch = FetchType.LAZY)
+	private Set<Task> tasks;
 
-    @Column(nullable = false)
-    private String label;
+	@Column(nullable = false)
+	private String label;
 
-    @Override
-    public int compareTo(Status o) {
-        return label.compareTo(o.label);
-    }
+	@Override
+	public int compareTo(Status o) {
+		return label.compareTo(o.label);
+	}
 }

@@ -25,5 +25,5 @@ import java.util.List;
  */
 public interface UsersRepositoryCustom {
 
-    List<Users> getAllUsersOfRole(Role r);
+	List<Users> getAllUsersOfRole(Role r);
 }

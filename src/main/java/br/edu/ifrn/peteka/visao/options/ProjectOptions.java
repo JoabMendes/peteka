@@ -21,20 +21,21 @@ import javax.inject.Named;
 
 /**
  * Options de Project
+ *
  * @author duartemac
  */
 @ViewScoped
 @Named
 public class ProjectOptions extends Options<Project, Long> {
 
-    @Override
-    protected Object key(Project e) {
-        return e.getId();
-    }
+	@Override
+	protected Object key(Project e) {
+		return e.getId();
+	}
 
-    @Override
-    public String label(Project e) {
-        return e.getTitle();
-    }
-    
+	@Override
+	public String label(Project e) {
+		return e.getTitle();
+	}
+
 }

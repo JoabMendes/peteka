@@ -17,28 +17,28 @@ import org.testng.annotations.Test;
 @Test
 public class RoleTest {
 
-    private static final String TITLE1 = "title1";
-    private static final String TITLE2 = "title2";
+	private static final String TITLE1 = "title1";
+	private static final String TITLE2 = "title2";
 
-    public void equalTitles() {
-        assertThat(Role.builder().title(TITLE1).build())
-                .isEqualTo(Role.builder().title(TITLE1).build());
-    }
+	public void equalTitles() {
+		assertThat(Role.builder().title(TITLE1).build())
+				.isEqualTo(Role.builder().title(TITLE1).build());
+	}
 
-    public void differentTitles() {
-        assertThat(Role.builder().title(TITLE1).build())
-                .isNotEqualTo(Role.builder().title(TITLE2).build());
-    }
+	public void differentTitles() {
+		assertThat(Role.builder().title(TITLE1).build())
+				.isNotEqualTo(Role.builder().title(TITLE2).build());
+	}
 
-    public void compareToDifferentTitles() {
-        Set<Role> roles = new TreeSet<>();
+	public void compareToDifferentTitles() {
+		Set<Role> roles = new TreeSet<>();
 
-        Role r1 = Role.builder().title(TITLE2).build();
-        Role r2 = Role.builder().title(TITLE1).build();
-        roles.add(r1);
-        roles.add(r2);
+		Role r1 = Role.builder().title(TITLE2).build();
+		Role r2 = Role.builder().title(TITLE1).build();
+		roles.add(r1);
+		roles.add(r2);
 
-        assertThat(roles.iterator().next()).isEqualTo(r2);
-    }
+		assertThat(roles.iterator().next()).isEqualTo(r2);
+	}
 
 }

@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package br.edu.ifrn.peteka.visao.crud;
 
 import br.edu.ifrn.peteka.dominio.Status;
@@ -28,9 +27,9 @@ import javax.inject.Named;
 @Named
 public class StatusCrudMBean extends CrudMBean<Status, Long> {
 
-    @Override
-    protected Status createBean() {
-        return Status.builder().build();
-    }
-    
+	@Override
+	protected Status createBean() {
+		return Status.builder().build();
+	}
+
 }

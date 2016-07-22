@@ -27,9 +27,9 @@ import javax.inject.Named;
 @Named
 public class RoleCrudMBean extends CrudMBean<Role, Long> {
 
-    @Override
-    protected Role createBean() {
-        return Role.builder().build();
-    }
-    
+	@Override
+	protected Role createBean() {
+		return Role.builder().build();
+	}
+
 }

@@ -30,22 +30,22 @@ import javax.persistence.EntityManager;
  */
 public class UsersRepositoryImpl implements UsersRepositoryCustom {
 
-    private final EntityManager entityManager;
+	private final EntityManager entityManager;
 
-    @Inject
-    public UsersRepositoryImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+	@Inject
+	public UsersRepositoryImpl(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 
-    @Override
-    public List<Users> getAllUsersOfRole(Role r) {
-        QUsers qUsers = QUsers.users;
-        JPQLQueryFactory factory = new JPAQueryFactory(entityManager);
+	@Override
+	public List<Users> getAllUsersOfRole(Role r) {
+		QUsers qUsers = QUsers.users;
+		JPQLQueryFactory factory = new JPAQueryFactory(entityManager);
 
-        List<Users> users = (List<Users>) factory
-                .from(qUsers)
-                .where(qUsers.role.eq(r))
-                .fetch();
-        return users;
-    }
+		List<Users> users = (List<Users>) factory
+				.from(qUsers)
+				.where(qUsers.role.eq(r))
+				.fetch();
+		return users;
+	}
 }

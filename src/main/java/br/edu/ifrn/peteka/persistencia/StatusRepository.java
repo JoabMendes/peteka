@@ -19,9 +19,13 @@ import br.edu.ifrn.peteka.dominio.Status;
 import org.springframework.data.repository.CrudRepository;
 //import org.springframework.data.repository.query.QueryByExampleExecutor;
 
+/**
+ *
+ * @author duartemac
+ */
 public interface StatusRepository extends CrudRepository<Status, Long> {
 
-    //Query Method
-    Status findByLabel(String Label);
+	//Query Method
+	Status findByLabel(String Label);
 
 }

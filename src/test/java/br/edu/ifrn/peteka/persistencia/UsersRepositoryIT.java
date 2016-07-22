@@ -29,47 +29,47 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Test(groups = "user", dependsOnGroups = "role")
 public class UsersRepositoryIT extends AbstractTestNGSpringContextTests {
 
-    @Inject
-    private UsersRepository userRepository;
+	@Inject
+	private UsersRepository userRepository;
 
-    @Inject
-    private UsersFactory userFactory;
+	@Inject
+	private UsersFactory userFactory;
 
-    @Inject
-    private RoleFactory roleFactory;
+	@Inject
+	private RoleFactory roleFactory;
 
-    @BeforeMethod
-    void deleteAll() {
-        userRepository.deleteAll();
-        assertThat(userRepository.findAll()).isEmpty();
-    }
+	@BeforeMethod
+	void deleteAll() {
+		userRepository.deleteAll();
+		assertThat(userRepository.findAll()).isEmpty();
+	}
 
-    public void testRepositoryIsNotNull() {
-        assertThat(userRepository).isNotNull();
-    }
+	public void testRepositoryIsNotNull() {
+		assertThat(userRepository).isNotNull();
+	}
 
-    public void testSaveOne() {
-        // Creates the test environment and save user
-        Users user = userFactory.fred();
+	public void testSaveOne() {
+		// Creates the test environment and save user
+		Users user = userFactory.fred();
 
-        // Verifies if saved
-        assertThat(userRepository.findAll().iterator().next()).isEqualTo(user);
+		// Verifies if saved
+		assertThat(userRepository.findAll().iterator().next()).isEqualTo(user);
 
-    }
+	}
 
-    public void testDeleteOne() {
-        // Creates the test environment and save user
-        Users user = userFactory.fred();
+	public void testDeleteOne() {
+		// Creates the test environment and save user
+		Users user = userFactory.fred();
 
-        // Deletes
-        this.userRepository.delete(user);
+		// Deletes
+		this.userRepository.delete(user);
 
-        //Test if deleted
-        assertThat(userRepository.findOne(user.getId())).isNull();
-    }
+		//Test if deleted
+		assertThat(userRepository.findOne(user.getId())).isNull();
+	}
 
-    // Using query by example, test do not apply
-    /*
+	// Using query by example, test do not apply
+	/*
     public void testFindByNickname(){
         // Creates the test environment and save user
         Users user1 = modelFactory.user();
@@ -80,24 +80,24 @@ public class UsersRepositoryIT extends AbstractTestNGSpringContextTests {
         assertThat(userRepository.findByNickname(this.USER_NICKNAME2)).isEqualTo(user2);
         
     }
-     */
-    public void findAllByExample() {
-        // Creates the test environment and save user
-        Users user = userFactory.mike();
+	 */
+	public void findAllByExample() {
+		// Creates the test environment and save user
+		Users user = userFactory.mike();
 
-        // Creates the test environment and save user
-        Users userExample = userFactory.mike();
+		// Creates the test environment and save user
+		Users userExample = userFactory.mike();
 
-        assertThat(this.userRepository.findAll(Example.of(userExample)).iterator().next())
-                .isEqualTo(user);
-    }
+		assertThat(this.userRepository.findAll(Example.of(userExample)).iterator().next())
+				.isEqualTo(user);
+	}
 
-    public void testGetAllUsersOfRole() {
-        // Creates the test environment and save role
-        Role role = roleFactory.admin();
-        // Creates the test environment and save user
-        Users user = userFactory.user(role);
+	public void testGetAllUsersOfRole() {
+		// Creates the test environment and save role
+		Role role = roleFactory.admin();
+		// Creates the test environment and save user
+		Users user = userFactory.user(role);
 
-        assertThat(userRepository.getAllUsersOfRole(role).contains(user));
-    }
+		assertThat(userRepository.getAllUsersOfRole(role).contains(user));
+	}
 }

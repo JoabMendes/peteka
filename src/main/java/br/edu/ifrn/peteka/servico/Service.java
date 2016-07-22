@@ -22,9 +22,9 @@ import java.util.Iterator;
  */
 public interface Service<T> {
 
-    void save(T object);
+	void save(T object);
 
-    void delete(T object);
+	void delete(T object);
 
-    Iterator<T> iterator();
+	Iterator<T> iterator();
 }

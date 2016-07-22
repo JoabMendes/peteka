@@ -26,56 +26,56 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Test(groups = "project")
 public class ProjectRepositoryIT extends AbstractTestNGSpringContextTests {
 
-    @Inject
-    private ProjectRepository projectRepository;
+	@Inject
+	private ProjectRepository projectRepository;
 
-    @Inject
-    private ProjectFactory projectFactory;
+	@Inject
+	private ProjectFactory projectFactory;
 
-    @Inject
-    private UsersFactory userFactory;
+	@Inject
+	private UsersFactory userFactory;
 
-    @Inject
-    private TaskFactory taskFactory;
+	@Inject
+	private TaskFactory taskFactory;
 
-    @BeforeMethod
-    void deleteAll() {
-        projectRepository.deleteAll();
-        assertThat(projectRepository.findAll()).isEmpty();
-    }
+	@BeforeMethod
+	void deleteAll() {
+		projectRepository.deleteAll();
+		assertThat(projectRepository.findAll()).isEmpty();
+	}
 
-    public void repositoryNotNull() {
-        assertThat(projectRepository).isNotNull();
-    }
+	public void repositoryNotNull() {
+		assertThat(projectRepository).isNotNull();
+	}
 
-    public void deleteOne() {
-        // Creates the test environment
-        Project project = projectFactory.project();
+	public void deleteOne() {
+		// Creates the test environment
+		Project project = projectFactory.project();
 
-        //Verify function
-        this.projectRepository.delete(project);
+		//Verify function
+		this.projectRepository.delete(project);
 
-        // verifica o efeito da execucao da operacao a ser testada
-        assertThat(projectRepository.findOne(project.getId())).isNull();
-    }
+		// verifica o efeito da execucao da operacao a ser testada
+		assertThat(projectRepository.findOne(project.getId())).isNull();
+	}
 
-    public void salvarUm() {
-        // Creates test environment and save it
-        Project project = projectFactory.project();
+	public void salvarUm() {
+		// Creates test environment and save it
+		Project project = projectFactory.project();
 
-        // Verifies if saved
-        assertThat(projectRepository.findAll().iterator().next()).isEqualTo(project);
-    }
+		// Verifies if saved
+		assertThat(projectRepository.findAll().iterator().next()).isEqualTo(project);
+	}
 
-    public void testGetAllProjectsOfUser() {
-        // Creates the test environment
-        Users user = userFactory.fred();
+	public void testGetAllProjectsOfUser() {
+		// Creates the test environment
+		Users user = userFactory.fred();
 
-        Project project = projectFactory.project();
+		Project project = projectFactory.project();
 
-        taskFactory.task(project, user);
+		taskFactory.task(project, user);
 
-        assertThat(projectRepository.getAllProjectsOfUser(user)
-                .contains(project));
-    }
+		assertThat(projectRepository.getAllProjectsOfUser(user)
+				.contains(project));
+	}
 }

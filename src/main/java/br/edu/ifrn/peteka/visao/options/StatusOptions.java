@@ -21,20 +21,21 @@ import javax.inject.Named;
 
 /**
  * Options de Status.
+ *
  * @author duartemac
  */
 @ViewScoped
 @Named
 public class StatusOptions extends Options<Status, Long> {
 
-    @Override
-    protected Object key(Status e) {
-        return e.getId();
-    }
+	@Override
+	protected Object key(Status e) {
+		return e.getId();
+	}
 
-    @Override
-    public String label(Status e) {
-        return e.getLabel();
-    }
-    
+	@Override
+	public String label(Status e) {
+		return e.getLabel();
+	}
+
 }

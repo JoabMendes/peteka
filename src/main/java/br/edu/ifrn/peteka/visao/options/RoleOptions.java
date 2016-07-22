@@ -21,20 +21,21 @@ import javax.inject.Named;
 
 /**
  * Options de Role
+ *
  * @author duartemac
  */
 @ViewScoped
 @Named
 public class RoleOptions extends Options<Role, Long> {
 
-    @Override
-    protected Object key(Role e) {
-        return e.getId();
-    }
+	@Override
+	protected Object key(Role e) {
+		return e.getId();
+	}
 
-    @Override
-    public String label(Role e) {
-        return e.getTitle();
-    }
-    
+	@Override
+	public String label(Role e) {
+		return e.getTitle();
+	}
+
 }

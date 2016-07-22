@@ -19,60 +19,60 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Test(groups = "status")
 public class StatusRepositoryIT extends AbstractTestNGSpringContextTests {
 
-    @Inject
-    private StatusRepository statusRepository;
-    @Inject
-    private TaskRepository taskRepository;
-    @Inject
-    private StatusFactory statusFactory;
+	@Inject
+	private StatusRepository statusRepository;
+	@Inject
+	private TaskRepository taskRepository;
+	@Inject
+	private StatusFactory statusFactory;
 
-    @BeforeMethod
-    void deleteAll() {
-        taskRepository.deleteAll();
-        statusRepository.deleteAll();
-        assertThat(statusRepository.findAll()).isEmpty();
-    }
+	@BeforeMethod
+	void deleteAll() {
+		taskRepository.deleteAll();
+		statusRepository.deleteAll();
+		assertThat(statusRepository.findAll()).isEmpty();
+	}
 
-    public void repositoryNotNull() {
-        assertThat(statusRepository).isNotNull();
-    }
+	public void repositoryNotNull() {
+		assertThat(statusRepository).isNotNull();
+	}
 
-    public void testSaveOne() {
-        // Creates the test environment and save status
-        Status status = statusFactory.inProgress();
+	public void testSaveOne() {
+		// Creates the test environment and save status
+		Status status = statusFactory.inProgress();
 
-        // Verifies if saved
-        assertThat(statusRepository.findAll().iterator().next()).isEqualTo(status);
+		// Verifies if saved
+		assertThat(statusRepository.findAll().iterator().next()).isEqualTo(status);
 
-    }
+	}
 
-    public void testDeleteOne() {
-        // Creates the test environment and save status
-        Status status = statusFactory.inProgress();
+	public void testDeleteOne() {
+		// Creates the test environment and save status
+		Status status = statusFactory.inProgress();
 
-        // Deletes
-        this.statusRepository.delete(status);
+		// Deletes
+		this.statusRepository.delete(status);
 
-        //Test if deleted
-        assertThat(statusRepository.findOne(status.getId())).isNull();
-    }
+		//Test if deleted
+		assertThat(statusRepository.findOne(status.getId())).isNull();
+	}
 
-    public void testFindByLabel() {
-        // Creates the test environment and save status
-        Status statusInProgress = statusFactory.inProgress();
-        // Creates the test environment and save status
-        Status statusOpen = statusFactory.open();
+	public void testFindByLabel() {
+		// Creates the test environment and save status
+		Status statusInProgress = statusFactory.inProgress();
+		// Creates the test environment and save status
+		Status statusOpen = statusFactory.open();
 
-        statusRepository.save(statusInProgress);
-        statusRepository.save(statusOpen);
+		statusRepository.save(statusInProgress);
+		statusRepository.save(statusOpen);
 
-        assertThat(statusRepository
-                .findByLabel(statusFactory.getSTATUS_IN_PROGRESS()))
-                .isEqualTo(statusInProgress);
+		assertThat(statusRepository
+				.findByLabel(statusFactory.getSTATUS_IN_PROGRESS()))
+				.isEqualTo(statusInProgress);
 
-        assertThat(statusRepository.findByLabel(statusFactory
-                .getSTATUS_OPEN()))
-                .isEqualTo(statusOpen);
-    }
+		assertThat(statusRepository.findByLabel(statusFactory
+				.getSTATUS_OPEN()))
+				.isEqualTo(statusOpen);
+	}
 
 }

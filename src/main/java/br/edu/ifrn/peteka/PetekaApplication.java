@@ -18,10 +18,18 @@ package br.edu.ifrn.peteka;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ *
+ * @author duartemac
+ */
 @SpringBootApplication
 public class PetekaApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(PetekaApplication.class, args);
-    }
+	/**
+	 *
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		SpringApplication.run(PetekaApplication.class, args);
+	}
 }

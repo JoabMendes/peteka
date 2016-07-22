@@ -25,42 +25,42 @@ import org.testng.annotations.BeforeMethod;
 @Test(groups = "status")
 public class StatusServiceIT extends AbstractTestNGSpringContextTests {
 
-    @Inject
-    private StatusService statusService;
-    @Inject
-    private TaskService taskService;
-    @Inject
-    private StatusFactory statusFactory;
+	@Inject
+	private StatusService statusService;
+	@Inject
+	private TaskService taskService;
+	@Inject
+	private StatusFactory statusFactory;
 
-    @BeforeMethod
-    void deleteAll() {
-        taskService.deleteAll();
-        statusService.deleteAll();
-        assertThat(statusService.findAll()).isEmpty();
-    }
+	@BeforeMethod
+	void deleteAll() {
+		taskService.deleteAll();
+		statusService.deleteAll();
+		assertThat(statusService.findAll()).isEmpty();
+	}
 
-    public void testServiceIsNotNull() {
-        assertThat(statusService).isNotNull();
-    }
+	public void testServiceIsNotNull() {
+		assertThat(statusService).isNotNull();
+	}
 
-    public void testSaveOne() {
-        // Creates the test environment and save it
-        Status status = statusFactory.open();
+	public void testSaveOne() {
+		// Creates the test environment and save it
+		Status status = statusFactory.open();
 
-        // Verifies if saved
-        assertThat(this.statusService.findAll().iterator().next()).isEqualTo(status);
+		// Verifies if saved
+		assertThat(this.statusService.findAll().iterator().next()).isEqualTo(status);
 
-    }
+	}
 
-    public void testDeleteOne() {
-        // Creates the test environment and save it
-        Status status = statusFactory.open();
+	public void testDeleteOne() {
+		// Creates the test environment and save it
+		Status status = statusFactory.open();
 
-        // Deletes
-        this.statusService.delete(status);
+		// Deletes
+		this.statusService.delete(status);
 
-        //Test if deleted
-        assertThat(this.statusService.findAll().iterator().hasNext()).isFalse();
-    }
+		//Test if deleted
+		assertThat(this.statusService.findAll().iterator().hasNext()).isFalse();
+	}
 
 }

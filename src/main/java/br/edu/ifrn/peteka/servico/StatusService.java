@@ -18,6 +18,10 @@ package br.edu.ifrn.peteka.servico;
 import br.edu.ifrn.peteka.dominio.Status;
 import javax.inject.Named;
 
+/**
+ *
+ * @author duartemac
+ */
 @Named
 public class StatusService extends AbstractService<Status, Long> {
 }

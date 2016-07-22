@@ -30,23 +30,27 @@ import javax.persistence.EntityManager;
  */
 public class ProjectRepositoryImpl implements ProjectRepositoryCustom {
 
-    private final EntityManager entityManager;
+	private final EntityManager entityManager;
 
-    @Inject
-    public ProjectRepositoryImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+	/**
+	 *
+	 * @param entityManager
+	 */
+	@Inject
+	public ProjectRepositoryImpl(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 
-    @Override
-    public List<Project> getAllProjectsOfUser(Users u) {
-        QProject qProject = QProject.project;
-        JPQLQueryFactory factory = new JPAQueryFactory(entityManager);
+	@Override
+	public List<Project> getAllProjectsOfUser(Users u) {
+		QProject qProject = QProject.project;
+		JPQLQueryFactory factory = new JPAQueryFactory(entityManager);
 
-        List<Project> projects = (List<Project>) factory
-                .from(qProject)
-                .where(qProject.tasks.any().assignees.contains(u))
-                .fetch();
-        return projects;
-    }
+		List<Project> projects = (List<Project>) factory
+				.from(qProject)
+				.where(qProject.tasks.any().assignees.contains(u))
+				.fetch();
+		return projects;
+	}
 
 }

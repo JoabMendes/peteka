@@ -28,58 +28,58 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Test(groups = "project")
 public class ProjectServiceIT extends AbstractTestNGSpringContextTests {
 
-    @Inject
-    private ProjectService projectService;
-    @Inject
-    private TaskService taskService;
-    @Inject
-    private ProjectFactory projectFactory;
-    @Inject
-    private UsersFactory usersFactory;
-    @Inject
-    private TaskFactory taskFactory;
+	@Inject
+	private ProjectService projectService;
+	@Inject
+	private TaskService taskService;
+	@Inject
+	private ProjectFactory projectFactory;
+	@Inject
+	private UsersFactory usersFactory;
+	@Inject
+	private TaskFactory taskFactory;
 
-    @BeforeMethod
-    void deleteAll() {
-        taskService.deleteAll();
-        projectService.deleteAll();
-        assertThat(projectService.findAll()).isEmpty();
-    }
+	@BeforeMethod
+	void deleteAll() {
+		taskService.deleteAll();
+		projectService.deleteAll();
+		assertThat(projectService.findAll()).isEmpty();
+	}
 
-    public void testServiceIsNotNull() {
-        assertThat(projectService).isNotNull();
-    }
+	public void testServiceIsNotNull() {
+		assertThat(projectService).isNotNull();
+	}
 
-    public void testSaveOne() {
-        // Creates the test environment and save it
-        Project project = projectFactory.project();
+	public void testSaveOne() {
+		// Creates the test environment and save it
+		Project project = projectFactory.project();
 
-        // Verifies if saved
-        assertThat(this.projectService.findAll().iterator().next())
-                .isEqualTo(project);
-    }
+		// Verifies if saved
+		assertThat(this.projectService.findAll().iterator().next())
+				.isEqualTo(project);
+	}
 
-    public void testDeleteOne() {
-        // Creates the test environment and save it
-        Project project = projectFactory.project();
+	public void testDeleteOne() {
+		// Creates the test environment and save it
+		Project project = projectFactory.project();
 
-        // Deletes
-        this.projectService.delete(project);
+		// Deletes
+		this.projectService.delete(project);
 
-        //Test if deleted
-        assertThat(this.projectService.findAll().iterator().hasNext()).isFalse();
-    }
+		//Test if deleted
+		assertThat(this.projectService.findAll().iterator().hasNext()).isFalse();
+	}
 
-    public void testGetAllProjectsOfUser() {
-        // Creates the test environment
-        Users user = usersFactory.fred();
+	public void testGetAllProjectsOfUser() {
+		// Creates the test environment
+		Users user = usersFactory.fred();
 
-        Project project = projectFactory.project();
+		Project project = projectFactory.project();
 
-        taskFactory.task(project, user);
+		taskFactory.task(project, user);
 
-        assertThat(projectService.getAllProjectsOfUser(user)
-                .contains(project));
-    }
+		assertThat(projectService.getAllProjectsOfUser(user)
+				.contains(project));
+	}
 
 }

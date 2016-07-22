@@ -29,64 +29,64 @@ import org.testng.annotations.BeforeMethod;
 @Test(groups = "task", dependsOnGroups = {"project", "status"})
 public class TaskServiceIT extends AbstractTestNGSpringContextTests {
 
-    @Inject
-    private TaskService taskService;
+	@Inject
+	private TaskService taskService;
 
-    @Inject
-    private TaskFactory taskFactory;
+	@Inject
+	private TaskFactory taskFactory;
 
-    @Inject
-    private ProjectFactory projectFactory;
+	@Inject
+	private ProjectFactory projectFactory;
 
-    @Inject
-    private StatusFactory statusFactory;
+	@Inject
+	private StatusFactory statusFactory;
 
-    @BeforeMethod
-    void deleteAll() {
-        taskService.deleteAll();
-        assertThat(taskService.findAll()).isEmpty();
-    }
+	@BeforeMethod
+	void deleteAll() {
+		taskService.deleteAll();
+		assertThat(taskService.findAll()).isEmpty();
+	}
 
-    public void testServiceIsNotNull() {
-        assertThat(taskService).isNotNull();
-    }
+	public void testServiceIsNotNull() {
+		assertThat(taskService).isNotNull();
+	}
 
-    public void testSaveOne() {
-        // Creates the test environment and save task
-        Task task = taskFactory.task();
+	public void testSaveOne() {
+		// Creates the test environment and save task
+		Task task = taskFactory.task();
 
-        // Verifies if saved
-        assertThat(this.taskService.findAll().iterator().next()).isEqualTo(task);
+		// Verifies if saved
+		assertThat(this.taskService.findAll().iterator().next()).isEqualTo(task);
 
-    }
+	}
 
-    public void testDeleteOne() {
-        // Creates the test environment and save task
-        Task task = taskFactory.task();
+	public void testDeleteOne() {
+		// Creates the test environment and save task
+		Task task = taskFactory.task();
 
-        // Deletes
-        this.taskService.delete(task);
+		// Deletes
+		this.taskService.delete(task);
 
-        //Test if deleted
-        assertThat(this.taskService.findAll().iterator().hasNext()).isFalse();
-    }
+		//Test if deleted
+		assertThat(this.taskService.findAll().iterator().hasNext()).isFalse();
+	}
 
-    public void testGetAllTasksForProject() {
-        Project project = projectFactory.project();
-        // Creates the test environment and save task
-        Task task = taskFactory.task(project);
+	public void testGetAllTasksForProject() {
+		Project project = projectFactory.project();
+		// Creates the test environment and save task
+		Task task = taskFactory.task(project);
 
-        assertThat(taskService.getAllTasksForProject(project)
-                .contains(task));
-    }
+		assertThat(taskService.getAllTasksForProject(project)
+				.contains(task));
+	}
 
-    public void testGetAllTasksForProjectOfStatus() {
-        // Creates the test environment
-        Project project = projectFactory.project();
-        Status status = statusFactory.open();
-        Task task = taskFactory.task(project, status);
+	public void testGetAllTasksForProjectOfStatus() {
+		// Creates the test environment
+		Project project = projectFactory.project();
+		Status status = statusFactory.open();
+		Task task = taskFactory.task(project, status);
 
-        assertThat(taskService.getAllTasksForProjectOfStatus(project, status)
-                .contains(task));
-    }
+		assertThat(taskService.getAllTasksForProjectOfStatus(project, status)
+				.contains(task));
+	}
 }

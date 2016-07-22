@@ -26,7 +26,7 @@ import java.util.List;
  */
 public interface TaskRepositoryCustom {
 
-    List<Task> getAllTasksForProject(Project p);
+	List<Task> getAllTasksForProject(Project p);
 
-    List<Task> getAllTasksForProjectOfStatus(Project p, Status s);
+	List<Task> getAllTasksForProjectOfStatus(Project p, Status s);
 }

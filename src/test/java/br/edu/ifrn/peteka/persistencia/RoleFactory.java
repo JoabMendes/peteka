@@ -16,40 +16,40 @@ import javax.inject.Named;
 @Named
 public class RoleFactory {
 
-    // Role data
-    public final static String ROLE_ADMIN = "ADMIN";
-    public final static String ROLE_MANAGER = "MANAGER";
+	// Role data
+	public final static String ROLE_ADMIN = "ADMIN";
+	public final static String ROLE_MANAGER = "MANAGER";
 
-    @Inject
-    private RoleRepository roleRepository;
+	@Inject
+	private RoleRepository roleRepository;
 
-    public String getROLE_ADMIN() {
-        return ROLE_ADMIN;
-    }
+	public String getROLE_ADMIN() {
+		return ROLE_ADMIN;
+	}
 
-    public String getROLE_MANAGER() {
-        return ROLE_MANAGER;
-    }
+	public String getROLE_MANAGER() {
+		return ROLE_MANAGER;
+	}
 
-    private Role role(String title) {
-        Role role = this.roleRepository.findByTitle(title);
+	private Role role(String title) {
+		Role role = this.roleRepository.findByTitle(title);
 
-        if (role == null) {
-            role = Role.builder()
-                    .title(title)
-                    .build();
+		if (role == null) {
+			role = Role.builder()
+					.title(title)
+					.build();
 
-            this.roleRepository.save(role);
-        }
+			this.roleRepository.save(role);
+		}
 
-        return role;
-    }
+		return role;
+	}
 
-    public Role admin() {
-        return role(ROLE_ADMIN);
-    }
+	public Role admin() {
+		return role(ROLE_ADMIN);
+	}
 
-    public Role manager() {
-        return role(ROLE_MANAGER);
-    }
+	public Role manager() {
+		return role(ROLE_MANAGER);
+	}
 }

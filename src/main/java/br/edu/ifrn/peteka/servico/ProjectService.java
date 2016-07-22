@@ -22,18 +22,26 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+/**
+ *
+ * @author duartemac
+ */
 @Named
 public class ProjectService extends AbstractService<Project, Long> {
 
-    private ProjectRepository projectRepository;
+	private ProjectRepository projectRepository;
 
-    @Inject
-    public ProjectService(ProjectRepository projectRepository) {
-        super();
-        this.projectRepository = projectRepository;
-    }
+	/**
+	 *
+	 * @param projectRepository
+	 */
+	@Inject
+	public ProjectService(ProjectRepository projectRepository) {
+		super();
+		this.projectRepository = projectRepository;
+	}
 
-    public List<Project> getAllProjectsOfUser(Users u) {
-        return this.projectRepository.getAllProjectsOfUser(u);
-    }
+	public List<Project> getAllProjectsOfUser(Users u) {
+		return this.projectRepository.getAllProjectsOfUser(u);
+	}
 }

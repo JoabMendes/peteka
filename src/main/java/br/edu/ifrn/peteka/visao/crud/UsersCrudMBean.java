@@ -21,15 +21,16 @@ import javax.inject.Named;
 
 /**
  * CrudMBean de Users
+ *
  * @author duartemac
  */
 @ViewScoped
 @Named
 public class UsersCrudMBean extends CrudMBean<Users, Long> {
 
-    @Override
-    protected Users createBean() {
-        return Users.builder().build();
-    }
-    
+	@Override
+	protected Users createBean() {
+		return Users.builder().build();
+	}
+
 }

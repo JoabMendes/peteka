@@ -19,12 +19,16 @@ import br.edu.ifrn.peteka.dominio.Project;
 import org.springframework.data.repository.CrudRepository;
 //import org.springframework.data.repository.query.QueryByExampleExecutor;
 
+/**
+ *
+ * @author duartemac
+ */
 public interface ProjectRepository extends CrudRepository<Project, Long>,
-        ProjectRepositoryCustom {
+		ProjectRepositoryCustom {
 
-    Project findByTitle(String title);
+	Project findByTitle(String title);
 
-    Project findByDescription(String description);
+	Project findByDescription(String description);
 
-    public Project findByTitleAndDescription(String title, String description);
+	public Project findByTitleAndDescription(String title, String description);
 }

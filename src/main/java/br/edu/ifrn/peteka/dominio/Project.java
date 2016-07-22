@@ -38,6 +38,10 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+/**
+ * Project entity
+ * @author duartemac
+ */
 @Getter
 @Setter
 @ToString
@@ -49,28 +53,28 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Project implements Serializable, Comparable<Project> {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
+	private Long id;
 
-    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
-    private Set<Task> tasks;
+	@OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
+	private Set<Task> tasks;
 
-    @Column(nullable = false)
-    private String title;
+	@Column(nullable = false)
+	private String title;
 
-    @Column(nullable = false)
-    private String description;
+	@Column(nullable = false)
+	private String description;
 
-    @Override
-    public int compareTo(Project o) {
-        int result = title.compareTo(o.title);
-        if (result == 0) {
-            result = description.compareTo(o.description);
-        }
-        return result;
-    }
+	@Override
+	public int compareTo(Project o) {
+		int result = title.compareTo(o.title);
+		if (result == 0) {
+			result = description.compareTo(o.description);
+		}
+		return result;
+	}
 
 }

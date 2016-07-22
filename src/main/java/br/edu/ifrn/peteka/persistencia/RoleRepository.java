@@ -19,9 +19,13 @@ import br.edu.ifrn.peteka.dominio.Role;
 import org.springframework.data.repository.CrudRepository;
 //import org.springframework.data.repository.query.QueryByExampleExecutor;
 
+/**
+ *
+ * @author duartemac
+ */
 public interface RoleRepository extends CrudRepository<Role, Long> {
 
-    //Query Method
-    Role findByTitle(String title);
+	//Query Method
+	Role findByTitle(String title);
 
 }

@@ -25,5 +25,5 @@ import java.util.List;
  */
 public interface ProjectRepositoryCustom {
 
-    List<Project> getAllProjectsOfUser(Users u);
+	List<Project> getAllProjectsOfUser(Users u);
 }
