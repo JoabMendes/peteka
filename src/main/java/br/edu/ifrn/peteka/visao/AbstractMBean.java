@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package br.edu.ifrn.peteka.visao;
 
 import java.io.IOException;
@@ -33,7 +34,7 @@ import javax.validation.ConstraintViolationException;
 /**
  * Maganed Bean Abstrato de Visao.
  *
- * @author duartemac
+ * @author Peteka
  */
 public abstract class AbstractMBean implements Serializable {
 
