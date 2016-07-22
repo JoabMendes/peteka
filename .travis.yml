@@ -2,6 +2,8 @@ language: java
 
 jdk:
   - oraclejdk8
-
 script:
   - mvn -Pattach-integration-test verify
+cache:
+  directories:
+  - $HOME/.m2
