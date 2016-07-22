@@ -147,17 +147,14 @@
                 <configuration>
                     <instrumentation>
                         <ignores>
-                            <ignore>br.edu.ifrn.conta.dominio.Q*</ignore>
+                            <ignore>br.edu.ifrn.peteka.dominio.Q*</ignore>
                         </ignores>
                         <excludes>
-                            <exclude>br/edu/ifrn/conta/dominio/QCategoria.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QConta.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QContaCredito.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QContaDebito.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QContaPatrimonio.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QDono.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QLancamento.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QValorInicialDoDonoNaContaPatrimonio.class</exclude>
+                            <exclude>br/edu/ifrn/peteka/dominio/QProject.class</exclude>
+                            <exclude>br/edu/ifrn/peteka/dominio/QRole.class</exclude>
+                            <exclude>br/edu/ifrn/peteka/dominio/QStatus.class</exclude>
+                            <exclude>br/edu/ifrn/peteka/dominio/QTask.class</exclude>
+                            <exclude>br/edu/ifrn/peteka/dominio/QUser.class</exclude>
                         </excludes>
                     </instrumentation>
                 </configuration>            
