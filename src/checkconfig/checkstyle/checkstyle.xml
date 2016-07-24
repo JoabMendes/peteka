@@ -43,10 +43,6 @@
         <module name="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck">
             <property name="severity" value="error"/>
         </module>
-        <module name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck">
-            <property name="severity" value="error"/>
-            <property name="option" value="alone" />
-        </module>
         <module name="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck">
             <property name="severity" value="error"/>
         </module>

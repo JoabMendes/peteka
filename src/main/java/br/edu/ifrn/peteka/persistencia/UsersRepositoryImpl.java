@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,18 +15,22 @@
  */
 package br.edu.ifrn.peteka.persistencia;
 
-import br.edu.ifrn.peteka.dominio.QUsers;
-import br.edu.ifrn.peteka.dominio.Role;
-import br.edu.ifrn.peteka.dominio.Users;
-import com.querydsl.jpa.JPQLQueryFactory;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+import br.edu.ifrn.peteka.dominio.QUsers;
+import br.edu.ifrn.peteka.dominio.Role;
+import br.edu.ifrn.peteka.dominio.Users;
+
+import com.querydsl.jpa.JPQLQueryFactory;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+
 /**
+ * CrudRepository customizado.
  *
- * @author duartemac
+ * @author Duarte Fernandes
  */
 public class UsersRepositoryImpl implements UsersRepositoryCustom {
 

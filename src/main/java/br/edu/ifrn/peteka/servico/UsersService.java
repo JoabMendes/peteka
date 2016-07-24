@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,29 +15,28 @@
  */
 package br.edu.ifrn.peteka.servico;
 
-import br.edu.ifrn.peteka.dominio.Role;
-import br.edu.ifrn.peteka.dominio.Users;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import br.edu.ifrn.peteka.dominio.Role;
+import br.edu.ifrn.peteka.dominio.Users;
 import br.edu.ifrn.peteka.persistencia.UsersRepository;
-import java.util.HashSet;
-import java.util.Set;
+
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
- * @author duartemac
+ * Servico de Users.
+ * @author Duarte Fernandes
  */
 @Named
 public class UsersService extends AbstractService<Users, Long> {
 
 	private UsersRepository usersRepository;
 
-	/**
-	 *
-	 * @param userRepository
-	 */
 	@Inject
 	public UsersService(UsersRepository userRepository) {
 		super();

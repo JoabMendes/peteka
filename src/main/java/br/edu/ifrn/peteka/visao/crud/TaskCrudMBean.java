@@ -15,13 +15,15 @@
  */
 package br.edu.ifrn.peteka.visao.crud;
 
-import br.edu.ifrn.peteka.dominio.Task;
+
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import br.edu.ifrn.peteka.dominio.Task;
+
 /**
- *
- * @author duartemac
+ * CrudMBean de Task.
+ * @author Duarte Fernandes
  */
 @ViewScoped
 @Named

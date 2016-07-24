@@ -15,14 +15,16 @@
  */
 package br.edu.ifrn.peteka.visao.options;
 
-import br.edu.ifrn.peteka.servico.AbstractService;
-import br.edu.ifrn.peteka.visao.AbstractMBean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
+
+import br.edu.ifrn.peteka.servico.AbstractService;
+import br.edu.ifrn.peteka.visao.AbstractMBean;
 
 import org.omnifaces.converter.ListConverter;
 
@@ -31,7 +33,7 @@ import org.omnifaces.converter.ListConverter;
  *
  * @param <ID> tipo da chave da entidade.
  * @param <T> tipo da entidade.
- * @author Peteka
+ * @author Peteka Team
  */
 public abstract class Options<T, ID extends Serializable> extends AbstractMBean {
 

@@ -1,22 +1,36 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright 2016 Peteka.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package br.edu.ifrn.peteka.persistencia;
+
+import javax.inject.Inject;
 
 import br.edu.ifrn.peteka.PetekaApplication;
 import br.edu.ifrn.peteka.dominio.Project;
 import br.edu.ifrn.peteka.dominio.Status;
 import br.edu.ifrn.peteka.dominio.Task;
-import javax.inject.Inject;
-import static org.assertj.core.api.Assertions.assertThat;
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.data.domain.Example;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeMethod;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  *
@@ -69,22 +83,6 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests {
 		assertThat(taskRepository.findOne(task.getId())).isNull();
 	}
 
-	// query by example, test do not apply
-	/*public void testDeleteByStatus(){
-    
-        // Creates the test environment and save status
-        Status status = dominioFactory.status();
-        
-        // Creates the test environment and save task
-        Task task = dominioFactory.task();
-
-        assertThat(this.taskRepository.findAll()).isNotEmpty();
-        
-        this.taskRepository.deleteByStatus(status);
-        
-        assertThat(this.taskRepository.findAll()).isNotEmpty();
-        
-    }*/
 	public void findAllByExample() {
 		// Creates the test environment and save status
 		Status st = statusFactory.open();

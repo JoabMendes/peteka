@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package br.edu.ifrn.peteka.visao;
 
 import java.io.IOException;
 import java.io.Serializable;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -32,8 +33,7 @@ import javax.validation.ConstraintViolationException;
 
 /**
  * Maganed Bean Abstrato de Visao.
- *
- * @author Peteka
+ * @author Peteka Team
  */
 public abstract class AbstractMBean implements Serializable {
 
@@ -94,7 +94,8 @@ public abstract class AbstractMBean implements Serializable {
 
 		try {
 			ec.redirect(url);
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 		fc.responseComplete();

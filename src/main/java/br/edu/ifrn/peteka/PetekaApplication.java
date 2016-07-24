@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,16 +19,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- *
- * @author duartemac
+ * Classe main.
+ * @author Duarte Fernandes
  */
 @SpringBootApplication
 public class PetekaApplication {
+	protected PetekaApplication() {
 
-	/**
-	 *
-	 * @param args
-	 */
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(PetekaApplication.class, args);
 	}

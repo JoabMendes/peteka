@@ -15,14 +15,15 @@
  */
 package br.edu.ifrn.peteka.visao.options;
 
-import br.edu.ifrn.peteka.dominio.Project;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import br.edu.ifrn.peteka.dominio.Project;
+
 /**
- * Options de Project
+ * Options de Project.
  *
- * @author duartemac
+ * @author Duarte Fernandes
  */
 @ViewScoped
 @Named

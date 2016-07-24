@@ -15,14 +15,15 @@
  */
 package br.edu.ifrn.peteka.visao.options;
 
-import br.edu.ifrn.peteka.dominio.Status;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
+
+import br.edu.ifrn.peteka.dominio.Status;
 
 /**
  * Options de Status.
  *
- * @author duartemac
+ * @author Duarte Fernandes
  */
 @ViewScoped
 @Named

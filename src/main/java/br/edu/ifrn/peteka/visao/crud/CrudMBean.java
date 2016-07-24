@@ -15,15 +15,15 @@
  */
 package br.edu.ifrn.peteka.visao.crud;
 
-import br.edu.ifrn.peteka.servico.AbstractService;
-import br.edu.ifrn.peteka.visao.AbstractMBean;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+
+import br.edu.ifrn.peteka.servico.AbstractService;
+import br.edu.ifrn.peteka.visao.AbstractMBean;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -36,7 +36,7 @@ import org.primefaces.context.RequestContext;
  *
  * @param <T> tipo do bean
  * @param <ID> tipo da chave do bean
- * @author Peteka
+ * @author Peteka Team
  */
 @Setter
 public abstract class CrudMBean<T extends Object, ID extends Serializable>

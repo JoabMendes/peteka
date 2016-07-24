@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,14 @@ package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.dominio.Status;
 import br.edu.ifrn.peteka.dominio.Task;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.QueryByExampleExecutor;
 
 /**
+ * CrudRepository com definicao de metodos.
  * Using Query By Example
+ * @author Duarte Fernandes
  */
 public interface TaskRepository extends CrudRepository<Task, Long>,
 		QueryByExampleExecutor<Task>, TaskRepositoryCustom {

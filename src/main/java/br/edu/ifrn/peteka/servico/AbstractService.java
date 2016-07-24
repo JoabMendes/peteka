@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +16,18 @@
 package br.edu.ifrn.peteka.servico;
 
 import java.io.Serializable;
+
 import javax.inject.Inject;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
- * @author duartemac
- * @param <T>
- * @param <ID>
+ * Implementacao padrao de servico crud delegando a implementacao para o
+ * repositorio.
+ * @author Duarte Fernandes
+ * @param <T> tipo da entidade
+ * @param <ID> tipo do id da entidade
  */
 @Transactional(readOnly = true)
 public class AbstractService<T extends Object, ID extends Serializable> {

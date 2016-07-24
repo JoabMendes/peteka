@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package br.edu.ifrn.peteka.dominio;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -25,6 +26,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,9 +37,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Users entity
+ * Users entity.
  *
- * @author duartemac
+ * @author Duarte Fernandes
  */
 @Getter
 @Setter
@@ -69,9 +71,6 @@ public class Users implements Serializable, Comparable<Users> {
 		return nickname.compareTo(o.nickname);
 	}
 
-	/**
-	 *
-	 */
 	public void verifyNickName() {
 		String pattern = "^[a-zA-Z0-9]*$";
 		if (!this.nickname.matches(pattern)) {

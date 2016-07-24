@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,14 @@
  */
 package br.edu.ifrn.peteka.servico;
 
-import br.edu.ifrn.peteka.dominio.Status;
+
 import javax.inject.Named;
 
+import br.edu.ifrn.peteka.dominio.Status;
+
 /**
- *
- * @author duartemac
+ * Servico de Status.
+ * @author Duarte Fernandes
  */
 @Named
 public class StatusService extends AbstractService<Status, Long> {
