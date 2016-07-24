@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,30 @@ package br.edu.ifrn.peteka.dominio;
 
 import java.io.Serializable;
 
-import lombok.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
-import javax.persistence.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+/**
+ * Users entity.
+ *
+ * @author Duarte Fernandes
+ */
 @Getter
 @Setter
 @ToString
@@ -32,30 +52,30 @@ import javax.persistence.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Users implements Serializable, Comparable<Users> {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
+	private Long id;
 
-    @ManyToOne
-    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_user_role"))
-    private Role role;
+	@ManyToOne
+	@JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_user_role"))
+	private Role role;
 
-    @Column(nullable = false)
-    private String name;
+	@Column(nullable = false)
+	private String name;
 
-    @Column(nullable = false)
-    private String nickname;
+	@Column(nullable = false)
+	private String nickname;
 
-    @Override
-    public int compareTo(Users o) {
-        return nickname.compareTo(o.nickname);
-    }
+	@Override
+	public int compareTo(Users o) {
+		return nickname.compareTo(o.nickname);
+	}
 
-    public void verifyNickName() {
-        String pattern = "^[a-zA-Z0-9]*$";
-        if (!this.nickname.matches(pattern)) {
-            throw new IllegalArgumentException("O nickname deve ser composto apenas por letras e números.");
-        }
-    }
+	public void verifyNickName() {
+		String pattern = "^[a-zA-Z0-9]*$";
+		if (!this.nickname.matches(pattern)) {
+			throw new IllegalArgumentException("O nickname deve ser composto apenas por letras e números.");
+		}
+	}
 
 }

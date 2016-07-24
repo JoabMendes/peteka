@@ -15,21 +15,23 @@
  */
 package br.edu.ifrn.peteka.visao.crud;
 
-import br.edu.ifrn.peteka.dominio.Role;
+
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import br.edu.ifrn.peteka.dominio.Role;
+
 /**
- *
- * @author duartemac
+ * CrudMBean de Role.
+ * @author Duarte Fernandes
  */
 @ViewScoped
 @Named
 public class RoleCrudMBean extends CrudMBean<Role, Long> {
 
-    @Override
-    protected Role createBean() {
-        return Role.builder().build();
-    }
-    
+	@Override
+	protected Role createBean() {
+		return Role.builder().build();
+	}
+
 }

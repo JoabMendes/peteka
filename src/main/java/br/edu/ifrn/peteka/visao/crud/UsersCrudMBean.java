@@ -15,21 +15,23 @@
  */
 package br.edu.ifrn.peteka.visao.crud;
 
-import br.edu.ifrn.peteka.dominio.Users;
+
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import br.edu.ifrn.peteka.dominio.Users;
+
 /**
- * CrudMBean de Users
- * @author duartemac
+ * CrudMBean de Users.
+ * @author Duarte Fernandes
  */
 @ViewScoped
 @Named
 public class UsersCrudMBean extends CrudMBean<Users, Long> {
 
-    @Override
-    protected Users createBean() {
-        return Users.builder().build();
-    }
-    
+	@Override
+	protected Users createBean() {
+		return Users.builder().build();
+	}
+
 }

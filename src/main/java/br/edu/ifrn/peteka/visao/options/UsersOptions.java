@@ -15,26 +15,29 @@
  */
 package br.edu.ifrn.peteka.visao.options;
 
-import br.edu.ifrn.peteka.dominio.Users;
+
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import br.edu.ifrn.peteka.dominio.Users;
+
 /**
  * Options de Users.
- * @author duartemac
+ *
+ * @author Duarte Fernandes
  */
 @ViewScoped
 @Named
-public class UsersOptions extends Options<Users, Long>{
+public class UsersOptions extends Options<Users, Long> {
 
-    @Override
-    protected Object key(Users e) {
-        return e.getId();
-    }
+	@Override
+	protected Object key(Users e) {
+		return e.getId();
+	}
 
-    @Override
-    public String label(Users e) {
-        return e.getNickname();
-    }
-    
+	@Override
+	public String label(Users e) {
+		return e.getNickname();
+	}
+
 }

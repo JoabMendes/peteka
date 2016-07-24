@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,25 +15,32 @@
  */
 package br.edu.ifrn.peteka.servico;
 
-import br.edu.ifrn.peteka.dominio.Project;
-import br.edu.ifrn.peteka.dominio.Users;
-import br.edu.ifrn.peteka.persistencia.ProjectRepository;
 import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifrn.peteka.dominio.Project;
+import br.edu.ifrn.peteka.dominio.Users;
+import br.edu.ifrn.peteka.persistencia.ProjectRepository;
+
+/**
+ * Servico de Project.
+ *
+ * @author Duarte Fernandes
+ */
 @Named
 public class ProjectService extends AbstractService<Project, Long> {
 
-    private ProjectRepository projectRepository;
+	private ProjectRepository projectRepository;
 
-    @Inject
-    public ProjectService(ProjectRepository projectRepository) {
-        super();
-        this.projectRepository = projectRepository;
-    }
+	@Inject
+	public ProjectService(ProjectRepository projectRepository) {
+		super();
+		this.projectRepository = projectRepository;
+	}
 
-    public List<Project> getAllProjectsOfUser(Users u) {
-        return this.projectRepository.getAllProjectsOfUser(u);
-    }
+	public List<Project> getAllProjectsOfUser(Users u) {
+		return this.projectRepository.getAllProjectsOfUser(u);
+	}
 }

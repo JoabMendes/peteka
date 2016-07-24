@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +16,17 @@
 package br.edu.ifrn.peteka.persistencia;
 
 import br.edu.ifrn.peteka.dominio.Users;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.QueryByExampleExecutor;
 
 /**
- * Using Query By Example
+ * CrudRepository com definicao de metodos. Using Query By Example
+ * @author Duarte Fernandes
  */
 public interface UsersRepository extends CrudRepository<Users, Long>, QueryByExampleExecutor<Users>, UsersRepositoryCustom {
 
-    //Query Method
-    Users findByNickname(String nickname);
+	//Query Method
+	Users findByNickname(String nickname);
 
 }

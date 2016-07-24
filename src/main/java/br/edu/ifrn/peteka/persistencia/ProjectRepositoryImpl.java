@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,38 +15,42 @@
  */
 package br.edu.ifrn.peteka.persistencia;
 
-import br.edu.ifrn.peteka.dominio.Project;
-import br.edu.ifrn.peteka.dominio.QProject;
-import br.edu.ifrn.peteka.dominio.Users;
-import com.querydsl.jpa.JPQLQueryFactory;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+import br.edu.ifrn.peteka.dominio.Project;
+import br.edu.ifrn.peteka.dominio.QProject;
+import br.edu.ifrn.peteka.dominio.Users;
+
+import com.querydsl.jpa.JPQLQueryFactory;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+
 /**
- *
- * @author duartemac
+ * CrudRepository customizado.
+ * @author Duarte Fernandes
  */
 public class ProjectRepositoryImpl implements ProjectRepositoryCustom {
 
-    private final EntityManager entityManager;
+	private final EntityManager entityManager;
 
-    @Inject
-    public ProjectRepositoryImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 
-    @Override
-    public List<Project> getAllProjectsOfUser(Users u) {
-        QProject qProject = QProject.project;
-        JPQLQueryFactory factory = new JPAQueryFactory(entityManager);
+	@Inject
+	public ProjectRepositoryImpl(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 
-        List<Project> projects = (List<Project>) factory
-                .from(qProject)
-                .where(qProject.tasks.any().assignees.contains(u))
-                .fetch();
-        return projects;
-    }
+	@Override
+	public List<Project> getAllProjectsOfUser(Users u) {
+		QProject qProject = QProject.project;
+		JPQLQueryFactory factory = new JPAQueryFactory(entityManager);
+
+		List<Project> projects = (List<Project>) factory
+				.from(qProject)
+				.where(qProject.tasks.any().assignees.contains(u))
+				.fetch();
+		return projects;
+	}
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,18 +15,19 @@
  */
 package br.edu.ifrn.peteka.persistencia;
 
+import java.util.List;
+
 import br.edu.ifrn.peteka.dominio.Project;
 import br.edu.ifrn.peteka.dominio.Status;
 import br.edu.ifrn.peteka.dominio.Task;
-import java.util.List;
 
 /**
- *
- * @author duartemac
+ * Interface custom de repositorio.
+ * @author Duarte Fernandes
  */
 public interface TaskRepositoryCustom {
 
-    List<Task> getAllTasksForProject(Project p);
+	List<Task> getAllTasksForProject(Project p);
 
-    List<Task> getAllTasksForProjectOfStatus(Project p, Status s);
+	List<Task> getAllTasksForProjectOfStatus(Project p, Status s);
 }

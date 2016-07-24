@@ -15,26 +15,28 @@
  */
 package br.edu.ifrn.peteka.visao.options;
 
-import br.edu.ifrn.peteka.dominio.Status;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import br.edu.ifrn.peteka.dominio.Status;
+
 /**
  * Options de Status.
- * @author duartemac
+ *
+ * @author Duarte Fernandes
  */
 @ViewScoped
 @Named
 public class StatusOptions extends Options<Status, Long> {
 
-    @Override
-    protected Object key(Status e) {
-        return e.getId();
-    }
+	@Override
+	protected Object key(Status e) {
+		return e.getId();
+	}
 
-    @Override
-    public String label(Status e) {
-        return e.getLabel();
-    }
-    
+	@Override
+	public String label(Status e) {
+		return e.getLabel();
+	}
+
 }

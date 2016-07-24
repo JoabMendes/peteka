@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016 Peteka.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,30 +15,36 @@
  */
 package br.edu.ifrn.peteka.servico;
 
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import br.edu.ifrn.peteka.dominio.Project;
 import br.edu.ifrn.peteka.dominio.Status;
 import br.edu.ifrn.peteka.dominio.Task;
 import br.edu.ifrn.peteka.persistencia.TaskRepository;
-import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Named;
 
+/**
+ * Servico de Task.
+ * @author Duarte Fernandes
+ */
 @Named
 public class TaskService extends AbstractService<Task, Long> {
 
-    private TaskRepository taskRepository;
+	private TaskRepository taskRepository;
 
-    @Inject
-    public TaskService(TaskRepository taskRepository) {
-        super();
-        this.taskRepository = taskRepository;
-    }
+	@Inject
+	public TaskService(TaskRepository taskRepository) {
+		super();
+		this.taskRepository = taskRepository;
+	}
 
-    public List<Task> getAllTasksForProject(Project p) {
-        return this.taskRepository.getAllTasksForProject(p);
-    }
+	public List<Task> getAllTasksForProject(Project p) {
+		return this.taskRepository.getAllTasksForProject(p);
+	}
 
-    public List<Task> getAllTasksForProjectOfStatus(Project p, Status s) {
-        return this.taskRepository.getAllTasksForProjectOfStatus(p, s);
-    }
+	public List<Task> getAllTasksForProjectOfStatus(Project p, Status s) {
+		return this.taskRepository.getAllTasksForProjectOfStatus(p, s);
+	}
 }

@@ -15,26 +15,28 @@
  */
 package br.edu.ifrn.peteka.visao.options;
 
-import br.edu.ifrn.peteka.dominio.Project;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import br.edu.ifrn.peteka.dominio.Project;
+
 /**
- * Options de Project
- * @author duartemac
+ * Options de Project.
+ *
+ * @author Duarte Fernandes
  */
 @ViewScoped
 @Named
 public class ProjectOptions extends Options<Project, Long> {
 
-    @Override
-    protected Object key(Project e) {
-        return e.getId();
-    }
+	@Override
+	protected Object key(Project e) {
+		return e.getId();
+	}
 
-    @Override
-    public String label(Project e) {
-        return e.getTitle();
-    }
-    
+	@Override
+	public String label(Project e) {
+		return e.getTitle();
+	}
+
 }

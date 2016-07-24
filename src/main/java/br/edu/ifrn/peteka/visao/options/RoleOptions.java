@@ -15,26 +15,29 @@
  */
 package br.edu.ifrn.peteka.visao.options;
 
-import br.edu.ifrn.peteka.dominio.Role;
+
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import br.edu.ifrn.peteka.dominio.Role;
+
 /**
- * Options de Role
- * @author duartemac
+ * Options de Role.
+ *
+ * @author Duarte Fernandes
  */
 @ViewScoped
 @Named
 public class RoleOptions extends Options<Role, Long> {
 
-    @Override
-    protected Object key(Role e) {
-        return e.getId();
-    }
+	@Override
+	protected Object key(Role e) {
+		return e.getId();
+	}
 
-    @Override
-    public String label(Role e) {
-        return e.getTitle();
-    }
-    
+	@Override
+	public String label(Role e) {
+		return e.getTitle();
+	}
+
 }

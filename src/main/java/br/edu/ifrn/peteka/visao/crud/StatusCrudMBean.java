@@ -13,24 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package br.edu.ifrn.peteka.visao.crud;
 
-import br.edu.ifrn.peteka.dominio.Status;
+
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import br.edu.ifrn.peteka.dominio.Status;
+
 /**
- *
- * @author duartemac
+ * CrudMBean de Status.
+ * @author Duarte Fernandes
  */
 @ViewScoped
 @Named
 public class StatusCrudMBean extends CrudMBean<Status, Long> {
 
-    @Override
-    protected Status createBean() {
-        return Status.builder().build();
-    }
-    
+	@Override
+	protected Status createBean() {
+		return Status.builder().build();
+	}
+
 }
