@@ -35,10 +35,10 @@ public class TaskCrudMBean extends CrudMBean<Task, Long> {
 	@Override
 	protected Task createBean() {
 		return Task.builder()
-                        .status(Status.builder().build())
-                        .project(Project.builder().build())
-                        .assignee(Users.builder().build())
-                        .build();
+			.status(Status.builder().build())
+			.project(Project.builder().build())
+			.assignee(Users.builder().build())
+			.build();
 	}
 
 }

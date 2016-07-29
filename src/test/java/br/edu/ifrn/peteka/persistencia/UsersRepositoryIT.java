@@ -98,6 +98,6 @@ public class UsersRepositoryIT extends AbstractTestNGSpringContextTests {
 		Users user = userFactory.user(role);
 
 		assertThat(userRepository.getAllUsersOfRole(role)
-                        .contains(user)).isTrue();
+			.contains(user)).isTrue();
 	}
 }
