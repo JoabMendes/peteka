@@ -19,24 +19,18 @@
             <ui:define name="detail">
                 <h:panelGrid columns="2" cellpadding="3">
                     <c:text readonly="true" value="#{projectCrudMBean.bean.title}" label="Title" />
-                </h:panelGrid>
-                <h:panelGrid columns="2" cellpadding="3">
                     <c:text readonly="true" value="#{projectCrudMBean.bean.description}" label="Description" />
                 </h:panelGrid>
             </ui:define>
             <ui:define name="insert">
                 <h:panelGrid columns="2" cellpadding="3">
                     <c:text id="title" required="true" value="#{projectCrudMBean.bean.title}" label="Title" />
-                </h:panelGrid>
-                <h:panelGrid columns="2" cellpadding="3">
                     <c:text id="description" required="true" value="#{projectCrudMBean.bean.description}" label="Description" />
                 </h:panelGrid>
             </ui:define>
             <ui:define name="update">
                 <h:panelGrid columns="2" cellpadding="3">
                     <c:text required="true" value="#{projectCrudMBean.bean.title}" label="Title" />
-                </h:panelGrid>
-                <h:panelGrid columns="2" cellpadding="3">
                     <c:text required="true" value="#{projectCrudMBean.bean.description}" label="Description" />
                 </h:panelGrid>                
             </ui:define>

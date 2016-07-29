@@ -15,29 +15,31 @@
                 <p:column headerText="Name" sortBy="#{bean.name}" filterBy="#{bean.name}" >
                     <h:outputText value="#{bean.name}" />
                 </p:column>
+                <p:column headerText="Role" sortBy="#{bean.role.title}"
+                          filterBy="#{bean.role.id}"
+                          filterOptions="#{roleOptions.emptyOptions}" filterMatchMode="exact">
+                    <h:outputText value="#{bean.role.title}" />
+                </p:column>
             </ui:define>
             <ui:define name="detail">
                 <h:panelGrid columns="2" cellpadding="3">
-                    <c:text readonly="true" value="#{categoriaCrudMBean.bean.nickname}" label="Nickname" />
-                </h:panelGrid>
-                <h:panelGrid columns="2" cellpadding="3">
-                    <c:text readonly="true" value="#{categoriaCrudMBean.bean.name}" label="Name" />
+                    <c:text readonly="true" value="#{usersCrudMBean.bean.nickname}" label="Nickname" />
+                    <c:text readonly="true" value="#{usersCrudMBean.bean.name}" label="Name" />
+                    <c:text readonly="true" value="#{usersCrudMBean.bean.role.title}" label="Role" />
                 </h:panelGrid>
             </ui:define>
             <ui:define name="insert">
                 <h:panelGrid columns="2" cellpadding="3">
-                    <c:text id="nickname" required="true" value="#{categoriaCrudMBean.bean.nickname}" label="Nickname" />
-                </h:panelGrid>
-                <h:panelGrid columns="2" cellpadding="3">
-                    <c:text id="name" required="true" value="#{categoriaCrudMBean.bean.name}" label="Name" />
+                    <c:text id="nickname" required="true" value="#{usersCrudMBean.bean.nickname}" label="Nickname" />
+                    <c:text id="name" required="true" value="#{usersCrudMBean.bean.name}" label="Name" />
+                    <c:select id="role" required="true" value="#{usersCrudMBean.bean.role}" options="#{roleOptions}" label="Role"/>
                 </h:panelGrid>
             </ui:define>
             <ui:define name="update">
                 <h:panelGrid columns="2" cellpadding="3">
-                    <c:text required="true" value="#{categoriaCrudMBean.bean.nickname}" label="Nickname" />
-                </h:panelGrid>
-                <h:panelGrid columns="2" cellpadding="3">
-                    <c:text required="true" value="#{categoriaCrudMBean.bean.name}" label="Name" />
+                    <c:text required="true" value="#{usersCrudMBean.bean.nickname}" label="Nickname" />
+                    <c:text required="true" value="#{usersCrudMBean.bean.name}" label="Name" />
+                    <c:select required="true" value="#{usersCrudMBean.bean.role}" options="#{roleOptions}" label="Role"/>
                 </h:panelGrid>                
             </ui:define>
         </c:crud>

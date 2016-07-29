@@ -19,6 +19,7 @@ package br.edu.ifrn.peteka.visao.crud;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import br.edu.ifrn.peteka.dominio.Role;
 import br.edu.ifrn.peteka.dominio.Users;
 
 /**
@@ -31,7 +32,9 @@ public class UsersCrudMBean extends CrudMBean<Users, Long> {
 
 	@Override
 	protected Users createBean() {
-		return Users.builder().build();
+		return Users.builder()
+                        .role(Role.builder().build())
+                        .build();
 	}
 
 }

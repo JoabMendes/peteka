@@ -19,7 +19,10 @@ package br.edu.ifrn.peteka.visao.crud;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import br.edu.ifrn.peteka.dominio.Project;
+import br.edu.ifrn.peteka.dominio.Status;
 import br.edu.ifrn.peteka.dominio.Task;
+import br.edu.ifrn.peteka.dominio.Users;
 
 /**
  * CrudMBean de Task.
@@ -31,7 +34,11 @@ public class TaskCrudMBean extends CrudMBean<Task, Long> {
 
 	@Override
 	protected Task createBean() {
-		return Task.builder().build();
+		return Task.builder()
+                        .status(Status.builder().build())
+                        .project(Project.builder().build())
+                        .assignee(Users.builder().build())
+                        .build();
 	}
 
 }

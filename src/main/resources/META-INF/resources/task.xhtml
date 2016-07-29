@@ -15,29 +15,44 @@
                 <p:column headerText="Description" sortBy="#{bean.description}" filterBy="#{bean.description}" >
                     <h:outputText value="#{bean.description}" />
                 </p:column>
+                <p:column headerText="Status" sortBy="#{bean.status.label}"
+                          filterBy="#{bean.status.id}"
+                          filterOptions="#{statusOptions.emptyOptions}" filterMatchMode="exact">
+                    <h:outputText value="#{bean.status.label}" />
+                </p:column>
+                <p:column headerText="Project" sortBy="#{bean.project.title}"
+                          filterBy="#{bean.project.id}"
+                          filterOptions="#{projectOptions.emptyOptions}" filterMatchMode="exact">
+                    <h:outputText value="#{bean.project.title}" />
+                </p:column>
+                <p:column headerText="Assignee" sortBy="#{bean.users.nickname}"
+                          filterBy="#{bean.users.id}"
+                          filterOptions="#{usersOptions.emptyOptions}" filterMatchMode="exact">
+                    <h:outputText value="#{bean.users.nickname}" />
+                </p:column>
             </ui:define>
             <ui:define name="detail">
                 <h:panelGrid columns="2" cellpadding="3">
                     <c:text readonly="true" value="#{taskCrudMBean.bean.title}" label="Title" />
-                </h:panelGrid>
-                <h:panelGrid columns="2" cellpadding="3">
                     <c:text readonly="true" value="#{taskCrudMBean.bean.description}" label="Description" />
+                    <c:text readonly="true" value="#{taskCrudMBean.bean.project.title}" label="Project" />
+                    <c:text readonly="true" value="#{taskCrudMBean.bean.users.nickname}" label="User" />
                 </h:panelGrid>
             </ui:define>
             <ui:define name="insert">
                 <h:panelGrid columns="2" cellpadding="3">
                     <c:text id="title" required="true" value="#{taskCrudMBean.bean.title}" label="Title" />
-                </h:panelGrid>
-                <h:panelGrid columns="2" cellpadding="3">
                     <c:text id="description" required="true" value="#{taskCrudMBean.bean.description}" label="Description" />
+                    <c:select id="project" required="true" value="#{taskCrudMBean.bean.project}" options="#{projectOptions}" label="Project"/>
+                    <c:select id="user" required="true" value="#{taskCrudMBean.bean.users}" options="#{usersOptions}" label="User"/>
                 </h:panelGrid>
             </ui:define>
             <ui:define name="update">
                 <h:panelGrid columns="2" cellpadding="3">
                     <c:text required="true" value="#{taskCrudMBean.bean.title}" label="Title" />
-                </h:panelGrid>
-                <h:panelGrid columns="2" cellpadding="3">
                     <c:text required="true" value="#{taskCrudMBean.bean.description}" label="Description" />
+                    <c:select required="true" value="#{taskCrudMBean.bean.project}" options="#{projectOptions}" label="Project"/>
+                    <c:select required="true" value="#{taskCrudMBean.bean.users}" options="#{usersOptions}" label="User"/>
                 </h:panelGrid>                
             </ui:define>
         </c:crud>

@@ -17,6 +17,7 @@ spring:
     show-sql: true
     hibernate:
       naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+      ddl-auto: update
 jsf:
   primefaces:
     theme: blitzer

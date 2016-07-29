@@ -15,8 +15,8 @@
  */
 package br.edu.ifrn.peteka;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  * Classe main.
@@ -27,8 +27,10 @@ public class PetekaApplication {
 	protected PetekaApplication() {
 
 	}
-
-	public static void main(String[] args) {
-		SpringApplication.run(PetekaApplication.class, args);
+        
+        public static void main(String[] args) {
+		new SpringApplicationBuilder()
+			.sources(PetekaApplication.class)
+			.run(args);
 	}
 }
