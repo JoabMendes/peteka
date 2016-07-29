@@ -77,7 +77,7 @@ public class UsersServiceIT extends AbstractTestNGSpringContextTests {
 		usersList.add(usersFactory.mike());
 
 		Set<Users> savedUsers = this.userService.saveAll(usersList);
-		assertThat(usersList.equals(savedUsers));
+		assertThat(usersList.equals(savedUsers)).isTrue();
 
 	}
 
@@ -105,6 +105,7 @@ public class UsersServiceIT extends AbstractTestNGSpringContextTests {
 		// Creates the test environment and save user
 		Users user = usersFactory.user(role);
 
-		assertThat(userService.getAllUsersOfRole(role).contains(user));
+		assertThat(userService.getAllUsersOfRole(role)
+			.contains(user)).isTrue();
 	}
 }

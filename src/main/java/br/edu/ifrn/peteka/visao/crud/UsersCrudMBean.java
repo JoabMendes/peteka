@@ -33,8 +33,8 @@ public class UsersCrudMBean extends CrudMBean<Users, Long> {
 	@Override
 	protected Users createBean() {
 		return Users.builder()
-                        .role(Role.builder().build())
-                        .build();
+			.role(Role.builder().build())
+			.build();
 	}
 
 }

@@ -27,8 +27,8 @@ public class PetekaApplication {
 	protected PetekaApplication() {
 
 	}
-        
-        public static void main(String[] args) {
+
+	public static void main(String[] args) {
 		new SpringApplicationBuilder()
 			.sources(PetekaApplication.class)
 			.run(args);
