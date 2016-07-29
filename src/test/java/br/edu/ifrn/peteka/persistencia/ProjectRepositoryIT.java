@@ -90,6 +90,6 @@ public class ProjectRepositoryIT extends AbstractTestNGSpringContextTests {
 		taskFactory.task(project, user);
 
 		assertThat(projectRepository.getAllProjectsOfUser(user)
-				.contains(project));
+				.contains(project)).isTrue();
 	}
 }

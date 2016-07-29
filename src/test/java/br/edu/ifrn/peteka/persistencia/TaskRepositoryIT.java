@@ -104,7 +104,7 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests {
 		Task task = taskFactory.task(project);
 
 		assertThat(taskRepository.getAllTasksForProject(project)
-				.contains(task));
+				.contains(task)).isTrue();
 	}
 
 	public void testGetAllTasksForProjectOfStatus() {
@@ -114,7 +114,7 @@ public class TaskRepositoryIT extends AbstractTestNGSpringContextTests {
 		Task task = taskFactory.task(project, status);
 
 		assertThat(taskRepository.getAllTasksForProjectOfStatus(project, status)
-				.contains(task));
+				.contains(task)).isTrue();
 	}
 
 }

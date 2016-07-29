@@ -97,6 +97,7 @@ public class UsersRepositoryIT extends AbstractTestNGSpringContextTests {
 		// Creates the test environment and save user
 		Users user = userFactory.user(role);
 
-		assertThat(userRepository.getAllUsersOfRole(role).contains(user));
+		assertThat(userRepository.getAllUsersOfRole(role)
+                        .contains(user)).isTrue();
 	}
 }
