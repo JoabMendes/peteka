@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/JoabMendes/peteka.svg?branch=master)](https://travis-ci.org/JoabMendes/peteka)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![Heroku](https://heroku-badge.herokuapp.com/?app=peteka)](http://peteka.herokuapp.com)
+[![Versioneye](https://www.versioneye.com/user/projects/579abf5b3815c8004c5f7d52/badge.svg)](https://www.versioneye.com/user/projects/579abf5b3815c8004c5f7d52)
 
 Sistema de gerenciamento de tarefas para a disciplina de Sistemas Coorporativos 2016.1
 
