@@ -68,11 +68,24 @@ public class Project implements Serializable, Comparable<Project> {
 
 	@Override
 	public int compareTo(Project o) {
+            if (this.title != null && o.title != null){
 		int result = title.compareTo(o.title);
 		if (result == 0) {
-			result = description.compareTo(o.description);
+                    if(this.description != null & o.description != null){
+                        result = description.compareTo(o.description);
+                    }else if(this.description == null & o.description != null){
+                        result = 1;
+                    }else if(this.description != null & o.description == null){
+                        result = -1;
+                    }	
 		}
 		return result;
+            }else if(this.title == null && o.title != null){
+                return 1;
+            }else if(this.title != null && o.title == null){
+                return -1;
+            }
+            return 0;
 	}
 
 }

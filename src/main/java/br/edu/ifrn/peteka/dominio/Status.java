@@ -68,6 +68,13 @@ public class Status implements Serializable, Comparable<Status> {
 
 	@Override
 	public int compareTo(Status o) {
+            if (this.label != null && o.label != null){
 		return label.compareTo(o.label);
+            }else if(this.label == null && o.label != null){
+                return 1;
+            }else if(this.label != null && o.label == null){
+                return -1;
+            }
+            return 0;
 	}
 }

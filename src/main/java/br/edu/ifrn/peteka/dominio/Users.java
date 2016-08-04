@@ -70,7 +70,14 @@ public class Users implements Serializable, Comparable<Users> {
 
 	@Override
 	public int compareTo(Users o) {
+            if (this.nickname != null && o.nickname != null){
 		return nickname.compareTo(o.nickname);
+            }else if(this.nickname == null && o.nickname != null){
+                return 1;
+            }else if(this.nickname != null && o.nickname == null){
+                return -1;
+            }
+            return 0;
 	}
 
 	public void verifyNickName() {

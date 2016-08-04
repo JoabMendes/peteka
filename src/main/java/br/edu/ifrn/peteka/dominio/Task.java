@@ -84,7 +84,14 @@ public class Task implements Serializable, Comparable<Task> {
 
 	@Override
 	public int compareTo(Task o) {
+            if (this.title != null && o.title != null){
 		return title.compareTo(o.title);
+            }else if(this.title == null && o.title != null){
+                return 1;
+            }else if(this.title != null && o.title == null){
+                return -1;
+            }
+            return 0;
 	}
 
 }
