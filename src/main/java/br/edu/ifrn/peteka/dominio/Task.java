@@ -40,8 +40,6 @@ import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
 
-
-
 /**
  * Task entity.
  *
@@ -58,33 +56,40 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Task implements Serializable, Comparable<Task> {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
+    private Long id;
 
-	@ManyToOne
-	@JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_task_project"))
-	private Project project;
+    @ManyToOne
+    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_task_project"))
+    private Project project;
 
-	@ManyToOne
-	@JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_task_status"))
-	private Status status;
+    @ManyToOne
+    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_task_status"))
+    private Status status;
 
-	@Singular
-	@OneToMany(fetch = FetchType.LAZY)
-	private Set<Users> assignees;
+    @Singular
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Users> assignees;
 
-	@Column(nullable = false)
-	private String title;
+    @Column(nullable = false)
+    private String title;
 
-	@Column(nullable = false)
-	private String description;
+    @Column(nullable = false)
+    private String description;
 
-	@Override
-	public int compareTo(Task o) {
-		return title.compareTo(o.title);
-	}
+    @Override
+    public int compareTo(Task o) {
+        if (this.title != null && o.title != null) {
+            return title.compareTo(o.title);
+        } else if (this.title == null && o.title != null) {
+            return 1;
+        } else if (this.title != null && o.title == null) {
+            return -1;
+        }
+        return 0;
+    }
 
 }
