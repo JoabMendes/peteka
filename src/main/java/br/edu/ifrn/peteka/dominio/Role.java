@@ -52,28 +52,28 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Role implements Serializable, Comparable<Role> {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
+	private Long id;
 
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    private Set<Users> users;
+	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+	private Set<Users> users;
 
-    @Column(nullable = false)
-    private String title;
+	@Column(nullable = false)
+	private String title;
 
-    @Override
-    public int compareTo(Role o) {
-        if (this.title != null && o.title != null) {
-            return title.compareTo(o.title);
-        } else if (this.title == null && o.title != null) {
-            return 1;
-        } else if (this.title != null && o.title == null) {
-            return -1;
-        }
-        return 0;
-    }
+	@Override
+	public int compareTo(Role o) {
+		if (this.title != null && o.title != null) {
+			return title.compareTo(o.title);
+		} else if (this.title == null && o.title != null) {
+			return 1;
+		} else if (this.title != null && o.title == null) {
+			return -1;
+		}
+		return 0;
+	}
 
 }

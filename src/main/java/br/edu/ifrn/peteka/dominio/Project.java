@@ -52,41 +52,41 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Project implements Serializable, Comparable<Project> {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
+	private Long id;
 
-    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
-    private Set<Task> tasks;
+	@OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
+	private Set<Task> tasks;
 
-    @Column(nullable = false)
-    private String title;
+	@Column(nullable = false)
+	private String title;
 
-    @Column(nullable = false)
-    private String description;
+	@Column(nullable = false)
+	private String description;
 
-    @Override
-    public int compareTo(Project o) {
-        if (this.title != null && o.title != null) {
-            int result = title.compareTo(o.title);
-            if (result == 0) {
-                if (this.description != null & o.description != null) {
-                    result = description.compareTo(o.description);
-                } else if (this.description == null & o.description != null) {
-                    result = 1;
-                } else if (this.description != null & o.description == null) {
-                    result = -1;
-                }
-            }
-            return result;
-        } else if (this.title == null && o.title != null) {
-            return 1;
-        } else if (this.title != null && o.title == null) {
-            return -1;
-        }
-        return 0;
-    }
+	@Override
+	public int compareTo(Project o) {
+		if (this.title != null && o.title != null) {
+			int result = title.compareTo(o.title);
+			if (result == 0) {
+				if (this.description != null & o.description != null) {
+					result = description.compareTo(o.description);
+				} else if (this.description == null & o.description != null) {
+					result = 1;
+				} else if (this.description != null & o.description == null) {
+					result = -1;
+				}
+			}
+			return result;
+		} else if (this.title == null && o.title != null) {
+			return 1;
+		} else if (this.title != null && o.title == null) {
+			return -1;
+		}
+		return 0;
+	}
 
 }
