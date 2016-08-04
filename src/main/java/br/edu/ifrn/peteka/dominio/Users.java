@@ -52,39 +52,39 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Users implements Serializable, Comparable<Users> {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
+    private Long id;
 
-	@ManyToOne
-	@JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_user_role"))
-	private Role role;
+    @ManyToOne
+    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_user_role"))
+    private Role role;
 
-	@Column(nullable = false)
-	private String name;
+    @Column(nullable = false)
+    private String name;
 
-	@Column(nullable = false)
-	private String nickname;
+    @Column(nullable = false)
+    private String nickname;
 
-	@Override
-	public int compareTo(Users o) {
-            if (this.nickname != null && o.nickname != null){
-		return nickname.compareTo(o.nickname);
-            }else if(this.nickname == null && o.nickname != null){
-                return 1;
-            }else if(this.nickname != null && o.nickname == null){
-                return -1;
-            }
-            return 0;
-	}
+    @Override
+    public int compareTo(Users o) {
+        if (this.nickname != null && o.nickname != null) {
+            return nickname.compareTo(o.nickname);
+        } else if (this.nickname == null && o.nickname != null) {
+            return 1;
+        } else if (this.nickname != null && o.nickname == null) {
+            return -1;
+        }
+        return 0;
+    }
 
-	public void verifyNickName() {
-		String pattern = "^[a-zA-Z0-9]*$";
-		if (!this.nickname.matches(pattern)) {
-			throw new IllegalArgumentException("O nickname deve ser composto apenas por letras e números.");
-		}
-	}
+    public void verifyNickName() {
+        String pattern = "^[a-zA-Z0-9]*$";
+        if (!this.nickname.matches(pattern)) {
+            throw new IllegalArgumentException("O nickname deve ser composto apenas por letras e números.");
+        }
+    }
 
 }
