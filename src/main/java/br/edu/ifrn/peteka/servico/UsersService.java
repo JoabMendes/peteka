@@ -59,12 +59,10 @@ public class UsersService extends AbstractService<Users, Long> {
 	public Set<Users> saveAll(Set<Users> users) {
 		Set<Users> savedUsers = new HashSet<>();
 
-		users.stream().map((user) -> {
+		for (Users user : users) {
 			user.verifyNickName();
-			return user;
-		}).forEach((user) -> {
 			savedUsers.add(this.usersRepository.save(user));
-		});
+		}
 
 		return savedUsers;
 	}
