@@ -21,7 +21,7 @@
         <check.dir>src/checkconfig</check.dir>
         <pmd.excludeFromFailureFile>${check.dir}/pmd/pmd-exclude.properties</pmd.excludeFromFailureFile>
         <cobertura.totalBranchRate>30</cobertura.totalBranchRate>
-        <cobertura.totalLineRate>36</cobertura.totalLineRate>
+        <cobertura.totalLineRate>35</cobertura.totalLineRate>
         <cobertura.packageLineRate>4</cobertura.packageLineRate>
         <cobertura.packageBranchRate>0</cobertura.packageBranchRate>
         <cobertura.branchRate>0</cobertura.branchRate>
