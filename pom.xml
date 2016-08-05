@@ -20,7 +20,7 @@
         
         <check.dir>src/checkconfig</check.dir>
         <pmd.excludeFromFailureFile>${check.dir}/pmd/pmd-exclude.properties</pmd.excludeFromFailureFile>
-        <cobertura.totalBranchRate>34</cobertura.totalBranchRate>
+        <cobertura.totalBranchRate>30</cobertura.totalBranchRate>
         <cobertura.totalLineRate>36</cobertura.totalLineRate>
         <cobertura.packageLineRate>4</cobertura.packageLineRate>
         <cobertura.packageBranchRate>0</cobertura.packageBranchRate>
@@ -154,7 +154,7 @@
                             <exclude>br/edu/ifrn/peteka/dominio/QRole.class</exclude>
                             <exclude>br/edu/ifrn/peteka/dominio/QStatus.class</exclude>
                             <exclude>br/edu/ifrn/peteka/dominio/QTask.class</exclude>
-                            <exclude>br/edu/ifrn/peteka/dominio/QUser.class</exclude>
+                            <exclude>br/edu/ifrn/peteka/dominio/QUsers.class</exclude>
                         </excludes>
                     </instrumentation>
                 </configuration>            
