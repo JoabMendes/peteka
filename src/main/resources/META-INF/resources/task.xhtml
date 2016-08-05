@@ -44,7 +44,7 @@
                     <c:text id="title" required="true" value="#{taskCrudMBean.bean.title}" label="Title" />
                     <c:text id="description" required="true" value="#{taskCrudMBean.bean.description}" label="Description" />
                     <c:select id="project" required="true" value="#{taskCrudMBean.bean.project}" options="#{projectOptions}" label="Project"/>
-                    <c:select id="user" required="true" value="#{taskCrudMBean.bean.users}" options="#{usersOptions}" label="User"/>
+                    <c:select id="user" required="true" value="#{taskCrudMBean.bean.assignees}" options="#{usersOptions}" label="User"/>
                 </h:panelGrid>
             </ui:define>
             <ui:define name="update">
@@ -52,7 +52,7 @@
                     <c:text required="true" value="#{taskCrudMBean.bean.title}" label="Title" />
                     <c:text required="true" value="#{taskCrudMBean.bean.description}" label="Description" />
                     <c:select required="true" value="#{taskCrudMBean.bean.project}" options="#{projectOptions}" label="Project"/>
-                    <c:select required="true" value="#{taskCrudMBean.bean.users}" options="#{usersOptions}" label="User"/>
+                    <c:select required="true" value="#{taskCrudMBean.bean.assignees}" options="#{usersOptions}" label="User"/>
                 </h:panelGrid>                
             </ui:define>
         </c:crud>

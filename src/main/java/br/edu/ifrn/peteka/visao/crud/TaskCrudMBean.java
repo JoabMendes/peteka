@@ -16,6 +16,9 @@
 package br.edu.ifrn.peteka.visao.crud;
 
 
+
+import java.util.Set;
+
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
