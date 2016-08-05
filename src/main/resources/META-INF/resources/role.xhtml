@@ -7,7 +7,7 @@
       xmlns:c="http://ifrn.edu.br/peteka"
       template="layout/template.xhtml">
     <ui:define name="content">
-        <c:crud title="Task" managedBean="#{roleCrudMBean}">
+        <c:crud title="Role" managedBean="#{roleCrudMBean}">
             <ui:define name="listColumns">
                 <p:column headerText="Title" sortBy="#{bean.title}" filterBy="#{bean.title}" >
                     <h:outputText value="#{bean.title}" />
