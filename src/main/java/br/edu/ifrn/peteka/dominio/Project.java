@@ -42,7 +42,7 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"tasks"})
 @EqualsAndHashCode(of = {"title", "description"})
 @Builder
 @Entity
