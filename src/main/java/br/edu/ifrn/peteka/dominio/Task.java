@@ -40,8 +40,6 @@ import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
 
-
-
 /**
  * Task entity.
  *
@@ -84,7 +82,14 @@ public class Task implements Serializable, Comparable<Task> {
 
 	@Override
 	public int compareTo(Task o) {
-		return title.compareTo(o.title);
+		if (this.title != null && o.title != null) {
+			return title.compareTo(o.title);
+		} else if (this.title == null && o.title != null) {
+			return 1;
+		} else if (this.title != null && o.title == null) {
+			return -1;
+		}
+		return 0;
 	}
 
 }

@@ -36,8 +36,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
-
 /**
  * Status entity.
  *
@@ -68,6 +66,13 @@ public class Status implements Serializable, Comparable<Status> {
 
 	@Override
 	public int compareTo(Status o) {
-		return label.compareTo(o.label);
+		if (this.label != null && o.label != null) {
+			return label.compareTo(o.label);
+		} else if (this.label == null && o.label != null) {
+			return 1;
+		} else if (this.label != null && o.label == null) {
+			return -1;
+		}
+		return 0;
 	}
 }

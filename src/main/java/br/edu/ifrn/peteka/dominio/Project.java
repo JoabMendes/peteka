@@ -38,6 +38,7 @@ import lombok.ToString;
 
 /**
  * Project Entity.
+ *
  * @author Duarte Fernandes
  */
 @Getter
@@ -68,11 +69,18 @@ public class Project implements Serializable, Comparable<Project> {
 
 	@Override
 	public int compareTo(Project o) {
-		int result = title.compareTo(o.title);
-		if (result == 0) {
-			result = description.compareTo(o.description);
+		if (this.title != null && o.title != null) {
+			int result = title.compareTo(o.title);
+			if (result == 0) {
+				result = description.compareTo(o.description);
+			}
+			return result;
+		} else if (this.title == null && o.title != null) {
+			return 1;
+		} else if (this.title != null && o.title == null) {
+			return -1;
 		}
-		return result;
+		return 0;
 	}
 
 }
