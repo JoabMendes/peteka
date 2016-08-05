@@ -43,7 +43,7 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"users"})
 @EqualsAndHashCode(of = {"title"})
 @Builder
 @Entity
