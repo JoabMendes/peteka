@@ -72,13 +72,7 @@ public class Project implements Serializable, Comparable<Project> {
 		if (this.title != null && o.title != null) {
 			int result = title.compareTo(o.title);
 			if (result == 0) {
-				if (this.description != null & o.description != null) {
-					result = description.compareTo(o.description);
-				} else if (this.description == null & o.description != null) {
-					result = 1;
-				} else if (this.description != null & o.description == null) {
-					result = -1;
-				}
+				result = description.compareTo(o.description);
 			}
 			return result;
 		} else if (this.title == null && o.title != null) {
