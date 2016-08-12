@@ -63,7 +63,7 @@ public class UsersServiceIT extends AbstractTestNGSpringContextTests {
 
 	public void testSaveOne() {
 		// Creates the test environment and save user
-		Users user = usersFactory.fred();
+		Users user = this.userService.save(usersFactory.fred());
 
 		// Verifies if saved
 		assertThat(this.userService.findAll().iterator().next()).isEqualTo(user);
