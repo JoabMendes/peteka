@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-cobertura-site</actionName>
+            <displayName>cobertura-site</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>cobertura:cobertura-integration-test</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>attach-integration-test</activatedProfile>
+            </activatedProfiles>
+        </action>
+    </actions>
