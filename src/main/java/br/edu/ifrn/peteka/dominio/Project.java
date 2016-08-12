@@ -76,11 +76,11 @@ public class Project implements Serializable, Comparable<Project> {
 			}
 			return result;
 		} else if (this.title == null && o.title != null) {
-			return 1;
-		} else if (this.title != null && o.title == null) {
 			return -1;
+		} else if (this.title != null && o.title == null) {
+			return 1;
 		}
-		return 0;
+		return description.compareTo(o.description);
 	}
 
 }

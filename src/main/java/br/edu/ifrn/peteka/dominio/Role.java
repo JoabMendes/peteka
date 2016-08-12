@@ -66,15 +66,12 @@ public class Role implements Serializable, Comparable<Role> {
 
 	@Override
 	public int compareTo(Role o) {
-		if (o == null) {
-			return -1;
-		}
 		if (this.title != null && o.title != null) {
 			return title.compareTo(o.title);
 		} else if (this.title == null && o.title != null) {
-			return 1;
-		} else if (this.title != null && o.title == null) {
 			return -1;
+		} else if (this.title != null && o.title == null) {
+			return 1;
 		}
 		return 0;
 	}

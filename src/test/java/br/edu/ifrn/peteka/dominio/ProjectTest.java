@@ -15,6 +15,7 @@
  */
 package br.edu.ifrn.peteka.dominio;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -44,6 +45,21 @@ public class ProjectTest {
 	public void differentTitles() {
 		assertThat(Project.builder().title(TITLE1).build())
 				.isNotEqualTo(Project.builder().title(TITLE2).build());
+	}
+
+	public void secondProjectTitleIsNull() {
+		assertThat(Project.builder().title(TITLE1).build())
+				.isGreaterThan(Project.builder().title(null).build());
+	}
+
+	public void firstProjectTitleIsNull() {
+		assertThat(Project.builder().title(null).build())
+				.isLessThan(Project.builder().title(TITLE1).build());
+	}
+
+	public void bothTitlesAreNullButDescriptionsAreEqual() {
+		assertThat(Project.builder().title(null).description(DESCRIPTION1).build())
+				.isEqualTo(Project.builder().title(null).description(DESCRIPTION1).build());
 	}
 
 	public void equalTitlesDifferentDescriptions() {
@@ -87,6 +103,16 @@ public class ProjectTest {
 		projects.add(p2);
 
 		assertThat(projects.iterator().next()).isEqualTo(p2);
+	}
+
+	public void testProjectTasks() {
+		Users u1 = Users.builder().nickname("Nome").build();
+		Task t1 = Task.builder().assignee(u1).build();
+		Set<Task> tasks = new HashSet<>();
+		tasks.add(t1);
+		Project p1 = Project.builder().title(TITLE1).tasks(tasks).build();
+		assertThat(p1.getTasks().contains(t1))
+				.isTrue();
 	}
 
 }
