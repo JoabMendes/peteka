@@ -53,19 +53,19 @@ public class StatusTest {
 
 		assertThat(statuses.iterator().next()).isEqualTo(s2);
 	}
-	
+
 	public void compareToNullLabelValues() {
 		Status s1 = Status.builder().label(null).build();
 		Status s2 = Status.builder().label(LABEL1).build();
-		
+
 		int result = s1.compareTo(s2);
 		assertThat(result < 0).isTrue();
-		
+
 		s1.setLabel(LABEL1);
 		s2.setLabel(null);
 		result = s1.compareTo(s2);
 		assertThat(result > 0).isTrue();
-		
+
 		s1.setLabel(null);
 		s2.setLabel(null);
 		result = s1.compareTo(s2);
