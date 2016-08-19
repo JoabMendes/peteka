@@ -15,6 +15,7 @@
  */
 package br.edu.ifrn.peteka.dominio;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -51,6 +52,34 @@ public class StatusTest {
 		statuses.add(s2);
 
 		assertThat(statuses.iterator().next()).isEqualTo(s2);
+	}
+
+	public void compareToNullLabelValues() {
+		Status s1 = Status.builder().label(null).build();
+		Status s2 = Status.builder().label(LABEL1).build();
+
+		int result = s1.compareTo(s2);
+		assertThat(result < 0).isTrue();
+
+		s1.setLabel(LABEL1);
+		s2.setLabel(null);
+		result = s1.compareTo(s2);
+		assertThat(result > 0).isTrue();
+
+		s1.setLabel(null);
+		s2.setLabel(null);
+		result = s1.compareTo(s2);
+		assertThat(result == 0).isTrue();
+	}
+
+	public void testStatusTasks() {
+		Users u1 = Users.builder().nickname("Nome").build();
+		Task t1 = Task.builder().assignee(u1).build();
+		Set<Task> tasks = new HashSet<>();
+		tasks.add(t1);
+		Status s1 = Status.builder().label(LABEL1).tasks(tasks).build();
+		assertThat(s1.getTasks().contains(t1))
+				.isTrue();
 	}
 
 }

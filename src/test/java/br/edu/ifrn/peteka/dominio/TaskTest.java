@@ -15,6 +15,7 @@
  */
 package br.edu.ifrn.peteka.dominio;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -65,6 +66,15 @@ public class TaskTest {
 		tasks.add(t2);
 
 		assertThat(tasks.iterator().next()).isEqualTo(t2);
+	}
+
+	public void testTaskAssignees() {
+		Users u1 = Users.builder().nickname("Nome").build();
+		Set<Users> users = new HashSet<>();
+		users.add(u1);
+		Task t1 = Task.builder().title(TITLE1).assignees(users).build();
+		assertThat(t1.getAssignees().contains(u1))
+				.isTrue();
 	}
 
 }

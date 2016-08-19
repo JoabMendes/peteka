@@ -15,8 +15,8 @@
  */
 package br.edu.ifrn.peteka.dominio;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import org.testng.annotations.Test;
 
@@ -33,24 +33,42 @@ public class RoleTest {
 	private static final String TITLE2 = "title2";
 
 	public void equalTitles() {
-		assertThat(Role.builder().title(TITLE1).build())
-				.isEqualTo(Role.builder().title(TITLE1).build());
+		assertThat(Role.builder().title(TITLE1).build()
+				.compareTo(Role.builder().title(TITLE1).build()))
+				.isEqualTo(0);
 	}
 
-	public void differentTitles() {
-		assertThat(Role.builder().title(TITLE1).build())
-				.isNotEqualTo(Role.builder().title(TITLE2).build());
+	public void firstTitleIsGreater() {
+		assertThat(Role.builder().title(TITLE2).build()
+				.compareTo(Role.builder().title(TITLE1).build()))
+				.isEqualTo(1);
 	}
 
-	public void compareToDifferentTitles() {
-		Set<Role> roles = new TreeSet<>();
+	public void secondTitleIsGreater() {
+		assertThat(Role.builder().title(TITLE1).build()
+				.compareTo(Role.builder().title(TITLE2).build()))
+				.isEqualTo(-1);
+	}
 
-		Role r1 = Role.builder().title(TITLE2).build();
-		Role r2 = Role.builder().title(TITLE1).build();
-		roles.add(r1);
-		roles.add(r2);
+	public void firstRoleTitleIsNull() {
+		assertThat(Role.builder().build()
+				.compareTo(Role.builder().title(TITLE1).build()))
+				.isEqualTo(-1);
+	}
 
-		assertThat(roles.iterator().next()).isEqualTo(r2);
+	public void secondRoleTitleIsNull() {
+		assertThat(Role.builder().title(TITLE1).build()
+				.compareTo(Role.builder().build()))
+				.isEqualTo(1);
+	}
+
+	public void testRoleUsers() {
+		Users u1 = Users.builder().nickname("Nome").build();
+		Set<Users> users = new HashSet<>();
+		users.add(u1);
+		Role r1 = Role.builder().title(TITLE1).users(users).build();
+		assertThat(r1.getUsers().contains(u1))
+				.isTrue();
 	}
 
 }

@@ -20,17 +20,26 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  * Classe main.
+ *
  * @author Duarte Fernandes
  */
 @SpringBootApplication
 public class PetekaApplication {
+
+	private static SpringApplicationBuilder springApplicationBuilder
+			= new SpringApplicationBuilder();
+
+	public static void setSpringApplicationBuilder(SpringApplicationBuilder springApplicationBuilder) {
+		PetekaApplication.springApplicationBuilder = springApplicationBuilder;
+	}
+
 	protected PetekaApplication() {
 
 	}
 
 	public static void main(String[] args) {
-		new SpringApplicationBuilder()
-			.sources(PetekaApplication.class)
-			.run(args);
+		springApplicationBuilder
+				.sources(PetekaApplication.class)
+				.run(args);
 	}
 }
